@@ -34,8 +34,8 @@ public class Plane implements Geometry
      */
     public Plane(Point3D _point1,Point3D _point2,Point3D _point3) throws SpecialException {
         this._p = _point1;
-        Vector VectorPlane1 = _point1.Substract(_point2);
-        Vector VectorPlane2 = _point3.Substract(_point2);
+        Vector VectorPlane1 = _point1.subtract(_point2);
+        Vector VectorPlane2 = _point3.subtract(_point2);
         this._normal = VectorPlane1.crossProduct(VectorPlane2);
 
     }
@@ -50,5 +50,9 @@ public class Plane implements Geometry
     {
         this._p = _p;
         this._normal = Normal;
+    }
+
+    public Vector getNormal() {
+        return _normal;
     }
 }

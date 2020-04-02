@@ -63,7 +63,7 @@ public class Point3D
      * @return the vector
      * @throws SpecialException the special exception
      */
-    public Vector Substract(Point3D temp) throws SpecialException {
+    public Vector subtract(Point3D temp) throws SpecialException {
         return new Vector(temp.coordX-coordX,temp.coordY-coordY,temp.coordZ-coordZ);
     }
 
