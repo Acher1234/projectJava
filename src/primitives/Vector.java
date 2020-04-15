@@ -9,19 +9,22 @@ public class Vector
     /**
      * The Point.
      */
-    protected Point3D point;
-    /**
-     * The Size.
-     */
-    protected double size;
+    protected Point3D head;
     /**
      * The Degrees xy.
      */
-    protected float degreesXY;
+    //protected float degreesXY;
     /**
      * The Degrees xz.
      */
-    protected float degreesXZ;
+    //protected float degreesXZ;
+
+
+//*************************METHODES*************************
+    public int compareTo(Vector vector) // this function compares between 2 vectors
+    {
+        return this.head.compareTo(vector.head);
+    }
 
     /**
      * Return size double.
@@ -31,7 +34,6 @@ public class Vector
      * @param Z the z
      * @return the double
      */
-//*************************METHODES*************************
     static double ReturnSize(double X,double Y,double Z)
     {
         double NewX =  Math.pow(X,2);
@@ -45,11 +47,10 @@ public class Vector
      *
      * @param temp the temp
      * @return the vector
-     * @throws SpecialException the special exception
      */
-    public Vector add(Vector temp) throws SpecialException
+    public Vector add(Vector temp)
     {
-        return new Vector(point.Add(temp));
+        return new Vector(head.Add(temp));
     }
 
     /**
@@ -57,11 +58,10 @@ public class Vector
      *
      * @param temp the temp
      * @return the vector
-     * @throws SpecialException the special exception
      */
-    public Vector Sub(Vector temp) throws SpecialException
+    public Vector subtract(Vector temp)
     {
-        return point.Substract(temp.point);
+        return new Vector(head.subtract(temp.head));
     }
 
     /**
@@ -69,12 +69,11 @@ public class Vector
      *
      * @param temp the temp
      * @return the vector
-     * @throws SpecialException the special exception
      */
-    public Vector crossProduct(Vector temp) throws SpecialException {
-        double tempX = (this.point.coordY * temp.point.coordZ) - (this.point.coordZ*temp.point.coordY);
-        double tempY = (this.point.coordZ * temp.point.coordX) - (this.point.coordX*temp.point.coordZ);
-        double tempZ = (this.point.coordX * temp.point.coordY) - (this.point.coordY*temp.point.coordX);
+    public Vector crossProduct(Vector temp) {
+        double tempX = (this.head.coordY.get() * temp.head.coordZ.get()) - (this.head.coordZ.get()*temp.head.coordY.get());
+        double tempY = (this.head.coordZ.get() * temp.head.coordX.get()) - (this.head.coordX.get()*temp.head.coordZ.get());
+        double tempZ = (this.head.coordX.get() * temp.head.coordY.get()) - (this.head.coordY.get()*temp.head.coordX.get());
         return new Vector(tempX,tempY,tempZ);
     }
 
@@ -83,11 +82,10 @@ public class Vector
      *
      * @param Scale the scale
      * @return the vector
-     * @throws SpecialException the special exception
      */
-    public Vector scale(double Scale)throws SpecialException
+    public Vector scale(double Scale)
     {
-        return new Vector(point.coordX*Scale,point.coordY*Scale,point.coordZ*Scale);
+        return new Vector(head.coordX.get()*Scale,head.coordY.get()*Scale,head.coordZ.get()*Scale);
     }
 
     /**
@@ -98,7 +96,7 @@ public class Vector
      */
     public double dotProduct(Vector temp)
     {
-        return (point.coordX*temp.point.coordX + point.coordY*temp.point.coordY +point.coordY*temp.point.coordY);
+        return (head.coordX.get()*temp.head.coordX.get() + head.coordY.get()*temp.head.coordY.get() +head.coordY.get()*temp.head.coordY.get());
     }
 
     /**
@@ -108,21 +106,20 @@ public class Vector
      */
     public double lenghtSquared()
     {
-        return point.DistanceSquare(new Point3D(0,0,0));
+        return head.DistanceSquare(new Point3D(0,0,0));
     }
 
     /**
      * Normalize vector.
      *
      * @return the vector
-     * @throws SpecialException the special exception
      */
-    public Vector normalize()throws SpecialException
+    public Vector normalize()
     {
         double lenghtActual = this.lenght();
-        this.point.coordX = point.coordX/lenghtActual;
-        this.point.coordY = point.coordY/lenghtActual;
-        this.point.coordZ = point.coordZ/lenghtActual;
+        this.head.coordX = new Coordinate(head.coordX.get()/lenghtActual);
+        this.head.coordY = new Coordinate(head.coordY.get()/lenghtActual);
+        this.head.coordZ = new Coordinate(head.coordZ.get()/lenghtActual);
         return this;
     }
 
@@ -130,9 +127,8 @@ public class Vector
      * Normalized vector.
      *
      * @return the vector
-     * @throws SpecialException the special exception
      */
-    public Vector normalized()throws SpecialException
+    public Vector normalized()
     {
         return new Vector(this).normalize();
     }
@@ -158,10 +154,10 @@ public class Vector
      * @param coodY the cood y
      * @return the float
      */
-    float ReturnDegreesXY(double coodX, double coodY )
+    /*float ReturnDegreesXY(double coodX, double coodY )
     {
         return 1;
-    }
+    }*/
 
     /**
      * Return degrees xz float.
@@ -170,30 +166,37 @@ public class Vector
      * @param coodZ the cood z
      * @return the float
      */
-    float ReturnDegreesXZ(double coodX, double coodZ)
+    /*float ReturnDegreesXZ(double coodX, double coodZ)
     {
         return 1;
-    }
+    }*/
 
     /**
      * Set size degrees.
      */
-    protected void SetSizeDegrees()
-    {
-        this.size = ReturnSize(point.coordX,point.coordY,point.coordZ);
-        this.degreesXY = ReturnDegreesXY(point.coordX,point.coordY);
-        this.degreesXZ = ReturnDegreesXZ(point.coordX,point.coordZ);
-    }
+    /*protected void SetSizeDegrees()
+
+        this.degreesXY = ReturnDegreesXY(head.coordX,head.coordY);
+        this.degreesXZ = ReturnDegreesXZ(head.coordX,head.coordZ);
+    }*/
 
     /**
      * Zero test.
      *
-     * @throws SpecialException the special exception
      */
-    protected void ZeroTest() throws SpecialException
+    protected void ZeroTest()
     {
-        if((point.coordX == point.coordY) && (point.coordY == point.coordZ) && (point.coordZ == 0))
-            throw  SpecialException.SpecialExceptionVector0();
+        try {
+            if ((head.coordX.get() == head.coordY.get()) && (head.coordY.get() == head.coordZ.get()) && (head.coordZ.get() == 0))
+               throw new Exception("bad Number");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            head.setcoordX(1.0);
+            head.setcoordY(1.0);
+            head.setcoordZ(1.0);
+        }
     }
 
     /**
@@ -202,13 +205,12 @@ public class Vector
      * @param coordX the coord x
      * @param coordY the coord y
      * @param coordZ the coord z
-     * @throws SpecialException the special exception
      */
 //*******************CONSTRUCTOR*******************************
-    public Vector(double coordX, double coordY, double coordZ) throws SpecialException {
-        point = new Point3D(coordX, coordY, coordZ);
+    public Vector(double coordX, double coordY, double coordZ) {
+        head = new Point3D(coordX, coordY, coordZ);
         ZeroTest();
-        SetSizeDegrees();
+        //SetSizeDegrees();
     }
 
     /**
@@ -217,89 +219,80 @@ public class Vector
      * @param coordX the coord x
      * @param coordY the coord y
      * @param coordZ the coord z
-     * @throws SpecialException the special exception
      */
-    public Vector(Coordinate coordX, Coordinate coordY, Coordinate coordZ) throws SpecialException {
-        point = new Point3D(coordX.get(), coordY.get(), coordZ.get());
+    public Vector(Coordinate coordX, Coordinate coordY, Coordinate coordZ)  {
+        head = new Point3D(coordX.get(), coordY.get(), coordZ.get());
         ZeroTest();
-        SetSizeDegrees();
+        //SetSizeDegrees();
     }
 
     /**
      * Instantiates a new Vector.
      *
      * @param vector the vector
-     * @throws SpecialException the special exception
      */
-    public Vector(Vector vector) throws SpecialException {
-        point = new Point3D(vector.point);
+    public Vector(Vector vector){
+        head = new Point3D(vector.head);
         ZeroTest();
-        SetSizeDegrees();
+        //SetSizeDegrees();
     }
 
     /**
      * Instantiates a new Vector.
      *
      * @param point the point
-     * @throws SpecialException the special exception
      */
-    public Vector(Point3D point) throws SpecialException {
-        point = new Point3D(point);
+    public Vector(Point3D point)  {
+        head = new Point3D(point);
         ZeroTest();
-        SetSizeDegrees();
+        //SetSizeDegrees();
+    }
+
+    public Vector(Point3D point1,Point3D point2) {
+        head = new Point3D((point1.subtract(point2)).getHead());
+        ZeroTest();
+        //SetSizeDegrees();
     }
     //***************GET/SET********************************
 
-    /**
-     * Gets size.
-     *
-     * @return the size
-     */
-    public double getSize() {
-        return size;
-    }
 
-
-    /**
+    /*
      * Gets degrees xy.
      *
      * @return the degrees xy
      */
-    public float getDegreesXY() {
+    /*public float getDegreesXY() {
         return degreesXY;
-    }
+    }*/
 
 
-    /**
+    /*
      * Gets degrees xz.
      *
      * @return the degrees xz
-     */
     public float getDegreesXZ() {
         return degreesXZ;
-    }
+    }*/
 
     /**
-     * Gets point.
+     * Gets point head.
      *
      * @return the point
      */
-    public Point3D getPoint()
+    public Point3D getHead()
     {
-        return point;
+        return head;
     }
 
     /**
      * Sets x.
      *
      * @param coordX the coord x
-     * @throws SpecialException the special exception
      */
-    public void setcoordX(double coordX) throws SpecialException
+    public void setcoordX(double coordX)
     {
-        point.setcoordX(coordX);
+        head.setcoordX(coordX);
         ZeroTest();
-        SetSizeDegrees();
     }
 
 
@@ -307,38 +300,35 @@ public class Vector
      * Sets y.
      *
      * @param coordY the coord y
-     * @throws SpecialException the special exception
      */
-    public void setcoordY(double coordY) throws SpecialException
+    public void setcoordY(double coordY)
     {
-        point.setcoordY(coordY);
+        head.setcoordY(coordY);
         ZeroTest();
-        SetSizeDegrees();
+        //SetSizeDegrees();
     }
 
     /**
      * Sets z.
      *
      * @param coordZ the coord z
-     * @throws SpecialException the special exception
      */
-    public void setcoordZ(double coordZ) throws SpecialException
+    public void setcoordZ(double coordZ)
     {
-        point.setcoordZ(coordZ);
+        head.setcoordZ(coordZ);
         ZeroTest();
-        SetSizeDegrees();
+        //SetSizeDegrees();
     }
 
     /**
      * Sets z.
      *
      * @param point the point
-     * @throws SpecialException the special exception
      */
-    public void setcoordZ(Point3D point) throws SpecialException
+    public void setcoordZ(Point3D point)
     {
-        this.point = point;
+        this.head = point;
         ZeroTest();
-        SetSizeDegrees();
+       // SetSizeDegrees();
     }
 }
