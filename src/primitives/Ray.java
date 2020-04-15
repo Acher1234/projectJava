@@ -8,20 +8,24 @@ public class Ray
     /**
      * The Direction.
      */
-    protected Vector direction;
+    protected Vector _direction;
+    /**
+     * the origin point
+     */
+    protected Point3D _POO;
 
+//********************METHODES****************
     /**
      * Point presence boolean.
      *
      * @param point the point
      * @return the boolean
      */
-//********************METHODES****************
     public Boolean PointPresence(Point3D point)
     {
-        double TX = point.coordX / direction.point.coordX;
-        double TY = point.coordY / direction.point.coordY;
-        double TZ = point.coordZ / direction.point.coordZ;
+        double TX = point.coordX.get() / _direction.head.coordX.get();
+        double TY = point.coordY.get() / _direction.head.coordY.get();
+        double TZ = point.coordZ.get() / _direction.head.coordZ.get();
         return (TX  == TY  && TY == TZ);
 
     }
@@ -29,15 +33,38 @@ public class Ray
     /**
      * Instantiates a new Ray.
      *
-     * @param coordX the coord x
-     * @param coordY the coord y
-     * @param coordZ the coord z
-     * @throws SpecialException the special exception
+     * @param direct the vector direction
+     * @param origin set the origin point
      */
 //*******************CONSTRUCTOR*******************************
-    public Ray(double coordX, double coordY, double coordZ) throws SpecialException
+    public Ray(Vector direct,Point3D origin )
     {
-        direction = new Vector(coordX, coordY, coordZ);
+        _direction = new Vector(direct);
+        this._POO = new Point3D(origin);
     }
-
+    public Ray()  {
+        _POO = new Point3D(0.0,0.0,0.0);
+        _direction = new Vector(1.0,1.0,1.0);
+    }
+    public Ray(Ray ray){
+        _POO = new Point3D(ray._POO);
+        _direction = new Vector(ray._direction);
+    }
+    //*************SET/GET**************//
+    public void setPOO(Point3D _POO)
+    {
+        this._POO = _POO;
+    }
+    public void setDirection(Vector _direction)
+    {
+        this._direction = _direction;
+    }
+    public Vector getDirection()
+    {
+        return _direction;
+    }
+    public Point3D getPOO()
+    {
+        return _POO;
+    }
 }

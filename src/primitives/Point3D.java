@@ -12,15 +12,15 @@ public class Point3D
     /**
      * The Coord x.
      */
-    protected double coordX;
+    protected Coordinate coordX;
     /**
      * The Coord y.
      */
-    protected double coordY;
+    protected Coordinate coordY;
     /**
      * The Coord z.
      */
-    protected double coordZ;
+    protected Coordinate coordZ;
 
     /**
      * Instantiates a new Point 3 d.
@@ -31,6 +31,13 @@ public class Point3D
      */
 //*******************CONSTRUCTOR*******************************
     public Point3D(double coordX, double coordY, double coordZ)
+    {
+        this.coordX = new Coordinate(coordX);
+        this.coordY = new Coordinate(coordY);
+        this.coordZ = new Coordinate(coordZ);
+    }
+
+    public Point3D(Coordinate coordX, Coordinate coordY, Coordinate coordZ)
     {
         this.coordX = coordX;
         this.coordY = coordY;
@@ -51,9 +58,15 @@ public class Point3D
     //************METHODES****************
 
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+
+    public int compareTo(Point3D other) {
+        if(!coordX.equals(other.coordX))
+            return 0;
+        if(!coordY.equals(other.coordY))
+            return 0;
+        if(!coordZ.equals(other.coordZ))
+            return 0;
+        return 1;
     }
 
     /**
@@ -61,21 +74,19 @@ public class Point3D
      *
      * @param temp the temp
      * @return the vector
-     * @throws SpecialException the special exception
      */
-    public Vector Substract(Point3D temp) throws SpecialException {
-        return new Vector(temp.coordX-coordX,temp.coordY-coordY,temp.coordZ-coordZ);
+    public Vector subtract(Point3D temp) {
+        return new Vector(temp.coordX.get()-coordX.get(),temp.coordY.get()-coordY.get(),temp.coordZ.get()-coordZ.get());
     }
 
     /**
-     * Add point 3 d.
+     * Add point 3d.
      *
      * @param temp the temp
      * @return the point 3 d
-     * @throws SpecialException the special exception
      */
-    public Point3D Add(Vector temp) throws SpecialException {
-        return new Point3D(temp.point.coordX+coordX,temp.point.coordY+coordY,temp.point.coordZ+coordZ);
+    public Point3D Add(Vector temp){
+        return new Point3D((new Coordinate(temp.head.coordX.get()+coordX.get())),(new Coordinate(temp.head.coordY.get()+coordY.get())),(new Coordinate(temp.head.coordZ.get()+coordZ.get())));
     }
 
     /**
@@ -86,10 +97,15 @@ public class Point3D
      */
     public double DistanceSquare(Point3D temp)
     {
-        double NewX =  (temp.coordX-coordX) * (temp.coordX-coordX);
-        double NewY = (temp.coordY-coordY) * (temp.coordY-coordY);
-        double NewZ = (temp.coordZ-coordZ) * (temp.coordZ-coordZ);
+        double NewX =  (temp.coordX.get()-coordX.get()) * (temp.coordX.get()-coordX.get());
+        double NewY = (temp.coordY.get()-coordY.get()) * (temp.coordY.get()-coordY.get());
+        double NewZ = (temp.coordZ.get()-coordZ.get()) * (temp.coordZ.get()-coordZ.get());
         return (NewX+NewY+NewZ);
+    }
+
+    public String toString() // this function writes what are the coordinates of the point.
+    {
+        return String.format("(%.2f, %.2f, %.2f)", coordX.get(), coordY.get(), coordZ.get()); // format de cdavid.
     }
 
     /**
@@ -109,7 +125,7 @@ public class Point3D
      * @return the coord x
      */
 //-------------------------------GET/SET----------------
-    public double getCoordX() {
+    public Coordinate getCoordX() {
         return coordX;
     }
 
@@ -118,7 +134,7 @@ public class Point3D
      *
      * @return the coord y
      */
-    public double getCoordY() {
+    public Coordinate getCoordY() {
         return coordY;
     }
 
@@ -127,7 +143,7 @@ public class Point3D
      *
      * @return the coord z
      */
-    public double getCoordZ() {
+    public Coordinate getCoordZ() {
         return coordZ;
     }
 
@@ -135,29 +151,27 @@ public class Point3D
      * Sets x.
      *
      * @param coordX the coord x
-     * @throws SpecialException the special exception
      */
-    public void setcoordX(double coordX) throws SpecialException {
-        this.coordX = coordX;
+    public void setcoordX(double coordX){
+        this.coordX = new Coordinate(coordX);
     }
 
     /**
      * Sets y.
      *
      * @param coordY the coord y
-     * @throws SpecialException the special exception
      */
-    public void setcoordY(double coordY) throws SpecialException {
-        this.coordY = coordY;
+    public void setcoordY(double coordY) {
+        this.coordY = new Coordinate(coordY);
     }
 
     /**
      * Sets z.
      *
      * @param coordZ the coord z
-     * @throws SpecialException the special exception
      */
-    public void setcoordZ(double coordZ) throws SpecialException {
-        this.coordZ = coordZ;
+    public void setcoordZ(double coordZ) {
+        this.coordY = new Coordinate(coordY);
     }
+
 }
