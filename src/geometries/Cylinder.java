@@ -1,8 +1,12 @@
 package geometries;
 
+import org.hamcrest.core.Is;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Cylinder.
@@ -51,5 +55,28 @@ public class Cylinder extends Tube
         BaseplanNormal = BaseplanNormal.scale(heigth);
         Point3D cerclePoint = temp.Add(BaseplanNormal);
         return cerclePoint.subtract(_axisRay.getPOO());
+    }
+
+    @Override
+    public List<Point3D> findIntersection(Ray ray)
+    {
+        List<Point3D> List =  super.findIntersection(ray);
+        List<Point3D> List2 = new ArrayList<Point3D>();
+        boolean isPoint = false;
+        for(Point3D point : List)
+        {
+            Vector v1 = point.subtract(_axisRay.getPOO());
+            double size = v1.lengthSquared() - (_radius*_radius);
+            if(size <= _height)
+            {
+               isPoint = true;
+               List2.add(point);
+            }
+        }
+        if(isPoint)
+        {
+            return List2;
+        }
+        return null;
     }
 }

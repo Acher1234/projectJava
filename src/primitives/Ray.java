@@ -30,13 +30,19 @@ public class Ray
 
     }
 
+    public  Point3D getPoint(double t)
+    {
+       return  _POO.Add(_direction.scale(t));
+    }
+
+
+//*******************CONSTRUCTOR*******************************
     /**
      * Instantiates a new Ray.
      *
      * @param direct the vector direction
      * @param origin set the origin point
      */
-//*******************CONSTRUCTOR*******************************
     public Ray(Vector direct,Point3D origin )
     {
         _direction = new Vector(direct);

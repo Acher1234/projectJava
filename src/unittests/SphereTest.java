@@ -19,4 +19,5 @@ public class SphereTest {
         assertEquals(result.getHead().getCoordY(),test.getHead().getCoordY());
         assertEquals(result.getHead().getCoordZ(),test.getHead().getCoordZ());
     }
+
 }
