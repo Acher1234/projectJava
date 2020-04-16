@@ -1,12 +1,11 @@
 package geometries;
 
-import org.hamcrest.core.Is;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 /**
  * The type Cylinder.
@@ -47,36 +46,17 @@ public class Cylinder extends Tube
     @Override
     public Vector getNormal(Point3D temp)
     {
-        Vector findCerclePoint = new Vector();
-        Vector BaseplanNormal = new Plane(_axisRay.getPOO(),_axisRay.getPOO().Add(_axisRay.getDirection()),_axisRay.getPOO().Add(_axisRay.getDirection().scale(-1)))._normal;//recup the nomal plane of the cercle
-       // i get the basis vector to calcul the direct beetween the point and the base cercle
-        Vector hypotenuse  = temp.subtract(_axisRay.getPOO());// i get the hypotenuse with the ray to have the distance beetween the point and the base
-        double heigth = hypotenuse.add(_axisRay.getDirection().normalize().scale(_radius)).length();
-        BaseplanNormal = BaseplanNormal.scale(heigth);
-        Point3D cerclePoint = temp.Add(BaseplanNormal);
-        return cerclePoint.subtract(_axisRay.getPOO());
-    }
-
-    @Override
-    public List<Point3D> findIntersection(Ray ray)
-    {
-        List<Point3D> List =  super.findIntersection(ray);
-        List<Point3D> List2 = new ArrayList<Point3D>();
-        boolean isPoint = false;
-        for(Point3D point : List)
-        {
-            Vector v1 = point.subtract(_axisRay.getPOO());
-            double size = v1.lengthSquared() - (_radius*_radius);
-            if(size <= _height)
-            {
-               isPoint = true;
-               List2.add(point);
-            }
-        }
-        if(isPoint)
-        {
-            return List2;
-        }
-        return null;
+        Point3D point1 =_axisRay.getPOO();
+        Point3D point2 = _axisRay.getPOO().Add(_axisRay.getDirection());
+        double CoordX = new Vector(point2).getHead().getCoordX().get();//use for vectoriel Rotation on Z
+        double CoordY = new Vector(point2).getHead().getCoordY().get();
+        double CoordZ = new Vector(point2).getHead().getCoordZ().get();
+        CoordX = CoordX*cos(90) - CoordY*sin(90);
+        CoordY = CoordX*sin(90) + CoordY*cos(90);
+        Point3D point3 =  _axisRay.getPOO().Add(new Vector(CoordX,CoordY,CoordZ));
+        Vector BaseplanNormal = new Plane(point1,point2,point3).getNormal();//recup the nomal plane of the cercle
+        // i get the basis vector to calcul the direct beetween the point and the base cercle
+        BaseplanNormal = BaseplanNormal.normalized();
+        return BaseplanNormal;
     }
 }

@@ -1,14 +1,7 @@
 package geometries;
 
 import primitives.Point3D;
-import primitives.Ray;
 import primitives.Vector;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.lang.StrictMath.sqrt;
-import static primitives.Util.*;
 
 /**
  * The type Sphere.
@@ -49,7 +42,7 @@ public class Sphere extends RadialGeometry
     @Override
     public Vector getNormal(Point3D temp)
     {
-       return  temp.subtract(_center).normalized();
+        return  _center.subtract(temp).normalized();
     }
 
     /**
@@ -59,11 +52,5 @@ public class Sphere extends RadialGeometry
      */
     public Point3D get_center() {
         return _center;
-    }
-
-
-    @Override
-    public List<Point3D> findIntersection(Ray ray) {
-        return null;
     }
 }

@@ -2,13 +2,11 @@ package geometries;
 
 import primitives.*;
 
-import java.util.List;
-
 
 /**
  * The interface Geometry.
  */
-public interface Geometry extends Intersectable
+public interface Geometry
 {
     /**
      * Gets normal.
@@ -17,5 +15,4 @@ public interface Geometry extends Intersectable
      * @return the normal
      */
     public abstract Vector getNormal(Point3D temp);
-
 }
