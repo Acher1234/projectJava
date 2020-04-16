@@ -43,6 +43,13 @@ public class Cylinder extends Tube
     @Override
     public Vector getNormal(Point3D temp)
     {
-        return null;
+        Vector findCerclePoint = new Vector();
+        Vector BaseplanNormal = new Plane(_axisRay.getPOO(),_axisRay.getPOO().Add(_axisRay.getDirection()),_axisRay.getPOO().Add(_axisRay.getDirection().scale(-1)))._normal;//recup the nomal plane of the cercle
+       // i get the basis vector to calcul the direct beetween the point and the base cercle
+        Vector hypotenuse  = temp.subtract(_axisRay.getPOO());// i get the hypotenuse with the ray to have the distance beetween the point and the base
+        double heigth = hypotenuse.add(_axisRay.getDirection().normalize().scale(_radius)).length();
+        BaseplanNormal = BaseplanNormal.scale(heigth);
+        Point3D cerclePoint = temp.Add(BaseplanNormal);
+        return cerclePoint.subtract(_axisRay.getPOO());
     }
 }

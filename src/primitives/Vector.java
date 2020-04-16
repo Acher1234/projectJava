@@ -10,15 +10,10 @@ public class Vector
      * The Point.
      */
     protected Point3D head;
-    /**
-     * The Degrees xy.
-     */
-    //protected float degreesXY;
-    /**
-     * The Degrees xz.
-     */
-    //protected float degreesXZ;
 
+    public Vector() {
+        head = new Point3D(1,1,1);
+    }
 
 //*************************METHODES*************************
     public int compareTo(Vector vector) // this function compares between 2 vectors
@@ -104,7 +99,7 @@ public class Vector
      *
      * @return the double
      */
-    public double lenghtSquared()
+    public double lengthSquared()
     {
         return head.DistanceSquare(new Point3D(0,0,0));
     }
@@ -116,7 +111,7 @@ public class Vector
      */
     public Vector normalize()
     {
-        double lenghtActual = this.lenght();
+        double lenghtActual = this.length();
         this.head.coordX = new Coordinate(head.coordX.get()/lenghtActual);
         this.head.coordY = new Coordinate(head.coordY.get()/lenghtActual);
         this.head.coordZ = new Coordinate(head.coordZ.get()/lenghtActual);
@@ -138,47 +133,15 @@ public class Vector
      *
      * @return the double
      */
-    public double lenght()
+    public double length()
     {
-        return Math.sqrt(lenghtSquared());
+        return Math.sqrt(lengthSquared());
     }
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
 
-    /**
-     * Return degrees xy float.
-     *
-     * @param coodX the cood x
-     * @param coodY the cood y
-     * @return the float
-     */
-    /*float ReturnDegreesXY(double coodX, double coodY )
-    {
-        return 1;
-    }*/
-
-    /**
-     * Return degrees xz float.
-     *
-     * @param coodX the cood x
-     * @param coodZ the cood z
-     * @return the float
-     */
-    /*float ReturnDegreesXZ(double coodX, double coodZ)
-    {
-        return 1;
-    }*/
-
-    /**
-     * Set size degrees.
-     */
-    /*protected void SetSizeDegrees()
-
-        this.degreesXY = ReturnDegreesXY(head.coordX,head.coordY);
-        this.degreesXZ = ReturnDegreesXZ(head.coordX,head.coordZ);
-    }*/
 
     /**
      * Zero test.
@@ -186,17 +149,9 @@ public class Vector
      */
     protected void ZeroTest()
     {
-        try {
             if ((head.coordX.get() == head.coordY.get()) && (head.coordY.get() == head.coordZ.get()) && (head.coordZ.get() == 0))
-               throw new Exception("bad Number");
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-            head.setcoordX(1.0);
-            head.setcoordY(1.0);
-            head.setcoordZ(1.0);
-        }
+               throw new IllegalArgumentException("Illegal Vector 0");
+
     }
 
     /**
@@ -210,7 +165,6 @@ public class Vector
     public Vector(double coordX, double coordY, double coordZ) {
         head = new Point3D(coordX, coordY, coordZ);
         ZeroTest();
-        //SetSizeDegrees();
     }
 
     /**
@@ -223,7 +177,6 @@ public class Vector
     public Vector(Coordinate coordX, Coordinate coordY, Coordinate coordZ)  {
         head = new Point3D(coordX.get(), coordY.get(), coordZ.get());
         ZeroTest();
-        //SetSizeDegrees();
     }
 
     /**
@@ -234,7 +187,6 @@ public class Vector
     public Vector(Vector vector){
         head = new Point3D(vector.head);
         ZeroTest();
-        //SetSizeDegrees();
     }
 
     /**
@@ -251,28 +203,8 @@ public class Vector
     public Vector(Point3D point1,Point3D point2) {
         head = new Point3D((point1.subtract(point2)).getHead());
         ZeroTest();
-        //SetSizeDegrees();
     }
     //***************GET/SET********************************
-
-
-    /*
-     * Gets degrees xy.
-     *
-     * @return the degrees xy
-     */
-    /*public float getDegreesXY() {
-        return degreesXY;
-    }*/
-
-
-    /*
-     * Gets degrees xz.
-     *
-     * @return the degrees xz
-    public float getDegreesXZ() {
-        return degreesXZ;
-    }*/
 
     /**
      * Gets point head.
@@ -305,7 +237,6 @@ public class Vector
     {
         head.setcoordY(coordY);
         ZeroTest();
-        //SetSizeDegrees();
     }
 
     /**
@@ -317,7 +248,7 @@ public class Vector
     {
         head.setcoordZ(coordZ);
         ZeroTest();
-        //SetSizeDegrees();
+
     }
 
     /**
@@ -329,6 +260,6 @@ public class Vector
     {
         this.head = point;
         ZeroTest();
-       // SetSizeDegrees();
+
     }
 }

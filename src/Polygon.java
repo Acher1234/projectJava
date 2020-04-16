@@ -1,5 +1,6 @@
 import java.util.List;
 import primitives.*;
+import geometries.*;
 import static primitives.Util.*;
 
 /**

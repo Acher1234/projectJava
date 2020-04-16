@@ -31,7 +31,7 @@ public class VectorTests {
      * Scale.
      */
     @org.junit.Test
-    public void scale() throws SpecialException {
+    public void scale(){
         Vector test2 = null;
         // ============ Equivalence Partitions Tests ==============
             Vector test = new Vector(1.0, 1.0, 1.0);
@@ -53,6 +53,8 @@ public class VectorTests {
         assertEquals(17.0, v1.dotProduct(v2));
     }
 
+
+
     /**
      * Lenght squared.
      */
@@ -60,31 +62,26 @@ public class VectorTests {
     public void lenghtSquared() {
         // ============ Equivalence Partitions Tests ==============
         Vector V1 = new Vector(1.0,1.0,1.0);
-        double test = V1.lenghtSquared();
+        double test = V1.lengthSquared();
         assertEquals(1.0,test);
          V1 = new Vector(-1.0,-1.0,-1.0);//test negative
-        test = V1.lenghtSquared();
+        test = V1.lengthSquared();
         assertEquals(1.0,test);
     }
 
-    /**
-     * Normalize.
-     */
-    @org.junit.Test
-    public void normalize() {
-    }
 
     /**
      * Normalized.
      */
     @org.junit.Test
     public void normalized() {
+        // ============ Equivalence Partitions Tests ==============
+        Vector V1 = new Vector(2.0,4.0,3.0);
+        double test = V1.normalized().length();
+        assertEquals(1.0,test);
+        V1 = new Vector(-2.0,4.0,-3.0);
+        test = V1.normalized().length();
+        assertEquals(1.0,test);
     }
 
-    /**
-     * Lenght.
-     */
-    @org.junit.Test
-    public void lenght() {
-    }
 }

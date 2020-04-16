@@ -25,7 +25,6 @@ public class Plane implements Geometry
      * @param _point1 the point 1
      * @param _point2 the point 2
      * @param _point3 the point 3
-     * @throws SpecialException the special exception
      */
     public Plane(Point3D _point1,Point3D _point2,Point3D _point3) {
         this._p = _point1;

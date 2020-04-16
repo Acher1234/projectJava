@@ -1,12 +1,15 @@
 package unittests;
 
 import org.junit.Test;
-import geometries.*;
-import static org.junit.Assert.*;
 
-public class GeometryTests {
+import static org.junit.Assert.*;
+import geometries.*;
+import primitives.*;
+
+public class TriangleTest {
 
     @Test
     public void getNormal() {
+        new PolygonTests().testGetNormal();
     }
 }

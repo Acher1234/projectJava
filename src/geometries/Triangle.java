@@ -19,7 +19,6 @@ public class Triangle extends Polygon
      * @param point1 the point 1
      * @param point2 the point 2
      * @param point3 the point 3
-     * @throws SpecialException the special exception
      */
     public Triangle(Point3D point1,Point3D point2,Point3D point3){
         super(point1,point2,point3);
@@ -28,6 +27,6 @@ public class Triangle extends Polygon
     @Override
     public Vector getNormal(Point3D temp)
     {
-        return null;
+        return super.getNormal(temp).normalized();
     }
 }
