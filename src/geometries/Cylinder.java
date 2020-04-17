@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
-
+import java.util.*;
 /**
  * The type Cylinder.
  */
@@ -58,5 +58,27 @@ public class Cylinder extends Tube
         // i get the basis vector to calcul the direct beetween the point and the base cercle
         BaseplanNormal = BaseplanNormal.normalized();
         return BaseplanNormal;
+    }
+    @Override
+    public List<Point3D> findIntersection(Ray ray)
+    {
+        List<Point3D> List =  super.findIntersection(ray);
+        List<Point3D> List2 = new ArrayList<Point3D>();
+        boolean isPoint = false;
+        for(Point3D point : List)
+        {
+            Vector v1 = point.subtract(_axisRay.getPOO());
+            double size = v1.lengthSquared() - (_radius*_radius);
+            if(size <= _height)
+            {
+                isPoint = true;
+                List2.add(point);
+            }
+        }
+        if(isPoint)
+        {
+            return List2;
+        }
+        return null;
     }
 }

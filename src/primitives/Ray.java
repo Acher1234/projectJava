@@ -29,6 +29,10 @@ public class Ray
         return (TX  == TY  && TY == TZ);
 
     }
+    public  Point3D getPoint(double t)
+    {
+        return  _POO.Add(_direction.scale(t));
+    }
 
     /**
      * Instantiates a new Ray.

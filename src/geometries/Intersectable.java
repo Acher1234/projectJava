@@ -1,7 +1,6 @@
 package geometries;
 import primitives.*;
 import primitives.Vector;
-
 import java.util.*;
 
 public interface Intersectable {

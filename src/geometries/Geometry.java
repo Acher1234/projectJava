@@ -3,10 +3,11 @@ package geometries;
 import primitives.*;
 
 
+
 /**
  * The interface Geometry.
  */
-public interface Geometry
+public interface Geometry extends Intersectable
 {
     /**
      * Gets normal.

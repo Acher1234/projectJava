@@ -1,6 +1,11 @@
 package geometries;
 
 import primitives.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * The type Plane.
@@ -62,5 +67,25 @@ public class Plane implements Geometry
     public Point3D getPoint()
     {
         return _p;
+    }
+
+    @Override
+    public List<Point3D> findIntersection(Ray ray)
+    {
+        if(isZero(ray.getDirection().dotProduct(_normal)) || isZero(ray.getDirection().dotProduct(_normal)))//parralel to the plan
+        {
+            return null;
+        }
+        Vector planToPoint = ray.getPOO().subtract(_p);
+        double numerator = _normal.dotProduct(planToPoint);
+        double denominator = ray.getDirection().dotProduct(_normal);
+        double t = alignZero(numerator/denominator);
+        if(t<0)
+        {
+            return null;
+        }
+        List<Point3D> List = new ArrayList<Point3D>();
+        List.add(ray.getPoint(t));
+        return List;
     }
 }
