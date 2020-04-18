@@ -46,7 +46,7 @@ public class Cylinder extends Tube
     @Override
     public Vector getNormal(Point3D temp)
     {
-        boolean Incerclesurface = temp.subtract(_axisRay.getPOO()).length() < _radius;//the point is in the cercle and not in the tube
+        boolean Incerclesurface = temp.subtract(_axisRay.getPOO()).length() <= _radius;//the point is in the cercle and not in the tube
         if(Incerclesurface) {
             Point3D point1 = _axisRay.getPOO();
             Point3D point2 = _axisRay.getPOO().Add(_axisRay.getDirection());
