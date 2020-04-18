@@ -1,6 +1,9 @@
 package primitives;
 import java.lang.Math;
 
+import static java.lang.Math.sqrt;
+import static primitives.Util.isZero;
+
 /**
  * The type Vector.
  */
@@ -15,7 +18,7 @@ public class Vector
         head = new Point3D(1,1,1);
     }
 
-//*************************METHODES*************************
+    //*************************METHODES*************************
     public int compareTo(Vector vector) // this function compares between 2 vectors
     {
         return this.head.compareTo(vector.head);
@@ -34,7 +37,7 @@ public class Vector
         double NewX =  Math.pow(X,2);
         double NewY = Math.pow(Y,2);
         double NewZ = Math.pow(Z,2);
-        return  Math.sqrt(NewX+NewY+NewZ);
+        return  sqrt(NewX+NewY+NewZ);
     }
 
     /**
@@ -91,7 +94,7 @@ public class Vector
      */
     public double dotProduct(Vector temp)
     {
-        return (head.coordX.get()*temp.head.coordX.get() + head.coordY.get()*temp.head.coordY.get() +head.coordY.get()*temp.head.coordY.get());
+        return (head.coordX.get()*temp.head.coordX.get() + head.coordY.get()*temp.head.coordY.get() +head.coordZ.get()*temp.head.coordZ.get());
     }
 
     /**
@@ -135,11 +138,20 @@ public class Vector
      */
     public double length()
     {
-        return Math.sqrt(lengthSquared());
+        return sqrt(this.lengthSquared());
     }
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        Vector test = (Vector)obj;
+        if(getHead().coordX.get() != test.getHead().coordX.get())
+            return false;
+        if(getHead().coordY.get() != test.getHead().coordY.get())
+            return false;
+        if(getHead().coordZ.get() != test.getHead().coordZ.get())
+            return false;
+        return true;
+
+
     }
 
 
@@ -149,8 +161,8 @@ public class Vector
      */
     protected void ZeroTest()
     {
-            if ((head.coordX.get() == head.coordY.get()) && (head.coordY.get() == head.coordZ.get()) && (head.coordZ.get() == 0))
-               throw new IllegalArgumentException("Illegal Vector 0");
+        if ((head.coordX.get() == head.coordY.get()) && (head.coordY.get() == head.coordZ.get()) && (isZero(head.coordZ.get())))
+            throw new IllegalArgumentException("Illegal Vector 0" + head.toString());
 
     }
 
@@ -262,4 +274,5 @@ public class Vector
         ZeroTest();
 
     }
+
 }
