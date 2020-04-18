@@ -46,18 +46,25 @@ public class Cylinder extends Tube
     @Override
     public Vector getNormal(Point3D temp)
     {
-        Point3D point1 =_axisRay.getPOO();
-        Point3D point2 = _axisRay.getPOO().Add(_axisRay.getDirection());
-        double CoordX = new Vector(point2).getHead().getCoordX().get();//use for vectoriel Rotation on Z
-        double CoordY = new Vector(point2).getHead().getCoordY().get();
-        double CoordZ = new Vector(point2).getHead().getCoordZ().get();
-        CoordX = CoordX*cos(90) - CoordY*sin(90);
-        CoordY = CoordX*sin(90) + CoordY*cos(90);
-        Point3D point3 =  _axisRay.getPOO().Add(new Vector(CoordX,CoordY,CoordZ));
-        Vector BaseplanNormal = new Plane(point1,point2,point3).getNormal();//recup the nomal plane of the cercle
-        // i get the basis vector to calcul the direct beetween the point and the base cercle
-        BaseplanNormal = BaseplanNormal.normalized();
-        return BaseplanNormal;
+        boolean Incerclesurface = temp.subtract(_axisRay.getPOO()).length() <= _radius;//the point is in the cercle and not in the tube
+        if(Incerclesurface) {
+            Point3D point1 = _axisRay.getPOO();
+            Point3D point2 = _axisRay.getPOO().Add(_axisRay.getDirection());
+            double CoordX = new Vector(point2).getHead().getCoordX().get();//use for vectoriel Rotation on Z
+            double CoordY = new Vector(point2).getHead().getCoordY().get();
+            double CoordZ = new Vector(point2).getHead().getCoordZ().get();
+            CoordX = CoordX * cos(90) - CoordY * sin(90);
+            CoordY = CoordX * sin(90) + CoordY * cos(90);
+            Point3D point3 = _axisRay.getPOO().Add(new Vector(CoordX, CoordY, CoordZ));
+            Vector BaseplanNormal = new Plane(point1, point2, point3).getNormal();//recup the nomal plane of the cercle
+            // i get the basis vector to calcul the direct beetween the point and the base cercle
+            BaseplanNormal = BaseplanNormal.normalized();
+            return BaseplanNormal;
+        }
+        else //the point is in the tube....
+        {
+            return super.getNormal(temp);
+        }
     }
     @Override
     public List<Point3D> findIntersection(Ray ray)
