@@ -31,7 +31,7 @@ public class Ray
     }
     public  Point3D getPoint(double t)
     {
-        return  _POO.Add(_direction.scale(t));
+        return  _POO.Add(_direction.scale(-t));
     }
 
     /**
