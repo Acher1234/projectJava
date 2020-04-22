@@ -45,9 +45,9 @@ public class Triangle extends Polygon
         Vector n1 = v1.crossProduct(v2).normalize();
         Vector n2 = v1.crossProduct(v3).normalize();
         Vector n3 = v2.crossProduct(v3).normalize();
-        double number1 = ray.getPOO().subtract(test).dotProduct(n1);
-        double number2 = ray.getPOO().subtract(test).dotProduct(n2);
-        double number3 = ray.getPOO().subtract(test).dotProduct(n3);
+        double number1 = ray.getDirection().dotProduct(n1);
+        double number2 = ray.getDirection().dotProduct(n2);
+        double number3 = ray.getDirection().dotProduct(n3);
         if(number1 > 0 && number2 >0 && number3 >0)
         {
             return List;

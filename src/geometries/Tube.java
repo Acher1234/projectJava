@@ -46,7 +46,9 @@ public class Tube extends RadialGeometry {
     @Override
     public Vector getNormal(Point3D temp)
     {
-        return temp.subtract(_axisRay.getPOO()).normalized();
+        double t = _axisRay.getDirection().dotProduct(temp.subtract(_axisRay.getPOO()));
+        Point3D o = _axisRay.getPOO().Add(_axisRay.getDirection().scale(t));
+        return temp.subtract(o).normalized();
     }
 
     /**
@@ -57,41 +59,5 @@ public class Tube extends RadialGeometry {
     public Ray get_axisRay() {
         return _axisRay;
     }
-    @Override
-    public
-    List<Point3D> findIntersection(Ray ray)
-    {
-        Vector U =_axisRay.getPOO().subtract(ray.getPOO());
-        if(U.crossProduct(ray.getDirection()) == null)
-        {
-            System.out.println(1);
-          return null;  //calcul si les 2 sont colineaite
-        }
-        double tm = alignZero(ray.getDirection().dotProduct(U));// dot product beetween the U and the ray vecteur
-        double d = Math.sqrt(U.lengthSquared() - (tm*tm));
-        double th = (_radius*_radius);
-        th -= ((d)*(d));
-        if(th < 0)
-        {
-            return null;
-        }
-        th = sqrt(th);
-        List<Point3D> List = new ArrayList<Point3D>();
-        if(U.length() < _radius)//there is only one point
-        {
-            if(tm-th > 0)
-            {
-                List.add(ray.getPoint(alignZero(tm-th)));
-            }
-            if(tm-th > 0)
-            {
-                List.add(ray.getPoint(alignZero(tm-th)));
-            }
-            return List;
-        }
-        double scale = alignZero(tm-th);
-        List.add(ray.getPoint(scale));
-        List.add(ray.getPoint(alignZero(tm+th)));
-        return List;
-    }
+
 }
