@@ -80,6 +80,7 @@ public class Camera {
         {
             Result.Add(I);
         }
+        System.out.println(new Ray(Result.subtract(this.Origins),Result));
         return new Ray(Result.subtract(this.Origins),Result);
     }
     //-------------GET--------
