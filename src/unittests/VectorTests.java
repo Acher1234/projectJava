@@ -42,6 +42,10 @@ public class VectorTests {
         assertEquals(2.0,test2.getHead().getCoordZ().get(),0);
 
     }
+
+    /**
+     * Test.
+     */
     @org.junit.Test
     public void test(){
         Vector test2 = new Vector(1.0, 1.0, 1.0);
@@ -60,7 +64,6 @@ public class VectorTests {
         Vector v2 = new Vector(1.0, 2.0, 4.0);
         assertEquals(17.0, v1.dotProduct(v2),0);
     }
-
 
 
     /**

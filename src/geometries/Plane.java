@@ -47,9 +47,15 @@ public class Plane implements Geometry
      */
     public Plane(Point3D _point1,Vector Normal)
     {
-        this._p = _p;
+        this._p = _point1;
         this._normal = Normal.normalized();
     }
+
+    /**
+     * Instantiates a new Plane.
+     *
+     * @param other the other
+     */
     public Plane(Plane other){
         this._p = new Point3D(other._p);
         this._normal = new Vector(other._normal);
@@ -61,9 +67,21 @@ public class Plane implements Geometry
     {
         return _normal;
     }
+
+    /**
+     * Gets normal.
+     *
+     * @return the normal
+     */
     public Vector getNormal() {
         return _normal;
     }
+
+    /**
+     * Gets point.
+     *
+     * @return the point
+     */
     public Point3D getPoint()
     {
         return _p;
@@ -74,9 +92,18 @@ public class Plane implements Geometry
     {
         if(isZero(ray.getDirection().dotProduct(_normal)) || isZero(ray.getDirection().dotProduct(_normal)))//parralel to the plan
         {
+
             return null;
         }
-        Vector planToPoint = ray.getPOO().subtract(_p);
+        Vector U;
+        try {
+            U = _normal.crossProduct(ray.getDirection());
+        }
+        catch (Exception e)
+        {
+            //perpendicular
+        }
+        Vector planToPoint = _p.subtract(ray.getPOO());
         double numerator = _normal.dotProduct(planToPoint);
         double denominator = ray.getDirection().dotProduct(_normal);
         double t = alignZero(numerator/denominator);

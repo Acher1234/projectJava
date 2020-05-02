@@ -7,6 +7,7 @@ import primitives.Vector;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import java.util.*;
+
 /**
  * The type Cylinder.
  */
@@ -52,22 +53,55 @@ public class Cylinder extends Tube
     public List<Point3D> findIntersection(Ray ray)
     {
         List<Point3D> List =  super.findIntersection(ray);
-        List<Point3D> List2 = new ArrayList<Point3D>();
-        boolean isPoint = false;
-        for(Point3D point : List)
+        List<Point3D> setCandidate = new ArrayList<Point3D>();
+        Point3D P2Point = _axisRay.getPOO().Add(_axisRay.getDirection().scale(_height));
+        Plane P1 = new Plane(_axisRay.getPOO(),_axisRay.getDirection());
+        Plane P2 = new Plane(P2Point,_axisRay.getDirection());
+        Vector testNull;
+        for (int i = 0;i < List.size();i++)// for the intersection without the plane
         {
-            Vector v1 = point.subtract(_axisRay.getPOO());
-            double size = v1.lengthSquared() - (_radius*_radius);
-            if(size <= _height)
+            double t = _axisRay.getDirection().dotProduct(List.get(i).subtract(_axisRay.getPOO()));
+            Point3D o = _axisRay.getPOO().Add(_axisRay.getDirection().scale(t));
+            if(o.subtract(_axisRay.getPOO()).length() > _height)
             {
-                isPoint = true;
-                List2.add(point);
+                List.remove(i);
             }
         }
-        if(isPoint)
+        setCandidate = P1.findIntersection(ray);
+        if(setCandidate != null)
         {
-            return List2;
+            try
+            {
+                testNull =   setCandidate.get(0).subtract(P2Point);
+            }
+            catch (Exception e)
+            {
+                List.add(_axisRay.getPOO());
+                testNull = null;
+            }
+            if(testNull != null && testNull.length() < _radius)
+            {
+                List.add(setCandidate.get(0));
+            }
         }
-        return null;
+        setCandidate = P2.findIntersection(ray);
+        if(setCandidate != null)
+        {
+            try
+            {
+              testNull =   setCandidate.get(0).subtract(P2Point);
+            }
+            catch (Exception e)
+            {
+                List.add(P2Point);
+                testNull =null;
+            }
+
+            if(testNull != null && testNull.length() < _radius)
+            {
+                List.add(setCandidate.get(0));
+            }
+        }
+        return List;
     }
 }

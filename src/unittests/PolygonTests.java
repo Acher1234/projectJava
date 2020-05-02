@@ -12,8 +12,8 @@ import primitives.*;
 
 /**
  * Testing Polygons
- * @author Dan
  *
+ * @author Dan
  */
 public class PolygonTests {
 

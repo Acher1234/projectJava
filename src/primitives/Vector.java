@@ -14,11 +14,20 @@ public class Vector
      */
     protected Point3D head;
 
+    /**
+     * Instantiates a new Vector.
+     */
     public Vector() {
         head = new Point3D(1,1,1);
     }
 
-    //*************************METHODES*************************
+    /**
+     * Compare to int.
+     *
+     * @param vector the vector
+     * @return the int
+     */
+//*************************METHODES*************************
     public int compareTo(Vector vector) // this function compares between 2 vectors
     {
         return this.head.compareTo(vector.head);
@@ -108,7 +117,7 @@ public class Vector
      */
     public double lengthSquared()
     {
-        return head.DistanceSquare(new Point3D(0,0,0));
+        return head.DistanceSquare();
     }
 
     /**
@@ -161,7 +170,6 @@ public class Vector
 
     /**
      * Zero test.
-     *
      */
     protected void ZeroTest()
     {
@@ -216,6 +224,12 @@ public class Vector
         //SetSizeDegrees();
     }
 
+    /**
+     * Instantiates a new Vector.
+     *
+     * @param point1 the point 1
+     * @param point2 the point 2
+     */
     public Vector(Point3D point1,Point3D point2) {
         head = new Point3D((point1.subtract(point2)).getHead());
         ZeroTest();

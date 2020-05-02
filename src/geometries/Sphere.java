@@ -58,37 +58,41 @@ public class Sphere extends RadialGeometry
     public Point3D get_center() {
         return _center;
     }
-    @Override
-    public
-    List<Point3D> findIntersection(Ray ray)
-    {
-        Vector U =_center.subtract(ray.getPOO());
-
-        double tm = alignZero(ray.getDirection().dotProduct(U));// dot product beetween the U and the ray vecteur
-        double d = Math.sqrt(U.lengthSquared() - (tm*tm));
-        double th = (_radius*_radius);
-        th -= ((d)*(d));
-        if(th < 0)
-        {
-            return null;
-        }
-        th = sqrt(th);
-        List<Point3D> List = new ArrayList<Point3D>();
-        if(U.length() < _radius)//there is only one point
-        {
-            if(tm-th > 0)
-            {
-                List.add(ray.getPoint(alignZero(tm-th)));
-            }
-            if(tm-th > 0)
-            {
-                List.add(ray.getPoint(alignZero(tm-th)));
-            }
-            return List;
-        }
-        double scale = alignZero(tm-th);
-        List.add(ray.getPoint(scale));
-        List.add(ray.getPoint(alignZero(tm+th)));
-        return List;
-    }
+   @Override
+    public List<Point3D> findIntersection(Ray ray) {
+       List<Point3D> List = new ArrayList<Point3D>();
+       Vector U = null;
+       try {
+           U = _center.subtract(ray.getPOO());
+       } catch (Exception e) {
+           List.add(ray.getPoint(_radius));
+           return List;
+       }
+       double tm = alignZero(U.dotProduct(ray.getDirection()));// dot product beetween the U and the ray vecteur
+       double d = U.lengthSquared() - (tm * tm);
+       double th = (_radius * _radius) - d;
+       if (th < 0) {
+           return null;
+       }
+       th = sqrt(th);
+       double t1 = alignZero(tm - th);
+       t1 = (double) Math.round(t1 * 100) / 100;
+       double t2 = alignZero(tm + th);
+       t2 = (double) Math.round(t2 * 100) / 100;
+       if(t1 < 0 && t2 < 0)
+       {
+           return null;
+       }
+       if (t1 >= 0 &&  t2 < 0) {
+           List.add(ray.getPoint(alignZero(t1)));
+           return List;
+       } else if (t2 >= 0 && t1 < 0) {
+           List.add(ray.getPoint(alignZero(t2)));
+           return List;
+       } else {
+           List.add(ray.getPoint(alignZero(t1)));
+           List.add(ray.getPoint(alignZero(t2)));
+           return List;
+       }
+   }
 }

@@ -15,6 +15,7 @@ public class Ray
     protected Point3D _POO;
 
 //********************METHODES****************
+
     /**
      * Point presence boolean.
      *
@@ -29,9 +30,31 @@ public class Ray
         return (TX  == TY  && TY == TZ);
 
     }
+
+    /**
+     * Gets point.
+     *
+     * @param t the t
+     * @return the point
+     */
     public  Point3D getPoint(double t)
     {
-        return  _POO.Add(_direction.scale(-t));
+        if(t == 0)
+        {
+            return _POO;
+        }
+        return  _POO.Add(_direction.scale(t));
+    }
+
+    /**
+     * Gets t.
+     *
+     * @param temp the temp
+     * @return the t
+     */
+    public  double getT(Point3D temp)
+    {
+        return  temp.subtract(_POO).length();
     }
 
     /**
@@ -43,30 +66,64 @@ public class Ray
 //*******************CONSTRUCTOR*******************************
     public Ray(Vector direct,Point3D origin )
     {
-        _direction = new Vector(direct);
+        _direction = new Vector(direct).normalized();
         this._POO = new Point3D(origin);
     }
+
+    /**
+     * Instantiates a new Ray.
+     */
     public Ray()  {
         _POO = new Point3D(0.0,0.0,0.0);
-        _direction = new Vector(1.0,1.0,1.0);
+        _direction = new Vector(1.0,1.0,1.0).normalized();
     }
+
+    /**
+     * Instantiates a new Ray.
+     *
+     * @param ray the ray
+     */
     public Ray(Ray ray){
         _POO = new Point3D(ray._POO);
-        _direction = new Vector(ray._direction);
+        _direction = new Vector(ray._direction).normalized();
     }
-    //*************SET/GET**************//
+
+    /**
+     * Sets poo.
+     *
+     * @param _POO the poo
+     */
+//*************SET/GET**************//
     public void setPOO(Point3D _POO)
     {
         this._POO = _POO;
     }
+
+    /**
+     * Sets direction.
+     *
+     * @param _direction the direction
+     */
     public void setDirection(Vector _direction)
     {
         this._direction = _direction;
     }
+
+    /**
+     * Gets direction.
+     *
+     * @return the direction
+     */
     public Vector getDirection()
     {
         return _direction;
     }
+
+    /**
+     * Gets poo.
+     *
+     * @return the poo
+     */
     public Point3D getPOO()
     {
         return _POO;

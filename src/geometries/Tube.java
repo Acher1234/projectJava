@@ -60,4 +60,61 @@ public class Tube extends RadialGeometry {
         return _axisRay;
     }
 
+    @Override
+    public List<Point3D> findIntersection(Ray ray) {
+        List<Point3D> resultPoint = new ArrayList<Point3D>();
+        Vector vVAVA;
+        Vector minus,deltaP;
+        double VVA = ray.getDirection().dotProduct(_axisRay.getDirection());
+        if(VVA == 0)
+        {
+
+        }
+        vVAVA =_axisRay.getDirection().scale(VVA);
+        try {
+            minus = ray.getDirection().subtract(vVAVA);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+        try
+        {
+            deltaP = ray.getPOO().subtract(_axisRay.getPOO());
+        }
+        catch (Exception e)
+        {
+            if(VVA == 0)
+            {
+                resultPoint.add(ray.getPoint(_radius));
+                return resultPoint;
+            }
+            resultPoint.add(ray.getPoint(_radius*_radius / minus.lengthSquared()));
+            return resultPoint;
+        }
+        double a = minus.lengthSquared();
+        double PVAaxys = deltaP.dotProduct(_axisRay.getDirection());
+        Vector dpminus = null,dpVAVA;
+        if(PVAaxys == 0)
+        {
+            dpminus = deltaP;
+        }
+        else {
+            dpVAVA = _axisRay.getDirection().scale(PVAaxys);
+            try
+            {
+                dpminus = deltaP.subtract(dpVAVA);
+            }
+            catch (Exception e)
+            {
+                resultPoint.add(ray.getPoint(Math.sqrt(_radius*_radius/a)));
+            }
+        }
+        double b = 2 * minus.dotProduct( dpminus );
+        double c = dpminus.lengthSquared()- _radius*_radius;
+        List<Double> result = MathHelp.SecondDegree(a,b,c);
+        resultPoint.add(ray.getPoint(result.get(0)));
+        resultPoint.add(ray.getPoint(result.get(1)));
+        return resultPoint;
+    }
 }

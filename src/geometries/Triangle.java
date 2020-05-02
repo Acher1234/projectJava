@@ -39,20 +39,20 @@ public class Triangle extends Polygon
             return null;
         }
         Point3D test = List.get(0);
-        Vector v1 = _vertices.get(0).subtract(ray.getPOO());
-        Vector v2 = _vertices.get(1).subtract(ray.getPOO());
-        Vector v3 = _vertices.get(2).subtract(ray.getPOO());
-        Vector n1 = v1.crossProduct(v2).normalize();
-        Vector n2 = v1.crossProduct(v3).normalize();
-        Vector n3 = v2.crossProduct(v3).normalize();
+        Vector v1 = ray.getPOO().subtract(_vertices.get(0));
+        Vector v2 = ray.getPOO().subtract(_vertices.get(1));
+        Vector v3 = ray.getPOO().subtract(_vertices.get(2));
+        Vector n1 = (_vertices.get(1).subtract(_vertices.get(0))).crossProduct(v1).normalize();
+        Vector n2 = (_vertices.get(2).subtract(_vertices.get(1))).crossProduct(v2).normalize();
+        Vector n3 = (_vertices.get(0).subtract(_vertices.get(2))).crossProduct(v3).normalize();
         double number1 = ray.getDirection().dotProduct(n1);
         double number2 = ray.getDirection().dotProduct(n2);
         double number3 = ray.getDirection().dotProduct(n3);
-        if(number1 > 0 && number2 >0 && number3 >0)
+        if(number1 >= 0 && number2 >= 0 && number3 >= 0)
         {
             return List;
         }
-        if(number1 < 0 && number2 < 0 && number3 < 0) {
+        if(number1 <= 0 && number2 <= 0 && number3 <= 0) {
             return List;
         }
         return null;

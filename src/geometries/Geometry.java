@@ -3,7 +3,6 @@ package geometries;
 import primitives.*;
 
 
-
 /**
  * The interface Geometry.
  */

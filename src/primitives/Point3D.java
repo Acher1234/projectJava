@@ -37,6 +37,13 @@ public class Point3D
         this.coordZ = new Coordinate(coordZ);
     }
 
+    /**
+     * Instantiates a new Point 3 d.
+     *
+     * @param coordX the coord x
+     * @param coordY the coord y
+     * @param coordZ the coord z
+     */
     public Point3D(Coordinate coordX, Coordinate coordY, Coordinate coordZ)
     {
         this.coordX = coordX;
@@ -55,10 +62,24 @@ public class Point3D
         this.coordY = point.coordY;
         this.coordZ = point.coordZ;
     }
+
+    /**
+     * Instantiates a new Point 3 d.
+     */
+    public Point3D() {
+        this.coordX = new Coordinate(0);
+        this.coordY = new Coordinate(0);
+        this.coordZ = new Coordinate(0);
+    }
     //************METHODES****************
 
 
-
+    /**
+     * Compare to int.
+     *
+     * @param other the other
+     * @return the int
+     */
     public int compareTo(Point3D other) {
         if(!coordX.equals(other.coordX))
             return 0;
@@ -76,7 +97,7 @@ public class Point3D
      * @return the vector
      */
     public Vector subtract(Point3D temp) {
-        return new Vector(temp.coordX.get()-coordX.get(),temp.coordY.get()-coordY.get(),temp.coordZ.get()-coordZ.get());
+        return new Vector(coordX.get()-temp.coordX.get(),coordY.get()-temp.coordY.get(),coordZ.get()-temp.coordZ.get());
     }
 
     /**
@@ -92,14 +113,13 @@ public class Point3D
     /**
      * Distance square  from a point to an other.
      *
-     * @param temp the temp
      * @return the double
      */
-    public double DistanceSquare(Point3D temp)
+    public double DistanceSquare()
     {
-        double NewX =  (temp.coordX.get()-coordX.get()) * (temp.coordX.get()-coordX.get());
-        double NewY = (temp.coordY.get()-coordY.get()) * (temp.coordY.get()-coordY.get());
-        double NewZ = (temp.coordZ.get()-coordZ.get()) * (temp.coordZ.get()-coordZ.get());
+        double NewX =  coordX.get() * coordX.get();
+        double NewY = coordY.get() * coordY.get();
+        double NewZ = coordZ.get() * coordZ.get();
         return (NewX+NewY+NewZ);
     }
 
@@ -116,7 +136,32 @@ public class Point3D
      */
     public double Distance(Point3D temp)
     {
-        return Math.sqrt(DistanceSquare(temp));
+        return Math.sqrt(temp.DistanceSquare());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Point3D other = (Point3D)obj;
+        boolean result = false;
+        double test = coordX.get()-other.coordX.get();
+        double d = (double) Math.round(test * 100) / 100; // 4.248 --> 4.25
+        if( d != 0)
+        {
+            return false;
+        }
+        test = coordY.get()-other.coordY.get();
+         d = (double) Math.round(test * 100) / 100; // 4.248 --> 4.25
+        if( d != 0)
+        {
+            return false;
+        }
+        test = coordZ.get()-other.coordZ.get();
+        d = (double) Math.round(test * 100) / 100; // 4.248 --> 4.25
+        if( d != 0)
+        {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -155,6 +200,7 @@ public class Point3D
     public void setcoordX(double coordX){
         this.coordX = new Coordinate(coordX);
     }
+
 
     /**
      * Sets y.
