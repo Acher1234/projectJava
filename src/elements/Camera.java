@@ -35,7 +35,7 @@ public class Camera {
      * @param vup     the vup
      * @param vto     the vto
      */
-    public Camera(Point3D origins, Vector vup, Vector vto) {
+    public Camera(Point3D origins, Vector vto, Vector vup) {
         if(vup.dotProduct(vto) != 0)
         {
             throw new IllegalArgumentException("bad Vector for camera");
@@ -63,10 +63,15 @@ public class Camera {
         Point3D Pc = this.Origins.Add((this.Vto.scale(screenDistance)));
         Point3D Result = new Point3D(Pc);
         Vector J = new Vector(),I = new Vector();
-        double ToScaleJ = (j - (nX - 1) /(double) 2) * (screenWidth / nX);
-        double ToScaleI = (i - (nY - 1) /(double) 2) * (screenHeight / nY);
+        double ToScaleJ = (j - ((double)(nX - 1)) / 2) * (screenWidth / nX);
+        double ToScaleI = (i - ((double)(nY - 1)) / 2) * (screenHeight / nY);
         try {
             J = (this.Vright.scale(ToScaleJ));
+        }catch (Exception e)
+        {
+
+        }
+        try{
             I = (this.Vup.scale(-ToScaleI));
         }catch (Exception e)
         {
@@ -74,13 +79,14 @@ public class Camera {
         }
         if(ToScaleJ != 0)
         {
-            Result.Add(J);
+           Result =  Result.Add(J);
         }
         if(ToScaleI != 0)
         {
-            Result.Add(I);
+            Result = Result.Add(I);
         }
-        return new Ray(Result.subtract(this.Origins),Result);
+        //System.out.println(new Ray(Result.subtract(this.Origins),Result));
+        return new Ray(Result.subtract(this.Origins),this.Origins);
     }
     //-------------GET--------
 

@@ -33,12 +33,11 @@ public class Render
     private List<Point3D> getSceneRayIntersections(Ray ray)
     {
         List<Point3D> returnList = new ArrayList<Point3D>();
-        List<Point3D> tempList = new ArrayList<Point3D>();
+        List<Point3D> tempList;
         Intersectable tempInter;
         for (Geometry temp:_scene.get_geometries())
         {
-            tempInter = (Intersectable)temp;
-            tempList = tempInter.findIntersection(ray);
+            tempList = temp.findIntersection(ray);
             if(tempList != null)
             {
                 for (Point3D tempPoint:tempList)
@@ -57,12 +56,13 @@ public class Render
     }
     public Point3D getClosestPoint(List<Point3D> points)
     {
-        double distance = 1000;
+        double distance = Double.MAX_VALUE;
         Point3D PO = _scene.get_camera().getOrigins();
         Point3D minDistancePoint = null;
 
         for (Point3D temp : points) {
-            if (PO.Distance(temp) < distance) {
+            if (PO.Distance(temp) < distance)
+            {
                 minDistancePoint = new Point3D(temp);
                 distance = PO.Distance(temp);
             }
@@ -77,11 +77,11 @@ public class Render
             {
                 if (i % interval == 0)
                 {
-                    _imagewriter.writePixel(i, j, new java.awt.Color(255, 0, 0));
+                    _imagewriter.writePixel(i, j, color);
                 }
                 else if (j % interval == 0)
                 {
-                    _imagewriter.writePixel(i, j, new Color(255, 0, 0));
+                    _imagewriter.writePixel(i, j, color);
                 }
             }
         }

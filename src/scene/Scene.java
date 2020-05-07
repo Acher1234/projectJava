@@ -27,8 +27,7 @@ public class Scene {
     {
         for (Intersectable temp :geometries)
         {
-                _geometries.add((Geometry) temp);
-
+            _geometries.add((Geometry) temp);
         }
     }
 
