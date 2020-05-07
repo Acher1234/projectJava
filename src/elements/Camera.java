@@ -63,8 +63,8 @@ public class Camera {
         Point3D Pc = this.Origins.Add((this.Vto.scale(screenDistance)));
         Point3D Result = new Point3D(Pc);
         Vector J = new Vector(),I = new Vector();
-        double ToScaleJ = (j - (nX - 1) / 2) * (screenWidth / nX);
-        double ToScaleI = (i - (nY - 1) / 2) * (screenHeight / nY);
+        double ToScaleJ = (j - (nX - 1) /(double) 2) * (screenWidth / nX);
+        double ToScaleI = (i - (nY - 1) /(double) 2) * (screenHeight / nY);
         try {
             J = (this.Vright.scale(ToScaleJ));
             I = (this.Vup.scale(-ToScaleI));
