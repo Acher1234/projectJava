@@ -10,7 +10,7 @@ import static primitives.Util.isZero;
 /**
  * The type Plane.
  */
-public class Plane implements Geometry
+public class Plane extends Geometry
 {
     /**
      * The P.

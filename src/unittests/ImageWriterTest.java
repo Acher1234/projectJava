@@ -10,7 +10,7 @@ public class ImageWriterTest {
     @Test
     public void testImageWritter()
     {
-        ImageWriter test = new ImageWriter("chmouelFlemme",800,500,1600,1000);
+        ImageWriter test = new ImageWriter("TestRender",800,500,1600,1000);
         for(int i=0;i<1000;i++)
         {
             for(int j=0;j<1600;j++)
