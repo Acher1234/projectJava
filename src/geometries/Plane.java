@@ -36,7 +36,14 @@ public class Plane extends Geometry
         Vector VectorPlane1 = _point2.subtract(_point1);
         Vector VectorPlane2 = _point3.subtract(_point1);
         this._normal = VectorPlane1.crossProduct(VectorPlane2);
-
+    }
+    public Plane(Color emission,Point3D _point1,Point3D _point2,Point3D _point3) {
+        this(_point1,_point2,_point3);
+        this._emmission = emission;
+    }
+    public Plane(Color emission,Material material,Point3D _point1,Point3D _point2,Point3D _point3) {
+        this(emission,_point1,_point2,_point3);
+        this._material = material;
     }
 
     /**
@@ -50,6 +57,17 @@ public class Plane extends Geometry
         this._p = _point1;
         this._normal = Normal.normalized();
     }
+    public Plane(Color emission,Point3D _point1,Vector Normal)
+    {
+        this(_point1,Normal);
+        this._emmission = emission;
+    }
+
+    public Plane(Color emission,Material material,Point3D _point1,Vector Normal)
+    {
+        this(emission,_point1,Normal);
+        this._material = material;
+    }
 
     /**
      * Instantiates a new Plane.
@@ -60,12 +78,23 @@ public class Plane extends Geometry
         this._p = new Point3D(other._p);
         this._normal = new Vector(other._normal);
     }
+    public Plane(Color emission,Plane other){
+        this(other);
+        this._emmission = emission;
+    }
+
+    public Plane(Color emission,Material material,Plane other)
+    {
+        this(emission,other);
+        this._material = material;
+    }
+
 
 
     @Override
     public Vector getNormal(Point3D temp)
     {
-        return _normal;
+        return _normal.normalized();
     }
 
     /**
@@ -74,7 +103,7 @@ public class Plane extends Geometry
      * @return the normal
      */
     public Vector getNormal() {
-        return _normal;
+        return _normal.normalized();
     }
 
     /**
@@ -88,7 +117,7 @@ public class Plane extends Geometry
     }
 
     @Override
-    public List<Point3D> findIntersection(Ray ray)
+    public List<Intersectable.GeoPoint> findIntersection(Ray ray)
     {
         if(isZero(ray.getDirection().dotProduct(_normal)) || isZero(ray.getDirection().dotProduct(_normal)))//parralel to the plan
         {
@@ -111,8 +140,8 @@ public class Plane extends Geometry
         {
             return null;
         }
-        List<Point3D> List = new ArrayList<Point3D>();
-        List.add(ray.getPoint(t));
+        List<Intersectable.GeoPoint> List = new ArrayList<Intersectable.GeoPoint>();
+        List.add(new Intersectable.GeoPoint(this,ray.getPoint(t)));
         return List;
     }
 }

@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +25,13 @@ public class Triangle extends Polygon
     public Triangle(Point3D point1,Point3D point2,Point3D point3){
         super(point1,point2,point3);
     }
+    public Triangle(Color emission,Point3D point1,Point3D point2,Point3D point3){
+        super(emission,point1,point2,point3);
+        this._emmission = emission;
+    }
+    public Triangle(Color emission,Material material,Point3D point1,Point3D point2,Point3D point3){
+        super(emission,material,point1,point2,point3);
+    }
 
     @Override
     public Vector getNormal(Point3D temp)
@@ -31,14 +39,18 @@ public class Triangle extends Polygon
         return super.getNormal(temp).normalized();
     }
     @Override
-    public List<Point3D> findIntersection(Ray ray)
+    public List<Intersectable.GeoPoint> findIntersection(Ray ray)
     {
-        List<Point3D> List = _plane.findIntersection(ray);
+        List<Intersectable.GeoPoint> Listtest = _plane.findIntersection(ray);
+        List<Intersectable.GeoPoint> List = new ArrayList<GeoPoint>();
+        for (GeoPoint temp:Listtest)
+        {
+            List.add(new GeoPoint(this,temp.point));
+        }
         if(List == null)
         {
             return null;
         }
-        Point3D test = List.get(0);
         Vector v1 = ray.getPOO().subtract(_vertices.get(0));
         Vector v2 = ray.getPOO().subtract(_vertices.get(1));
         Vector v3 = ray.getPOO().subtract(_vertices.get(2));

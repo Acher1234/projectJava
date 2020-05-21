@@ -2,6 +2,7 @@ package renderer;
 
 import elements.AmbientLight;
 import elements.Camera;
+import elements.LightSource;
 import geometries.Geometries;
 import geometries.Geometry;
 import geometries.Sphere;
@@ -23,6 +24,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.pow;
+
 public class Render
 {
     Scene _scene;
@@ -31,7 +34,7 @@ public class Render
 
     //---------Methodes-------
 
-    public static Render getRenderFromXML(String PathFile)
+   /* public static Render getRenderFromXML(String PathFile)
     {
         Render newRender = null;
         try {
@@ -122,7 +125,7 @@ public class Render
             System.exit(0);
         }
         return newRender;
-    }
+    }*/
     private static int[] StringToInt(String sequence,int number)
     {
         String[] splited = sequence.split(" ");
@@ -144,17 +147,17 @@ public class Render
 
     }
 
-    private List<Point3D> getSceneRayIntersections(Ray ray)
+    private List<Intersectable.GeoPoint> getSceneRayIntersections(Ray ray)
     {
-        List<Point3D> returnList = new ArrayList<Point3D>();
-        List<Point3D> tempList;
+        List<Intersectable.GeoPoint> returnList = new ArrayList<Intersectable.GeoPoint>();
+        List<Intersectable.GeoPoint> tempList;
         Intersectable tempInter;
         for (Geometry temp:_scene.get_geometries())
         {
             tempList = temp.findIntersection(ray);
             if(tempList != null)
             {
-                for (Point3D tempPoint:tempList)
+                for (Intersectable.GeoPoint tempPoint:tempList)
                 {
                     returnList.add(tempPoint);
                 }
@@ -163,25 +166,55 @@ public class Render
         return returnList;
     }
 
-    public Color caclColor(Point3D p)
+    public primitives.Color caclColor(Intersectable.GeoPoint p)
     {
-
-        return _scene.get_ambientLight().get_intensity().getColor() ;
+        double dotProductNormalAndL,dotProductVAndR;
+        Vector symetrieOfL,PointToCamera,normalToPoint;
+        primitives.Color tempColor,Diffuse,Specular;
+        primitives.Color TotalLight = p.geometry.get_emmission();
+        TotalLight = TotalLight.add(this._scene.get_ambientLight().get_intensity());
+        List<LightSource> tempLights=_scene.get_lights();
+        double KD = p.geometry.get_material().get_kD();
+        double KS = p.geometry.get_material().get_kS();
+        double nShininess = p.geometry.get_material().get_nShininess();
+        for (LightSource temp:tempLights)
+        {
+            Diffuse = new primitives.Color(0,0,0);//to estimate the diffuse light
+            Specular = new primitives.Color(0,0,0);//to estimate the specular light
+            normalToPoint = p.geometry.getNormal(p.point);//calcul diffuse light
+            tempColor = temp.getIntensity(p.point);
+            dotProductNormalAndL = temp.getL(p.point).dotProduct(normalToPoint);
+            if(dotProductNormalAndL>0)
+            {
+                Diffuse = Diffuse.add(tempColor.scale(dotProductNormalAndL).scale(KD));
+            }
+            symetrieOfL = (temp.getL(p.point)).subtract(normalToPoint.scale(2*normalToPoint.dotProduct(temp.getL(p.point))));//calcul specular light
+            PointToCamera = p.point.subtract(_scene.get_camera().getOrigins()).normalized();
+            dotProductVAndR = symetrieOfL.dotProduct(PointToCamera);
+            if(dotProductVAndR>0)
+            {
+                Specular = Specular.add(tempColor.scale(KS).scale(pow(dotProductVAndR,nShininess)));
+            }
+            TotalLight = TotalLight.add(Diffuse).add(Specular);//add specular and diffuse light to the total
+        }
+        return TotalLight;
     }
-    public Point3D getClosestPoint(List<Point3D> points)
+    public Intersectable.GeoPoint getClosestPoint(List<Intersectable.GeoPoint> points)
     {
         double distance = Double.MAX_VALUE;
         Point3D PO = _scene.get_camera().getOrigins();
         Point3D minDistancePoint = null;
+        Geometry returnGeo =null;
 
-        for (Point3D temp : points) {
-            if (PO.Distance(temp) < distance)
+        for (Intersectable.GeoPoint temp : points) {
+            if (PO.Distance(temp.point) < distance)
             {
-                minDistancePoint = new Point3D(temp);
-                distance = PO.Distance(temp);
+                returnGeo = temp.geometry;
+                minDistancePoint = new Point3D(temp.point);
+                distance = PO.Distance(temp.point);
             }
         }
-        return minDistancePoint;
+        return new Intersectable.GeoPoint(returnGeo,minDistancePoint);
     }
     public void printGrid(int interval,java.awt.Color color)
     {
@@ -204,7 +237,7 @@ public class Render
     public void renderImage()
     {
         Ray ray;
-        List<Point3D> intersectionsPoint;
+        List<Intersectable.GeoPoint> intersectionsPoint;
         for(int j = 0;j < _imagewriter.getNx(); j++)
         {
             for(int i = 0;i < _imagewriter.getNy(); i++)
@@ -218,8 +251,8 @@ public class Render
                 }
                 else
                 {
-                    Point3D closestPoint = getClosestPoint(intersectionsPoint);
-                    _imagewriter.writePixel(j,i,this.caclColor(closestPoint));
+                    Intersectable.GeoPoint closestPoint = getClosestPoint(intersectionsPoint);
+                    _imagewriter.writePixel(j,i,this.caclColor(closestPoint).getColor());
                 }
             }
         }

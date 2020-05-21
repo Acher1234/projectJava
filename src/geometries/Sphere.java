@@ -30,6 +30,17 @@ public class Sphere extends RadialGeometry
         super(_radius);
         this._center = center;
     }
+    public Sphere(Color emission,Material material,double _radius,Point3D center)
+    {
+        super(emission,_radius);
+        this._center = center;
+        this._material = material;
+    }
+    public Sphere(Color emission,double _radius,Point3D center)
+    {
+        super(emission,_radius);
+        this._center = center;
+    }
 
     /**
      * Instantiates a new Sphere.
@@ -59,13 +70,13 @@ public class Sphere extends RadialGeometry
         return _center;
     }
    @Override
-    public List<Point3D> findIntersection(Ray ray) {
-       List<Point3D> List = new ArrayList<Point3D>();
+    public List<Intersectable.GeoPoint> findIntersection(Ray ray) {
+       List<Intersectable.GeoPoint> List = new ArrayList<Intersectable.GeoPoint>();
        Vector U = null;
        try {
            U = _center.subtract(ray.getPOO());
        } catch (Exception e) {
-           List.add(ray.getPoint(_radius));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(_radius)));
            return List;
        }
        double tm = alignZero(U.dotProduct(ray.getDirection()));// dot product beetween the U and the ray vecteur
@@ -84,14 +95,14 @@ public class Sphere extends RadialGeometry
            return null;
        }
        if (t1 >= 0 &&  t2 < 0) {
-           List.add(ray.getPoint(alignZero(t1)));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(alignZero(t1))));
            return List;
        } else if (t2 >= 0 && t1 < 0) {
-           List.add(ray.getPoint(alignZero(t2)));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(alignZero(t2))));
            return List;
        } else {
-           List.add(ray.getPoint(alignZero(t1)));
-           List.add(ray.getPoint(alignZero(t2)));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(alignZero(t1))));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(alignZero(t2))));
            return List;
        }
    }

@@ -2,12 +2,14 @@ package scene;
 
 import elements.AmbientLight;
 import elements.Camera;
+import elements.LightSource;
 import geometries.Geometries;
 import geometries.Geometry;
 import geometries.Intersectable;
 import primitives.Color;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Scene {
@@ -17,7 +19,16 @@ public class Scene {
     List<Geometry> _geometries;
     Camera _camera;
     double _distance;
+    List<LightSource> _lights = new LinkedList<LightSource>();
 
+    public void addLights(LightSource... lights)
+    {
+        for (LightSource  temp:lights)
+        {
+            _lights.add(temp);
+        }
+
+    }
     public Scene(String _name) {
         this._name = _name;
         this._geometries =new ArrayList<Geometry>();
@@ -71,5 +82,9 @@ public class Scene {
 
     public void setDistance(double _distance) {
         this._distance = _distance;
+    }
+
+    public List<LightSource> get_lights() {
+        return _lights;
     }
 }

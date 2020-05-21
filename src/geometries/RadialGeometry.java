@@ -1,5 +1,7 @@
 package geometries;
 
+import primitives.Color;
+
 /**
  * The type Radial geometry.
  */
@@ -28,11 +30,16 @@ public abstract class RadialGeometry extends Geometry
      *
      * @param _radius the radius
      */
+    public RadialGeometry( Color emission,double _radius)
+    {
+        this._radius = _radius;
+        this._emmission = emission;
+    }
+
     public RadialGeometry(double _radius)
     {
         this._radius = _radius;
     }
-
     /**
      * Instantiates a new Radial geometry.
      *
@@ -40,6 +47,8 @@ public abstract class RadialGeometry extends Geometry
      */
     public RadialGeometry(RadialGeometry temp)
     {
+
         this._radius = temp._radius;
+        this._emmission = temp._emmission;
     }
 }

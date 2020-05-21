@@ -20,6 +20,15 @@ public class Polygon extends Geometry {
      */
     protected Plane _plane;
 
+    public Polygon(Color _emmission,Point3D... vertices) {
+        this(vertices);
+        this._emmission = _emmission;
+    }
+    public Polygon(Color _emmission,Material material,Point3D... vertices) {
+        this(_emmission,vertices);
+        this._material = material;
+    }
+
     /**
      * Polygon constructor based on vertices list. The list must be ordered by edge
      * path. The polygon must be convex.
@@ -64,6 +73,7 @@ public class Polygon extends Geometry {
             if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
                 throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
         }
+
     }
 
     @Override
@@ -71,7 +81,7 @@ public class Polygon extends Geometry {
         return _plane.getNormal();
     }
     @Override
-    public List<Point3D> findIntersection(Ray ray) {
+    public List<Intersectable.GeoPoint> findIntersection(Ray ray) {
         return null;
     }
 }

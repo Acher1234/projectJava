@@ -2,20 +2,23 @@ package elements;
 
 import primitives.Color;
 
-public class AmbientLight {
-    Color _intensity;
+public class AmbientLight extends Light {
     double k;
 
     //----------------Mathode
-    public AmbientLight(Color baseColor,double kIntensity)
-    {
+    public AmbientLight(Color baseColor, double kIntensity) {
+        super(new Color(baseColor.getColor().getRed() * kIntensity, baseColor.getColor().getGreen() * kIntensity, baseColor.getColor().getBlue() * kIntensity));
         k = kIntensity;
-        _intensity = baseColor;
     }
 
-
-    //-------GET/SET----------
+    @Override
     public Color get_intensity() {
         return _intensity;
     }
+
+    public double getK() {
+        return k;
+    }
 }
+
+

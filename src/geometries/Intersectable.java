@@ -13,7 +13,7 @@ public interface Intersectable {
      * @param ray the ray
      * @return the list
      */
-    public List<Point3D>findIntersection(Ray ray);
+    public List<GeoPoint>findIntersection(Ray ray);
 
     public static class GeoPoint {
         public Geometry geometry;
@@ -26,13 +26,12 @@ public interface Intersectable {
             this.point = point;
         }
         //Methodes
-        public boolean equals(Object object) {
-            if (this == object) return true;
-            if (object == null || getClass() != object.getClass()) return false;
-            if (!super.equals(object)) return false;
-            GeoPoint geoPoint = (GeoPoint) object;
-            return java.util.Objects.equals(geometry, geoPoint.geometry) &&
-                    java.util.Objects.equals(point, geoPoint.point);
+        public boolean equals(GeoPoint other) {
+            if(other.geometry.equals(geometry) && other.point.equals(point))
+            {
+                return true;
+            }
+            return false;
         }
     }
 
