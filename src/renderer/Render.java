@@ -126,6 +126,13 @@ public class Render
         }
         return newRender;
     }*/
+
+    /**
+     * put a string into an int tab
+     * @param sequence
+     * @param number
+     * @return
+     */
     private static int[] StringToInt(String sequence,int number)
     {
         String[] splited = sequence.split(" ");
@@ -140,6 +147,12 @@ public class Render
         }
         return returnTab;
     }
+
+    /**
+     * attributes image and scene
+     * @param Image
+     * @param scene
+     */
     public Render(ImageWriter Image, Scene scene)
     {
         _imagewriter = Image;
@@ -147,6 +160,11 @@ public class Render
 
     }
 
+    /**
+     * get intersections from all points compared to the figure (geometries)
+     * @param ray
+     * @return
+     */
     private List<Intersectable.GeoPoint> getSceneRayIntersections(Ray ray)
     {
         List<Intersectable.GeoPoint> returnList = new ArrayList<Intersectable.GeoPoint>();
@@ -166,6 +184,13 @@ public class Render
         return returnList;
     }
 
+    /**
+     * from all points calculate the color compared to their positions
+     * taking in parameter the ambient light and the spot light
+     *      if they are hidden by the figure, or on ....)
+     * @param p
+     * @return
+     */
     public primitives.Color caclColor(Intersectable.GeoPoint p)
     {
         double dotProductNormalAndL,dotProductVAndR;
@@ -199,6 +224,12 @@ public class Render
         }
         return TotalLight;
     }
+
+    /**
+     * from a point gets the closest point
+     * @param points
+     * @return
+     */
     public Intersectable.GeoPoint getClosestPoint(List<Intersectable.GeoPoint> points)
     {
         double distance = Double.MAX_VALUE;
@@ -216,6 +247,12 @@ public class Render
         }
         return new Intersectable.GeoPoint(returnGeo,minDistancePoint);
     }
+
+    /**
+     * with some parameters creates and prints a grid
+     * @param interval
+     * @param color
+     */
     public void printGrid(int interval,java.awt.Color color)
     {
         for(int i=0;i<_imagewriter.getNx();i++)
@@ -234,6 +271,9 @@ public class Render
         }
     }
 
+    /**
+     * from all parameters that we needs to consider we render the image
+     */
     public void renderImage()
     {
         Ray ray;
@@ -258,6 +298,9 @@ public class Render
         }
     }
 
+    /**
+     *  and writes image with all parameters !
+     */
     public void writeToImage()
     {
         _imagewriter.writeToImage();
