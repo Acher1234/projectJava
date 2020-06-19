@@ -75,10 +75,8 @@ public class Camera {
             Point3D Pc = this.Origins.Add((this.Vto.scale(screenDistance)));
             Point3D ResultOnX = new Point3D(Pc);
             Point3D ResultOnY = new Point3D(Pc);
-            double ToScaleJOnX = ((j + ((loop-scaleloop)*(screenWidth / nX)/(numberOnXAndY+NearIndex)) - (((double)(nX - 1)) / 2) * (screenWidth / nX)));
+            double ToScaleJOnX = ((j - (((double)(nX - 1)) / 2) * (screenWidth / nX)));
             double ToScaleIOnX = (i - (((double)(nY - 1)) / 2)  * (screenHeight / nY));
-            double ToScaleJOnY = (j - (((double)(nX - 1)) / 2) * (screenWidth / nX));
-            double ToScaleIOnY = ((i + ((loop-scaleloop)*(screenHeight / nY)/(numberOnXAndY+NearIndex)))- (((double)(nY - 1)) / 2)  * (screenHeight / nY));
             if(ToScaleJOnX != 0)
             {
                 ResultOnX =  ResultOnX.Add((this.Vright.scale(ToScaleJOnX)));
@@ -87,16 +85,7 @@ public class Camera {
             {
                 ResultOnX = ResultOnX.Add(this.Vup.scale(-ToScaleIOnX));
             }
-            if(ToScaleJOnY != 0)
-            {
-                ResultOnY =  ResultOnY.Add((this.Vright.scale(ToScaleJOnY)));
-            }
-            if(ToScaleIOnY != 0)
-            {
-                ResultOnY = ResultOnY.Add(this.Vup.scale(-ToScaleIOnY));
-            }
             returnList.add(new Ray(ResultOnX.subtract(this.Origins),this.Origins));
-            returnList.add(new Ray(ResultOnY.subtract(this.Origins),this.Origins));
         }
         return returnList;
     }

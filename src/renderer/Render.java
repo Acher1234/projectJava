@@ -6,7 +6,6 @@ import geometries.Intersectable;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-import primitives.Color;
 import scene.Scene;
 
 import javax.swing.*;
@@ -177,30 +176,9 @@ public class Render
         double KD = p.geometry.get_material().get_kD();
         double KS = p.geometry.get_material().get_kS();
         double nShininess = p.geometry.get_material().get_nShininess();
-        for (LightSource temp:tempLights)
-        {
-            if(sign(p.geometry.getNormal(p.point).dotProduct(temp.getL(p.point))) ==  sign(p.geometry.getNormal(p.point).dotProduct(_scene.get_camera().getVto())))
-            {
+        TotalLight = getColorSpecandiffuse(p, k, TotalLight, tempLights, KD, KS, nShininess);
+        //here diffuse
 
-                Diffuse = new primitives.Color(0, 0, 0);//to estimate the diffuse light
-                Specular = new primitives.Color(0, 0, 0);//to estimate the specular light
-                double ktr = transparency(temp.getL(p.point),p.geometry.getNormal(p.point),p,temp);
-                if(ktr*k > MIN_CALC_COLOR_K)
-                {
-                    tempColor = temp.getIntensity(p.point).scale(ktr);
-                    //diffuseLight
-                    normalToPoint = p.geometry.getNormal(p.point);//calcul diffuse light
-                    dotProductNormalAndL = abs(temp.getL(p.point).dotProduct(normalToPoint));
-                    Diffuse = Diffuse.add(tempColor.scale(dotProductNormalAndL*KD));
-                    //specular light
-                    symetrieOfL = (temp.getL(p.point)).subtract(normalToPoint.scale(2 * normalToPoint.dotProduct(temp.getL(p.point))));//calcul specular light
-                    PointToCamera = p.point.subtract(_scene.get_camera().getOrigins()).normalized();
-                    dotProductVAndR = abs(symetrieOfL.dotProduct(PointToCamera));
-                    Specular = Specular.add(tempColor.scale(KS).scale(pow(dotProductVAndR, nShininess)));
-                    TotalLight = TotalLight.add(Diffuse).add(Specular);
-                }
-            }
-        }
         //find good normal
         Vector Normal = p.geometry.getNormal(p.point);
         // refraction / reflected ray work
@@ -236,6 +214,42 @@ public class Render
             TotalLight = TotalLight.add(refractedLight);
         }
         return TotalLight;
+    }
+
+    private primitives.Color getColorSpecandiffuse(Intersectable.GeoPoint p, double k, primitives.Color totalLight, List<LightSource> tempLights, double KD, double KS, double nShininess) {
+        primitives.Color Diffuse;
+        primitives.Color Specular;
+        primitives.Color tempColor;
+        Vector normalToPoint;
+        double dotProductNormalAndL;
+        Vector symetrieOfL;
+        Vector PointToCamera;
+        double dotProductVAndR;
+        for (LightSource temp:tempLights)
+        {
+            if(sign(p.geometry.getNormal(p.point).dotProduct(temp.getL(p.point))) ==  sign(p.geometry.getNormal(p.point).dotProduct(_scene.get_camera().getVto())))
+            {
+
+                Diffuse = new primitives.Color(0, 0, 0);//to estimate the diffuse light
+                Specular = new primitives.Color(0, 0, 0);//to estimate the specular light
+                double ktr = transparency(temp.getL(p.point),p.geometry.getNormal(p.point),p,temp);
+                if(ktr*k > MIN_CALC_COLOR_K)
+                {
+                    tempColor = temp.getIntensity(p.point).scale(ktr);
+                    //diffuseLight
+                    normalToPoint = p.geometry.getNormal(p.point);//calcul diffuse light
+                    dotProductNormalAndL = abs(temp.getL(p.point).dotProduct(normalToPoint));
+                    Diffuse = Diffuse.add(tempColor.scale(dotProductNormalAndL*KD));
+                    //specular light
+                    symetrieOfL = (temp.getL(p.point)).subtract(normalToPoint.scale(2 * normalToPoint.dotProduct(temp.getL(p.point))));//calcul specular light
+                    PointToCamera = p.point.subtract(_scene.get_camera().getOrigins()).normalized();
+                    dotProductVAndR = abs(symetrieOfL.dotProduct(PointToCamera));
+                    Specular = Specular.add(tempColor.scale(KS).scale(pow(dotProductVAndR, nShininess)));
+                    totalLight = totalLight.add(Diffuse).add(Specular);
+                }
+            }
+        }
+        return totalLight;
     }
 
     private primitives.Color calcColor(Intersectable.GeoPoint gp, Ray ray)
@@ -298,29 +312,30 @@ public class Render
     {
         List<Ray> rayList;
         List<Intersectable.GeoPoint> intersectionsPoint;
-        int scalableColor;
+        double scalableColor;
         for(int j = 0;j < _imagewriter.getNx(); j++)
         {
             for(int i = 0;i < _imagewriter.getNy(); i++)
             {
                 rayList = _scene.get_camera().constructRayThroughPixel(_imagewriter.getNx(),
                         _imagewriter.getNy(),j,i,_scene.get_distance(),_imagewriter.getWidth(),_imagewriter.getHeight());
-                scalableColor = rayList.size();
+                scalableColor = 1.0/ rayList.size();
                 primitives.Color returnColor = new primitives.Color(0,0,0);
                 for (Ray ray:rayList)
                 {
                     intersectionsPoint = getSceneRayIntersections(ray);
                     if(intersectionsPoint == null)
                     {
-                        returnColor.add( new primitives.Color(_scene.get_background().getColor()));
+                        returnColor = returnColor.add(_scene.get_background());
                     }
                     else
                     {
                         Intersectable.GeoPoint closestPoint = getClosestPoint(intersectionsPoint);
-                        returnColor.add(new primitives.Color(this.calcColor(closestPoint,ray).getColor()));
+                        returnColor = returnColor.add(this.calcColor(closestPoint,ray));
                     }
                 }
-                _imagewriter.writePixel(j,i,returnColor.scale(scalableColor).getColor());
+                returnColor = returnColor.scale(scalableColor);
+                _imagewriter.writePixel(j,i,returnColor.getColor());
             }
         }
     }
