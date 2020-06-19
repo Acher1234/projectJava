@@ -10,7 +10,7 @@ import static primitives.Util.isZero;
 /**
  * The type Plane.
  */
-public class Plane implements Geometry
+public class Plane extends Geometry implements FlatGeometry
 {
     /**
      * The P.
@@ -36,7 +36,31 @@ public class Plane implements Geometry
         Vector VectorPlane1 = _point2.subtract(_point1);
         Vector VectorPlane2 = _point3.subtract(_point1);
         this._normal = VectorPlane1.crossProduct(VectorPlane2);
+    }
 
+    /**
+     * Instantiates a new  Plane
+     * @param emission
+     * @param _point1
+     * @param _point2
+     * @param _point3
+     */
+    public Plane(Color emission,Point3D _point1,Point3D _point2,Point3D _point3) {
+        this(_point1,_point2,_point3);
+        this._emmission = emission;
+    }
+
+    /**
+     * Instantiates a new Plane
+     * @param emission
+     * @param material
+     * @param _point1
+     * @param _point2
+     * @param _point3
+     */
+    public Plane(Color emission,Material material,Point3D _point1,Point3D _point2,Point3D _point3) {
+        this(emission,_point1,_point2,_point3);
+        this._material = material;
     }
 
     /**
@@ -52,6 +76,31 @@ public class Plane implements Geometry
     }
 
     /**
+     * Instantiates a new Plane
+     * @param emission
+     * @param _point1
+     * @param Normal
+     */
+    public Plane(Color emission,Point3D _point1,Vector Normal)
+    {
+        this(_point1,Normal);
+        this._emmission = emission;
+    }
+
+    /**
+     * Instantiates a new Plane
+     * @param emission
+     * @param material
+     * @param _point1
+     * @param Normal
+     */
+    public Plane(Color emission,Material material,Point3D _point1,Vector Normal)
+    {
+        this(emission,_point1,Normal);
+        this._material = material;
+    }
+
+    /**
      * Instantiates a new Plane.
      *
      * @param other the other
@@ -61,11 +110,38 @@ public class Plane implements Geometry
         this._normal = new Vector(other._normal);
     }
 
+    /**
+     * Instantiates a new Plane.
+     * @param emission
+     * @param other
+     */
+    public Plane(Color emission,Plane other){
+        this(other);
+        this._emmission = emission;
+    }
 
+    /**
+     * Instantiates a new Plane.
+     * @param emission
+     * @param material
+     * @param other
+     */
+    public Plane(Color emission,Material material,Plane other)
+    {
+        this(emission,other);
+        this._material = material;
+    }
+
+
+    /**
+     * gets normal
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
-        return _normal;
+        return _normal.normalized();
     }
 
     /**
@@ -74,7 +150,7 @@ public class Plane implements Geometry
      * @return the normal
      */
     public Vector getNormal() {
-        return _normal;
+        return _normal.normalized();
     }
 
     /**
@@ -87,12 +163,16 @@ public class Plane implements Geometry
         return _p;
     }
 
+    /**
+     * return list of intersections's points
+     * @param ray the ray
+     * @return
+     */
     @Override
-    public List<Point3D> findIntersection(Ray ray)
+    public List<Intersectable.GeoPoint> findIntersection(Ray ray)
     {
         if(isZero(ray.getDirection().dotProduct(_normal)) || isZero(ray.getDirection().dotProduct(_normal)))//parralel to the plan
         {
-
             return null;
         }
         Vector U;
@@ -111,8 +191,35 @@ public class Plane implements Geometry
         {
             return null;
         }
-        List<Point3D> List = new ArrayList<Point3D>();
-        List.add(ray.getPoint(t));
+        List<Intersectable.GeoPoint> List = new ArrayList<Intersectable.GeoPoint>();
+        List.add(new Intersectable.GeoPoint(this,ray.getPoint(t)));
         return List;
+    }
+
+    @Override
+    public List<GeoPoint> findIntersection(Ray ray, double max) {
+        boolean flag = false;
+        List<Intersectable.GeoPoint> tempList = this.findIntersection(ray);
+        List<Intersectable.GeoPoint> tempReturn  = new ArrayList<Intersectable.GeoPoint>();
+        if(tempList == null)
+        {
+            return null;
+        }
+        for (Intersectable.GeoPoint tempPoint:tempList)
+        {
+            double t;
+            try {
+                t = tempPoint.point.subtract(ray.getPOO()).length();
+            }catch (Exception E)
+            {
+                t = 0;
+            }
+            if(alignZero(t-max)<=0 && (t!=0))
+            {
+                tempReturn.add(tempPoint);
+                flag = true;
+            }
+        }
+        return flag ? tempReturn : null;
     }
 }

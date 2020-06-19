@@ -1,5 +1,6 @@
 package geometries;
 
+import java.util.ArrayList;
 import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
@@ -10,7 +11,7 @@ import static primitives.Util.*;
  *
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
     /**
      * List of polygon's vertices
      */
@@ -19,6 +20,15 @@ public class Polygon implements Geometry {
      * Associated plane in which the polygon lays
      */
     protected Plane _plane;
+
+    public Polygon(Color _emmission,Point3D... vertices) {
+        this(vertices);
+        this._emmission = _emmission;
+    }
+    public Polygon(Color _emmission,Material material,Point3D... vertices) {
+        this(_emmission,vertices);
+        this._material = material;
+    }
 
     /**
      * Polygon constructor based on vertices list. The list must be ordered by edge
@@ -64,6 +74,7 @@ public class Polygon implements Geometry {
             if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
                 throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
         }
+
     }
 
     @Override
@@ -71,7 +82,28 @@ public class Polygon implements Geometry {
         return _plane.getNormal();
     }
     @Override
-    public List<Point3D> findIntersection(Ray ray) {
+    public List<Intersectable.GeoPoint> findIntersection(Ray ray) {
         return null;
+    }
+
+    @Override
+    public List<GeoPoint> findIntersection(Ray ray, double max) {
+        boolean flag = false;
+        List<Intersectable.GeoPoint> tempList = this.findIntersection(ray);
+        List<Intersectable.GeoPoint> tempReturn  = new ArrayList<Intersectable.GeoPoint>();
+        if(tempList == null)
+        {
+            return null;
+        }
+        for (Intersectable.GeoPoint tempPoint:tempList)
+        {
+            double t = tempPoint.point.Distance(ray.getPOO());
+            if(alignZero(t-max)<=0)
+            {
+                tempReturn.add(tempPoint);
+                flag = true;
+            }
+        }
+        return flag ? tempReturn : null;
     }
 }

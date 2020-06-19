@@ -39,11 +39,14 @@ public class Ray
      */
     public  Point3D getPoint(double t)
     {
-        if(t == 0)
+        try
+        {
+        return  _POO.Add(_direction.scale(t));
+        }
+        catch (IllegalArgumentException e)
         {
             return _POO;
         }
-        return  _POO.Add(_direction.scale(t));
     }
 
     /**
@@ -132,7 +135,7 @@ public class Ray
      */
     public Vector getDirection()
     {
-        return _direction;
+        return _direction.normalized();
     }
 
     /**

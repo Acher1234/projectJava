@@ -81,11 +81,16 @@ public class Vector
         double tempX = (this.head.coordY.get() * temp.head.coordZ.get()) - (this.head.coordZ.get()*temp.head.coordY.get());
         double tempY = (this.head.coordZ.get() * temp.head.coordX.get()) - (this.head.coordX.get()*temp.head.coordZ.get());
         double tempZ = (this.head.coordX.get() * temp.head.coordY.get()) - (this.head.coordY.get()*temp.head.coordX.get());
-        if(tempX == tempY && tempY== tempZ && tempZ == 0)
+        Vector Return = null;
+        try
+        {
+            Return = new Vector(tempX,tempY,tempZ);
+        }
+        catch (Exception e)
         {
             return null;
         }
-        return new Vector(tempX,tempY,tempZ);
+        return Return;
     }
 
     /**
@@ -127,6 +132,10 @@ public class Vector
      */
     public Vector normalize()
     {
+        if(this == null)
+        {
+            return null;
+        }
         double lenghtActual = this.length();
         this.head.coordX = new Coordinate(head.coordX.get()/lenghtActual);
         this.head.coordY = new Coordinate(head.coordY.get()/lenghtActual);

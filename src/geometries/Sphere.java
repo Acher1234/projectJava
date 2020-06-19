@@ -33,6 +33,32 @@ public class Sphere extends RadialGeometry
 
     /**
      * Instantiates a new Sphere.
+     * @param emission
+     * @param material
+     * @param _radius
+     * @param center
+     */
+    public Sphere(Color emission,Material material,double _radius,Point3D center)
+    {
+        super(emission,_radius);
+        this._center = center;
+        this._material = material;
+    }
+
+    /**
+     * Instantiates a new Sphere.
+     * @param emission
+     * @param _radius
+     * @param center
+     */
+    public Sphere(Color emission,double _radius,Point3D center)
+    {
+        super(emission,_radius);
+        this._center = center;
+    }
+
+    /**
+     * Instantiates a new Sphere.
      *
      * @param temp   the temp
      * @param center the center
@@ -47,7 +73,7 @@ public class Sphere extends RadialGeometry
     @Override
     public Vector getNormal(Point3D temp)
     {
-        return  _center.subtract(temp).normalized();
+        return  temp.subtract(_center).normalized();
     }
 
     /**
@@ -59,13 +85,13 @@ public class Sphere extends RadialGeometry
         return _center;
     }
    @Override
-    public List<Point3D> findIntersection(Ray ray) {
-       List<Point3D> List = new ArrayList<Point3D>();
+    public List<Intersectable.GeoPoint> findIntersection(Ray ray) {
+       List<Intersectable.GeoPoint> List = new ArrayList<Intersectable.GeoPoint>();
        Vector U = null;
        try {
            U = _center.subtract(ray.getPOO());
        } catch (Exception e) {
-           List.add(ray.getPoint(_radius));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(_radius)));
            return List;
        }
        double tm = alignZero(U.dotProduct(ray.getDirection()));// dot product beetween the U and the ray vecteur
@@ -84,15 +110,36 @@ public class Sphere extends RadialGeometry
            return null;
        }
        if (t1 >= 0 &&  t2 < 0) {
-           List.add(ray.getPoint(alignZero(t1)));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(alignZero(t1))));
            return List;
        } else if (t2 >= 0 && t1 < 0) {
-           List.add(ray.getPoint(alignZero(t2)));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(alignZero(t2))));
            return List;
        } else {
-           List.add(ray.getPoint(alignZero(t1)));
-           List.add(ray.getPoint(alignZero(t2)));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(alignZero(t1))));
+           List.add(new Intersectable.GeoPoint(this,ray.getPoint(alignZero(t2))));
            return List;
        }
    }
+
+    @Override
+    public List<GeoPoint> findIntersection(Ray ray, double max) {
+        boolean flag = false;
+        List<Intersectable.GeoPoint> tempList = this.findIntersection(ray);
+        List<Intersectable.GeoPoint> tempReturn  = new ArrayList<Intersectable.GeoPoint>();
+        if(tempList == null)
+        {
+            return null;
+        }
+        for (Intersectable.GeoPoint tempPoint:tempList)
+        {
+            double t = tempPoint.point.Distance(ray.getPOO());
+            if(alignZero(t-max)<=0)
+            {
+                tempReturn.add(tempPoint);
+                flag = true;
+            }
+        }
+        return flag ? tempReturn : null;
+    }
 }

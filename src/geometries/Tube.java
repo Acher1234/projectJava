@@ -30,6 +30,15 @@ public class Tube extends RadialGeometry {
         super(_radius);
         _axisRay = axisRay;
     }
+    public Tube(Color emission,double _radius,Ray axisRay) {
+        super(emission,_radius);
+        _axisRay = axisRay;
+    }
+    public Tube(Color emission,Material material,double _radius,Ray axisRay) {
+        super(emission,_radius);
+        _axisRay = axisRay;
+        this._material = material;
+    }
 
     /**
      * Instantiates a new Tube.
@@ -43,6 +52,12 @@ public class Tube extends RadialGeometry {
     }
 
     //*************METHODE***************
+
+    /**
+     * gets normal.
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
@@ -60,9 +75,14 @@ public class Tube extends RadialGeometry {
         return _axisRay;
     }
 
+    /**
+     * returns Intersections.
+     * @param ray the ray
+     * @return
+     */
     @Override
-    public List<Point3D> findIntersection(Ray ray) {
-        List<Point3D> resultPoint = new ArrayList<Point3D>();
+    public List<Intersectable.GeoPoint> findIntersection(Ray ray) {
+        List<Intersectable.GeoPoint> resultPoint = new ArrayList<Intersectable.GeoPoint>();
         Vector vVAVA;
         Vector minus,deltaP;
         double VVA = ray.getDirection().dotProduct(_axisRay.getDirection());
@@ -86,10 +106,10 @@ public class Tube extends RadialGeometry {
         {
             if(VVA == 0)
             {
-                resultPoint.add(ray.getPoint(_radius));
+                resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(_radius)));
                 return resultPoint;
             }
-            resultPoint.add(ray.getPoint(_radius*_radius / minus.lengthSquared()));
+            resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(_radius*_radius / minus.lengthSquared())));
             return resultPoint;
         }
         double a = minus.lengthSquared();
@@ -107,14 +127,34 @@ public class Tube extends RadialGeometry {
             }
             catch (Exception e)
             {
-                resultPoint.add(ray.getPoint(Math.sqrt(_radius*_radius/a)));
+                resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(Math.sqrt(_radius*_radius/a))));
             }
         }
         double b = 2 * minus.dotProduct( dpminus );
         double c = dpminus.lengthSquared()- _radius*_radius;
         List<Double> result = MathHelp.SecondDegree(a,b,c);
-        resultPoint.add(ray.getPoint(result.get(0)));
-        resultPoint.add(ray.getPoint(result.get(1)));
+        resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(0))));
+        resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(1))));
         return resultPoint;
+    }
+    @Override
+    public List<GeoPoint> findIntersection(Ray ray, double max) {
+        boolean flag = false;
+        List<Intersectable.GeoPoint> tempList = this.findIntersection(ray);
+        List<Intersectable.GeoPoint> tempReturn  = new ArrayList<Intersectable.GeoPoint>();
+        if(tempList == null)
+        {
+            return null;
+        }
+        for (Intersectable.GeoPoint tempPoint:tempList)
+        {
+            double t = tempPoint.point.Distance(ray.getPOO());
+            if(alignZero(t-max)<=0)
+            {
+                tempReturn.add(tempPoint);
+                flag = true;
+            }
+        }
+        return flag ? tempReturn : null;
     }
 }

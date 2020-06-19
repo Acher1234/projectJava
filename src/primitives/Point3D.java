@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.alignZero;
+
 /**
  * The type Point 3 d.
  */
@@ -136,28 +138,31 @@ public class Point3D
      */
     public double Distance(Point3D temp)
     {
-        return Math.sqrt(temp.DistanceSquare());
+       try
+       {
+           return temp.subtract(this).length();
+       }catch (IllegalArgumentException e)
+       {
+           return 0;
+       }
     }
 
     @Override
     public boolean equals(Object obj) {
         Point3D other = (Point3D)obj;
         boolean result = false;
-        double test = coordX.get()-other.coordX.get();
-        double d = (double) Math.round(test * 100) / 100; // 4.248 --> 4.25
-        if( d != 0)
+        double test = alignZero(coordX.get()-other.coordX.get());
+        if( test != 0)
         {
             return false;
         }
-        test = coordY.get()-other.coordY.get();
-         d = (double) Math.round(test * 100) / 100; // 4.248 --> 4.25
-        if( d != 0)
+        test =  alignZero(coordY.get()-other.coordY.get());
+        if( test != 0)
         {
             return false;
         }
-        test = coordZ.get()-other.coordZ.get();
-        d = (double) Math.round(test * 100) / 100; // 4.248 --> 4.25
-        if( d != 0)
+        test = alignZero(coordZ.get()-other.coordZ.get());
+        if( test != 0)
         {
             return false;
         }
