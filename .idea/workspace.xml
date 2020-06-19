@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="79fb1755-73ce-4a50-b894-21313a46e5e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Targuil1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestRender.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/XML Scene.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/base render test.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chmouelFlemme.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test.xml" afterDir="false" />
+    <list default="true" id="371c18a7-faaf-49a2-a6fd-9c6e8be69610" name="Default Changelist" comment="stam jai rajouter les javadocs dans le Render&#10;noublie pas de commit a chaque fois acher ;) &lt;3">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sphereDirectional.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spherePoint.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sphereSpot.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trianglesDirectional.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trianglesPoint.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trianglesSpot.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/DirectionalLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestRender.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/XML Scene.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/base render test.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chmouelFlemme.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Cylinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/Cylinder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Geometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/Geometry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Intersectable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/Intersectable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Plane.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/Plane.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Polygon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/Polygon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/RadialGeometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/RadialGeometry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Sphere.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/Sphere.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Triangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/Triangle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Tube.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/geometries/Tube.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Targuil1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/unittests/LightsTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,10 +38,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="recitation6" />
+        <entry key="$PROJECT_DIR$" value="recitation5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1ctFHJJoulsLNGkU1FSquNSYhQL" />
   <component name="ProjectLevelVcsManager">
@@ -35,17 +54,65 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RunManager" selected="JUnit.LightsTests">
+    <configuration name="LightsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unittests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unittests" />
+      <option name="MAIN_CLASS_NAME" value="unittests.LightsTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LightsTests.sphereDirectional" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unittests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unittests" />
+      <option name="MAIN_CLASS_NAME" value="unittests.LightsTests" />
+      <option name="METHOD_NAME" value="sphereDirectional" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.LightsTests" />
+        <item itemvalue="JUnit.LightsTests.sphereDirectional" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="79fb1755-73ce-4a50-b894-21313a46e5e7" name="Default Changelist" comment="" />
+      <changelist id="371c18a7-faaf-49a2-a6fd-9c6e8be69610" name="Default Changelist" comment="" />
       <created>1591339893196</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -59,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591340082994</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="stam jai rajouter les javadocs dans le Render&#10;noublie pas de commit a chaque fois acher ;) &lt;3">
+      <created>1592317266429</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592317266429</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -68,16 +142,95 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="new version" />
-    <option name="LAST_COMMIT_MESSAGE" value="new version" />
+    <MESSAGE value="stam jai rajouter les javadocs dans le Render&#10;noublie pas de commit a chaque fois acher ;) &lt;3" />
+    <option name="LAST_COMMIT_MESSAGE" value="stam jai rajouter les javadocs dans le Render&#10;noublie pas de commit a chaque fois acher ;) &lt;3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="480" y="23" key="CommitChangelistDialog2" timestamp="1591340082815">
-      <screen x="0" y="23" width="1440" height="797" />
+    <state x="215" y="64" width="1151" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592313276962">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state x="215" y="64" width="1151" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592313276962" />
+    <state x="1780" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1591798339458" />
+    <state x="274" y="64" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1592311589784" />
+    <state x="444" y="32" key="#com.intellij.ide.util.MemberChooser" timestamp="1592313339175">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="444" y="32" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592313339175" />
+    <state x="501" y="266" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1592314155990">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="501" y="266" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314155990" />
+    <state x="2006" y="0" key="CommitChangelistDialog2" timestamp="1592317263624">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2006" y="0" key="CommitChangelistDialog2/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592317263624" />
     <state x="480" y="23" key="CommitChangelistDialog2/0.23.1440.797@0.23.1440.797" timestamp="1591340082815" />
-    <state x="691" y="342" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591339961936">
-      <screen x="0" y="23" width="1440" height="797" />
+    <state x="464" y="65" key="FileChooserDialogImpl" timestamp="1592314128011">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state x="464" y="65" key="FileChooserDialogImpl/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314128011" />
+    <state width="1865" height="178" key="GridCell.Tab.0.bottom" timestamp="1592317276795">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1311" height="223" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314045343" />
+    <state width="1865" height="178" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592317276795" />
+    <state width="1865" height="178" key="GridCell.Tab.0.center" timestamp="1592317276795">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1311" height="223" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314045343" />
+    <state width="1865" height="178" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592317276795" />
+    <state width="1865" height="178" key="GridCell.Tab.0.left" timestamp="1592317276794">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1311" height="223" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314045343" />
+    <state width="1865" height="178" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592317276794" />
+    <state width="1865" height="178" key="GridCell.Tab.0.right" timestamp="1592317276795">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1311" height="223" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314045343" />
+    <state width="1865" height="178" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592317276795" />
+    <state width="1311" height="223" key="GridCell.Tab.1.bottom" timestamp="1592314045344">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1311" height="223" key="GridCell.Tab.1.bottom/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314045344" />
+    <state width="1311" height="223" key="GridCell.Tab.1.center" timestamp="1592314045343">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1311" height="223" key="GridCell.Tab.1.center/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314045343" />
+    <state width="1311" height="223" key="GridCell.Tab.1.left" timestamp="1592314045343">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1311" height="223" key="GridCell.Tab.1.left/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314045343" />
+    <state width="1311" height="223" key="GridCell.Tab.1.right" timestamp="1592314045343">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1311" height="223" key="GridCell.Tab.1.right/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314045343" />
+    <state x="70" y="0" key="SettingsEditor" timestamp="1592552364934">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="70" y="0" key="SettingsEditor/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314133146" />
+    <state x="1564" y="0" key="SettingsEditor/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1591801660145" />
+    <state x="70" y="0" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1592552364934" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1592550647665">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592314090479" />
+    <state x="1899" y="293" key="com.intellij.ide.util.TipDialog/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592480257339" />
+    <state x="379" y="208" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1592550647665" />
+    <state x="336" y="257" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1592312295223">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="336" y="257" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592312295223" />
+    <state x="655" y="307" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592312350732">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="655" y="307" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592312350732" />
+    <state x="2287" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1591798330042" />
     <state x="691" y="342" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.797@0.23.1440.797" timestamp="1591339961936" />
+    <state x="443" y="167" width="840" height="483" key="search.everywhere.popup" timestamp="1592313124564">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="443" y="167" width="840" height="483" key="search.everywhere.popup/0.0.1366.768/1366.0.1920.1080@0.0.1366.768" timestamp="1592313124564" />
+    <state x="1989" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1366.768/1366.0.1920.1080@1366.0.1920.1080" timestamp="1591796249844" />
   </component>
 </project>
