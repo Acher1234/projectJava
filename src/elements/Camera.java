@@ -5,6 +5,10 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The type Camera.
  */
@@ -58,35 +62,42 @@ public class Camera {
      * @param screenHeight   the screen height
      * @return the ray
      */
-    public Ray constructRayThroughPixel (int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight)
+    public List<Ray> constructRayThroughPixel (int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight)
     {
-        Point3D Pc = this.Origins.Add((this.Vto.scale(screenDistance)));
-        Point3D Result = new Point3D(Pc);
-        Vector J = new Vector(),I = new Vector();
-        double ToScaleJ = (j - ((double)(nX - 1)) / 2) * (screenWidth / nX);
-        double ToScaleI = (i - ((double)(nY - 1)) / 2) * (screenHeight / nY);
-        try {
-            J = (this.Vright.scale(ToScaleJ));
-        }catch (Exception e)
+        int numberOnXAndY = 3;
+        List<Ray> returnList= new ArrayList<Ray>();
+        double sizeBetweenPixelWidht = screenWidth / nX /2;
+        double sizeBetweenPixelHeight = screenHeight / nY /2;
+        for (double loop = 0;loop<numberOnXAndY;loop++ )
         {
+            Point3D Pc = this.Origins.Add((this.Vto.scale(screenDistance)));
+            Point3D Result = new Point3D(Pc);
+            Vector J = new Vector(),I = new Vector();
+            double ToScaleJ = ((j + ((loop-1)*(screenWidth / nX)/numberOnXAndY)) - (((double)(nX - 1)) / 2) * (screenWidth / nX));
+            double ToScaleI = ((i + ((loop-1)*(screenHeight / nY)/numberOnXAndY))  * (screenHeight / nY);
+            try {
+                J = (this.Vright.scale(ToScaleJ));
+            }catch (Exception e)
+            {
 
-        }
-        try{
-            I = (this.Vup.scale(-ToScaleI));
-        }catch (Exception e)
-        {
+            }
+            try{
+                I = (this.Vup.scale(-ToScaleI));
+            }catch (Exception e)
+            {
 
+            }
+            if(ToScaleJ != 0)
+            {
+                Result =  Result.Add(J);
+            }
+            if(ToScaleI != 0)
+            {
+                Result = Result.Add(I);
+            }
+            returnList.add(new Ray(Result.subtract(this.Origins),this.Origins));
         }
-        if(ToScaleJ != 0)
-        {
-           Result =  Result.Add(J);
-        }
-        if(ToScaleI != 0)
-        {
-            Result = Result.Add(I);
-        }
-        //System.out.println(new Ray(Result.subtract(this.Origins),Result));
-        return new Ray(Result.subtract(this.Origins),this.Origins);
+        return returnList;
     }
     //-------------GET--------
 
