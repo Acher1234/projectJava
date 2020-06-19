@@ -6,6 +6,7 @@ import geometries.Intersectable;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import primitives.Color;
 import scene.Scene;
 
 import javax.swing.*;
@@ -295,31 +296,31 @@ public class Render
 
     public void renderImage()
     {
-        Ray ray;
+        List<Ray> rayList;
         List<Intersectable.GeoPoint> intersectionsPoint;
+        int scalableColor;
         for(int j = 0;j < _imagewriter.getNx(); j++)
         {
             for(int i = 0;i < _imagewriter.getNy(); i++)
             {
-                ray = _scene.get_camera().constructRayThroughPixel(_imagewriter.getNx(),
+                rayList = _scene.get_camera().constructRayThroughPixel(_imagewriter.getNx(),
                         _imagewriter.getNy(),j,i,_scene.get_distance(),_imagewriter.getWidth(),_imagewriter.getHeight());
-                intersectionsPoint = getSceneRayIntersections(ray);
-                if(intersectionsPoint == null)
+                scalableColor = rayList.size();
+                primitives.Color returnColor = new primitives.Color(0,0,0);
+                for (Ray ray:rayList)
                 {
-                    Color test = _scene.get_background().getColor();
-                    _imagewriter.writePixel(j,i,test);
-                }
-                else
-                {
-                    Intersectable.GeoPoint closestPoint = getClosestPoint(intersectionsPoint);
-                    Color test = this.calcColor(closestPoint,ray).getColor();
-                    _imagewriter.writePixel(j,i,test);
-                    if(closestPoint.geometry instanceof FlatGeometry && test.getGreen() != 201 && test.getBlue() != 201 && test.getRed() != 255)
+                    intersectionsPoint = getSceneRayIntersections(ray);
+                    if(intersectionsPoint == null)
                     {
-                        double a =12;
-                        Color test2 = this.calcColor(closestPoint,ray).getColor();
+                        returnColor.add( new primitives.Color(_scene.get_background().getColor()));
+                    }
+                    else
+                    {
+                        Intersectable.GeoPoint closestPoint = getClosestPoint(intersectionsPoint);
+                        returnColor.add(new primitives.Color(this.calcColor(closestPoint,ray).getColor()));
                     }
                 }
+                _imagewriter.writePixel(j,i,returnColor.scale(scalableColor).getColor());
             }
         }
     }

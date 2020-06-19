@@ -65,37 +65,38 @@ public class Camera {
     public List<Ray> constructRayThroughPixel (int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight)
     {
         int numberOnXAndY = 3;
+        int scaleloop = (numberOnXAndY/2);
+        int NearIndex = 1;
         List<Ray> returnList= new ArrayList<Ray>();
         double sizeBetweenPixelWidht = screenWidth / nX /2;
         double sizeBetweenPixelHeight = screenHeight / nY /2;
         for (double loop = 0;loop<numberOnXAndY;loop++ )
         {
             Point3D Pc = this.Origins.Add((this.Vto.scale(screenDistance)));
-            Point3D Result = new Point3D(Pc);
-            Vector J = new Vector(),I = new Vector();
-            double ToScaleJ = ((j + ((loop-1)*(screenWidth / nX)/numberOnXAndY)) - (((double)(nX - 1)) / 2) * (screenWidth / nX));
-            double ToScaleI = ((i + ((loop-1)*(screenHeight / nY)/numberOnXAndY))  * (screenHeight / nY);
-            try {
-                J = (this.Vright.scale(ToScaleJ));
-            }catch (Exception e)
+            Point3D ResultOnX = new Point3D(Pc);
+            Point3D ResultOnY = new Point3D(Pc);
+            double ToScaleJOnX = ((j + ((loop-scaleloop)*(screenWidth / nX)/(numberOnXAndY+NearIndex)) - (((double)(nX - 1)) / 2) * (screenWidth / nX)));
+            double ToScaleIOnX = (i - (((double)(nY - 1)) / 2)  * (screenHeight / nY));
+            double ToScaleJOnY = (j - (((double)(nX - 1)) / 2) * (screenWidth / nX));
+            double ToScaleIOnY = ((i + ((loop-scaleloop)*(screenHeight / nY)/(numberOnXAndY+NearIndex)))- (((double)(nY - 1)) / 2)  * (screenHeight / nY));
+            if(ToScaleJOnX != 0)
             {
-
+                ResultOnX =  ResultOnX.Add((this.Vright.scale(ToScaleJOnX)));
             }
-            try{
-                I = (this.Vup.scale(-ToScaleI));
-            }catch (Exception e)
+            if(ToScaleIOnX != 0)
             {
-
+                ResultOnX = ResultOnX.Add(this.Vup.scale(-ToScaleIOnX));
             }
-            if(ToScaleJ != 0)
+            if(ToScaleJOnY != 0)
             {
-                Result =  Result.Add(J);
+                ResultOnY =  ResultOnY.Add((this.Vright.scale(ToScaleJOnY)));
             }
-            if(ToScaleI != 0)
+            if(ToScaleIOnY != 0)
             {
-                Result = Result.Add(I);
+                ResultOnY = ResultOnY.Add(this.Vup.scale(-ToScaleIOnY));
             }
-            returnList.add(new Ray(Result.subtract(this.Origins),this.Origins));
+            returnList.add(new Ray(ResultOnX.subtract(this.Origins),this.Origins));
+            returnList.add(new Ray(ResultOnY.subtract(this.Origins),this.Origins));
         }
         return returnList;
     }
