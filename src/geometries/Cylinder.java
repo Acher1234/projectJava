@@ -19,16 +19,35 @@ public class Cylinder extends Tube
     double _height;
 
 
+    /**
+     * Instantiates a new Cylinder.
+     * @param _radius
+     * @param axisRay
+     * @param material
+     */
     public Cylinder(double _radius, Ray axisRay, Material material) {
         super(_radius, axisRay);
         this._material=material;
     }
 
+    /**
+     * Instantiates a new Cylinder.
+     * @param emission
+     * @param material
+     * @param _radius
+     * @param axisRay
+     */
     public Cylinder(Color emission,Material material,double _radius, Ray axisRay) {
         super(emission, _radius, axisRay);
         this._material=material;
     }
 
+    /**
+     * Instantiates a new Cylinder.
+     * @param temp
+     * @param axisRay
+     * @param material
+     */
     public Cylinder(RadialGeometry temp, Ray axisRay, Material material) {
         super(temp, axisRay);
         this._material=material;
@@ -47,6 +66,13 @@ public class Cylinder extends Tube
         this._height = _height;
     }
 
+    /**
+     * Instantiates a new Cylinder.
+     * @param _radius
+     * @param axisRay
+     * @param _height
+     * @param emission
+     */
     public Cylinder(double _radius, Ray axisRay, double _height,Color emission) {
         this(_radius,axisRay,_height);
         this._emmission = emission;
@@ -64,10 +90,26 @@ public class Cylinder extends Tube
         this._height = _height;
     }
 
+    /**
+     * Instantiates a new Cylinder.
+     * @param emission
+     * @param temp
+     * @param axisRay
+     * @param _heigh
+     */
     public Cylinder(Color emission,RadialGeometry temp, Ray axisRay,double _heigh) {
         this(temp,axisRay,_heigh);
         this._emmission = emission;
     }
+
+    /**
+     * Instantiates a new Cylinder.
+     * @param emission
+     * @param material
+     * @param temp
+     * @param axisRay
+     * @param _heigh
+     */
     public Cylinder(Color emission,Material material,RadialGeometry temp, Ray axisRay,double _heigh) {
         this(temp,axisRay,_heigh);
         this._emmission = emission;
@@ -75,11 +117,23 @@ public class Cylinder extends Tube
     }
 
     //************************METHODE****************
+
+    /**
+     * get vector normal from a point
+     * @param temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
         return super.getNormal(temp);
     }
+
+    /**
+     * find all intersections and return them
+     * @param ray
+     * @return
+     */
     @Override
     public List<Intersectable.GeoPoint> findIntersection(Ray ray)
     {

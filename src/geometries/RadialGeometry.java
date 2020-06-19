@@ -36,6 +36,10 @@ public abstract class RadialGeometry extends Geometry
         this._emmission = emission;
     }
 
+    /**
+     * Instantiates a Radial geometry.
+     * @param _radius
+     */
     public RadialGeometry(double _radius)
     {
         this._radius = _radius;

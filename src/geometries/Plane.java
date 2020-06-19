@@ -37,10 +37,27 @@ public class Plane extends Geometry
         Vector VectorPlane2 = _point3.subtract(_point1);
         this._normal = VectorPlane1.crossProduct(VectorPlane2);
     }
+
+    /**
+     * Instantiates a new  Plane
+     * @param emission
+     * @param _point1
+     * @param _point2
+     * @param _point3
+     */
     public Plane(Color emission,Point3D _point1,Point3D _point2,Point3D _point3) {
         this(_point1,_point2,_point3);
         this._emmission = emission;
     }
+
+    /**
+     * Instantiates a new Plane
+     * @param emission
+     * @param material
+     * @param _point1
+     * @param _point2
+     * @param _point3
+     */
     public Plane(Color emission,Material material,Point3D _point1,Point3D _point2,Point3D _point3) {
         this(emission,_point1,_point2,_point3);
         this._material = material;
@@ -57,12 +74,26 @@ public class Plane extends Geometry
         this._p = _point1;
         this._normal = Normal.normalized();
     }
+
+    /**
+     * Instantiates a new Plane
+     * @param emission
+     * @param _point1
+     * @param Normal
+     */
     public Plane(Color emission,Point3D _point1,Vector Normal)
     {
         this(_point1,Normal);
         this._emmission = emission;
     }
 
+    /**
+     * Instantiates a new Plane
+     * @param emission
+     * @param material
+     * @param _point1
+     * @param Normal
+     */
     public Plane(Color emission,Material material,Point3D _point1,Vector Normal)
     {
         this(emission,_point1,Normal);
@@ -78,11 +109,23 @@ public class Plane extends Geometry
         this._p = new Point3D(other._p);
         this._normal = new Vector(other._normal);
     }
+
+    /**
+     * Instantiates a new Plane.
+     * @param emission
+     * @param other
+     */
     public Plane(Color emission,Plane other){
         this(other);
         this._emmission = emission;
     }
 
+    /**
+     * Instantiates a new Plane.
+     * @param emission
+     * @param material
+     * @param other
+     */
     public Plane(Color emission,Material material,Plane other)
     {
         this(emission,other);
@@ -90,7 +133,11 @@ public class Plane extends Geometry
     }
 
 
-
+    /**
+     * gets normal
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
@@ -116,6 +163,11 @@ public class Plane extends Geometry
         return _p;
     }
 
+    /**
+     * return list of intersections's points
+     * @param ray the ray
+     * @return
+     */
     @Override
     public List<Intersectable.GeoPoint> findIntersection(Ray ray)
     {

@@ -33,11 +33,22 @@ public class Triangle extends Polygon
         super(emission,material,point1,point2,point3);
     }
 
+    /**
+     * gets normal
+     * @param temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
         return super.getNormal(temp).normalized();
     }
+
+    /**
+     * returns intersections
+     * @param ray
+     * @return
+     */
     @Override
     public List<Intersectable.GeoPoint> findIntersection(Ray ray)
     {

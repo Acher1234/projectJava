@@ -8,16 +8,25 @@ import primitives.*;
  */
 public abstract class Geometry implements Intersectable
 {
+
     protected Color _emmission;
 
     protected Material _material;
 //----------constructtor--------------
+
+    /**
+     * Instantiates Geometry
+     * @param _emmission
+     */
     public Geometry(Color _emmission) {
 
         _material = new Material(0,0,0);
         this._emmission = _emmission;
     }
 
+    /**
+     * Instantiates Geometry
+     */
     public Geometry() {
         _material = new Material(0,0,0);
         this._emmission = Color.BLACK;
@@ -31,10 +40,19 @@ public abstract class Geometry implements Intersectable
      */
     public abstract Vector getNormal(Point3D temp);
 //---------GET/SET
+
+    /**
+     * returns material
+     * @return
+     */
     public Material get_material() {
         return _material;
     }
 
+    /**
+     * returns emission
+     * @return
+     */
     public Color get_emmission() {
         return _emmission;
     }

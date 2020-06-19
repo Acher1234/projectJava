@@ -1,26 +1,14 @@
 package renderer;
 
-import elements.AmbientLight;
-import elements.Camera;
 import elements.LightSource;
-import geometries.Geometries;
 import geometries.Geometry;
-import geometries.Sphere;
 import geometries.Intersectable;
-import geometries.Triangle;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 import scene.Scene;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -216,7 +204,7 @@ public class Render
         }
         return new Intersectable.GeoPoint(returnGeo,minDistancePoint);
     }
-    public void printGrid(int interval,java.awt.Color color)
+    public void printGrid(int interval, Color color)
     {
         for(int i=0;i<_imagewriter.getNx();i++)
         {
@@ -247,7 +235,7 @@ public class Render
                 intersectionsPoint = getSceneRayIntersections(ray);
                 if(intersectionsPoint.isEmpty())
                 {
-                    _imagewriter.writePixel(j,i,_scene.get_backgroung().getColor());
+                    _imagewriter.writePixel(j,i,_scene.get_background().getColor());
                 }
                 else
                 {
