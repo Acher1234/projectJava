@@ -19,6 +19,7 @@ public final class Main {
      */
     public static void main(String[] args)
     {
+        /*
         try{
             new CylinderTest().getNormal();
             new PolygonTests().testGetNormal();
@@ -36,6 +37,8 @@ public final class Main {
         {
             System.out.println(e.getMessage());
         }
+
+         */
 
     }
 }
