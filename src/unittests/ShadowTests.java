@@ -174,4 +174,33 @@ public class ShadowTests {
 		render.writeToImage();
 	}
 
+    /**
+     * test avec soft Shadows
+     */
+    @Test
+    public void trianglesSphere2() {
+        Scene scene = new Scene("Test scene");
+        scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
+        scene.setDistance(1000);
+        scene.setBackground(Color.BLACK);
+        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+
+        scene.addGeometries( //
+                new Triangle(Color.BLACK, new Material(0, 0.8, 60), //
+                        new Point3D(-150, 150, 115), new Point3D(150, 150, 135), new Point3D(75, -75, 150)), //
+                new Triangle(Color.BLACK, new Material(0, 0.8, 60), //
+                        new Point3D(-150, 150, 115), new Point3D(-70, -70, 140), new Point3D(75, -75, 150)), //
+                new Sphere(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 30), // )
+                        30, new Point3D(0, 0, 115)));
+
+        scene.addLights(new SpotLight(new Color(700, 400, 400), //
+                new Point3D(40, -40, -115), new Vector(-1, 1, 4), 1, 4E-4, 2E-5, 3));
+
+        ImageWriter imageWriter = new ImageWriter("trianglesSphere", 200, 200, 600, 600);
+        Render render = new Render(imageWriter, scene);
+
+        render.renderImage();
+        render.writeToImage();
+    }
+
 }

@@ -355,6 +355,39 @@ public class Render
         return kkr;
     }
 
+    private double transparency2(Vector lightVector, Vector normal, Intersectable.GeoPoint gp,LightSource light)
+    {
+        Vector inverse= lightVector.scale(-1);
+        Ray Droite;
+        Vector EPS = normal.scale(normal.dotProduct(inverse) > 0 ? DELTA : -DELTA);
+        if(gp.geometry instanceof FlatGeometry)
+        {
+            Droite = new Ray(inverse, gp.point);
+        }
+        else
+        {
+            Droite = new Ray(inverse, gp.point.Add(EPS));
+        }
+        List<Intersectable.GeoPoint> tempList;
+        double distance = light.getDistance(gp.point);
+        double kkr = 1;
+        for (Geometry temp:_scene.get_geometries())
+        {
+            tempList = temp.findIntersection(Droite,distance);
+            if(tempList != null)
+            {
+                for (Intersectable.GeoPoint tempGeopoint : tempList)
+                {
+                    if(!tempGeopoint.point.equals(gp.point))
+                        kkr*= gp.geometry.get_material().get_kT();
+                }
+            }
+        }
+        return kkr;
+    }
+
+
+
     public  Ray constructRefractedRay(Vector Normal,Point3D point,Ray inRay)
     {
         //double angleI = inRay.getDirection().normalized().dotProduct(Normal.normalized());

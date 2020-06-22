@@ -16,6 +16,7 @@ public interface Intersectable {
     public List<GeoPoint>findIntersection(Ray ray);
 
     public List<GeoPoint>findIntersection(Ray ray,double max);
+
     public static class GeoPoint {
         public Geometry geometry;
         public Point3D point;
