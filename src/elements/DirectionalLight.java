@@ -13,6 +13,16 @@ public class DirectionalLight extends Light implements LightSource {
         return Double.POSITIVE_INFINITY;
     }
 
+    @Override
+    public double get_radius() {
+        return 0;
+    }
+
+    @Override
+    public Point3D get_Position() {
+        return null;
+    }
+
     /**
      * Instantiates a new DirectionalLight.
      * @param _intensity
@@ -50,4 +60,7 @@ public class DirectionalLight extends Light implements LightSource {
     public Vector getL(Point3D p) {
         return _direction;
     }
+
+
+
 }

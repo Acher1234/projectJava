@@ -1,5 +1,9 @@
 package primitives;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  * The type Ray.
  */
@@ -147,4 +151,37 @@ public class Ray
     {
         return _POO;
     }
+
+
+
+    public List<Ray> getRays(Point3D coord, double radius)
+    {
+            List<Ray> Rays = new ArrayList<>();
+            Rays.add(this);
+
+            double coordX = coord.getCoordX().get();
+            double coordY = coord.getCoordY().get();
+            double coordZ = coord.getCoordZ().get();
+
+             Random random = new Random();
+
+             for (int i = 0; i < 26; i++)
+             {
+                 double x = random.nextInt((int)(coordX + radius -  (coordX - radius) + 1)) + (coordX - radius);
+                 double y = random.nextInt((int)(coordY + radius -  (coordY - radius) + 1)) + (coordY - radius);
+                 double z = random.nextInt((int)(coordZ + radius -  (coordZ - radius) + 1)) + (coordZ - radius);
+                 Point3D point = new Point3D(x, y, z);
+                 Vector temp = point.subtract(this._POO);
+                 Ray ray = new Ray(this._POO, temp);
+                 Rays.add(ray);
+             }
+         return Rays;
+    }
+
+
+
+
+
+
+
 }

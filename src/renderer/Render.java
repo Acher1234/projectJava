@@ -1,8 +1,11 @@
 package renderer;
 
+import elements.DirectionalLight;
 import elements.LightSource;
+import elements.PointLight;
 import geometries.*;
 import geometries.Intersectable;
+import geometries.Intersectable.*;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -328,38 +331,38 @@ public class Render
     {
         Vector inverse= lightVector.scale(-1);
         Ray Droite;
-        Vector EPS = normal.scale(normal.dotProduct(inverse) > 0 ? DELTA : -DELTA);
-        if(gp.geometry instanceof FlatGeometry)
-        {
-            Droite = new Ray(inverse, gp.point);
-        }
-        else
-        {
-            Droite = new Ray(inverse, gp.point.Add(EPS));
-        }
-        List<Intersectable.GeoPoint> tempList;
-        double distance = light.getDistance(gp.point);
-        double kkr = 1;
-        for (Geometry temp:_scene.get_geometries())
-        {
-            tempList = temp.findIntersection(Droite,distance);
-            if(tempList != null)
-            {
-                for (Intersectable.GeoPoint tempGeopoint : tempList)
-                {
-                    if(!tempGeopoint.point.equals(gp.point))
-                        kkr*= gp.geometry.get_material().get_kT();
+        if(light instanceof DirectionalLight) {
+            Vector EPS = normal.scale(normal.dotProduct(inverse) > 0 ? DELTA : -DELTA);
+            if (gp.geometry instanceof FlatGeometry) {
+                Droite = new Ray(inverse, gp.point);
+            } else {
+                Droite = new Ray(inverse, gp.point.Add(EPS));
+            }
+            List<Intersectable.GeoPoint> tempList;
+            double distance = light.getDistance(gp.point);
+            double kkr = 1;
+            for (Geometry temp : _scene.get_geometries()) {
+                tempList = temp.findIntersection(Droite, distance);
+                if (tempList != null) {
+                    for (Intersectable.GeoPoint tempGeopoint : tempList) {
+                        if (!tempGeopoint.point.equals(gp.point))
+                            kkr *= gp.geometry.get_material().get_kT();
+                    }
                 }
             }
+            return kkr;
         }
-        return kkr;
+        return transparency2(lightVector,normal,gp,light);
     }
 
-    private double transparency2(Vector lightVector, Vector normal, Intersectable.GeoPoint gp,LightSource light)
+    private double transparency2(Vector lightVector, Vector normal, GeoPoint gp,LightSource light)
     {
+
         Vector inverse= lightVector.scale(-1);
-        Ray Droite;
         Vector EPS = normal.scale(normal.dotProduct(inverse) > 0 ? DELTA : -DELTA);
+        //Ray lightRay = new Ray(geoPoint.point, lightDirection, n);// from point to light source
+
+        Ray Droite;
         if(gp.geometry instanceof FlatGeometry)
         {
             Droite = new Ray(inverse, gp.point);
@@ -368,22 +371,77 @@ public class Render
         {
             Droite = new Ray(inverse, gp.point.Add(EPS));
         }
+        List<Ray> Rays = Droite.getRays(light.get_Position(),light.get_radius());
+
         List<Intersectable.GeoPoint> tempList;
+
         double distance = light.getDistance(gp.point);
         double kkr = 1;
-        for (Geometry temp:_scene.get_geometries())
-        {
-            tempList = temp.findIntersection(Droite,distance);
-            if(tempList != null)
-            {
-                for (Intersectable.GeoPoint tempGeopoint : tempList)
-                {
-                    if(!tempGeopoint.point.equals(gp.point))
-                        kkr*= gp.geometry.get_material().get_kT();
+        double sumKtr = 0;//sum ktr of all intersection points for all rays
+        for(Ray r : Rays) {
+
+            for (Geometry temp : _scene.get_geometries()) {
+
+                tempList = temp.findIntersection(r, distance);
+
+                if (tempList != null) {
+                    for (Intersectable.GeoPoint tempGeopoint : tempList) {
+                        if (!tempGeopoint.point.equals(gp.point))
+                            kkr *= gp.geometry.get_material().get_kT();
+                    }
                 }
             }
+            sumKtr +=  kkr;
+            kkr = 1.0;
         }
-        return kkr;
+        double RaySize = Rays.size();
+        return (sumKtr / RaySize);
+
+        /*
+        Vector inverse= lightVector.scale(-1);
+        double distance = lightSource.getDistance(geoPoint.point);
+        double kkr = 1;
+
+
+        Vector EPS = normal.scale(normal.dotProduct(inverse) > 0 ? DELTA : -DELTA);
+
+        Vector lightDirection = lightVector.scale(-1); // from point to light source
+        //surement cquil faut rajouter du fait que mtn cest un spot cercle
+        Ray lightRay = new Ray(geoPoint.point, lightDirection);// from point to light source
+        List<Ray> listRay = lightRay.getRays(lightSource.get_Position(), (int) lightSource.get_radius());
+
+        double lightDistance = lightSource.getDistance(geoPoint.point);
+
+        double ktr = 1.0;
+        double sumKtr = 0;//sum ktr of all intersection points for all rays
+        boolean flagIntersection = false;
+
+        for (Ray r : listRay) {
+            List<GeoPoint> intersecOneRay = _scene.get_geometries().get(1).findIntersection(r, lightDistance);
+            // if the ray 'r' don't crosses any geometries, it's like it crosses geometries transparent
+            if (intersecOneRay == null) ktr = 1.0;
+            else {
+                flagIntersection = true;//there is at least one intersection point
+                // calculate an accumulation of ktr for all geometries crossed by the ray 'r'
+                for (Intersectable.GeoPoint gpt : intersecOneRay) {
+                    ktr *= gpt.geometry.get_material().get_kT();
+                }
+            }
+
+            sumKtr += ktr;
+            ktr = 1.0;
+        }
+
+        if (flagIntersection == false)//if there aren't any intersection
+            return 1.0;
+
+        int numRay = listRay.size();
+        double ktrAverage = sumKtr / numRay;
+
+        return ktrAverage;
+
+         */
+
     }
 
 

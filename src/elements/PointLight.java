@@ -1,5 +1,6 @@
 package elements;
 
+import geometries.Sphere;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
@@ -65,7 +66,28 @@ public class PointLight extends Light implements LightSource
     }
 
     @Override
-    public double get_radius(Point3D p){return _radius; }
+    public double get_radius(){return _radius; }
+
+   /* @Override
+    public Sphere getSphere(Point3D p, double r)
+    {
+        Sphere SLight = new Sphere(r,p);
+        return SLight;
+    }
+      @Override
+    public Sphere getSphere()
+    {
+        Sphere SLight = new Sphere(_radius,_Position);
+        return SLight;
+    }
+
+    */
+
+   @Override
+   public Point3D get_Position() { return _Position; }
+
+
+
 }
 
 

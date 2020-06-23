@@ -9,7 +9,6 @@ import primitives.*;
 public class SpotLight extends PointLight
 {
     private Vector _direction;
-    //private double _radius;
 
 
     /**
