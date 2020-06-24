@@ -6,7 +6,7 @@ import primitives.Vector;
 
 public class SpotLight extends PointLight
 {
-    private Vector _direction;
+    protected Vector _direction;
 
     /**
      * Instantiates a new SpotLight.

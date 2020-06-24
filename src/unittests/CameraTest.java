@@ -21,12 +21,11 @@ class CameraTest {
         ArrayList<Point3D> pointTest= new ArrayList<Point3D>();
         List<Point3D> pointTemp ;
         List<Ray> recuptest= new ArrayList<Ray>();
-        for (int i = 0;i < 200;i++)
+        for (int i = 0;i < 3;i++)
         {
-            for (int j=0;j<300;j++)
+            for (int j=0;j<3;j++)
             {
-                recuptest = camera.constructRayThroughPixel(300,200,j,i,1,600,400);
-                recuptest.remove(3);
+                recuptest = camera.constructRayThroughPixel(3,3,j,i,1,9,9);
                 for (Ray test:recuptest)
                 {
                  rayTest.add(test);

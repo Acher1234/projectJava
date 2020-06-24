@@ -64,28 +64,33 @@ public class Camera {
      */
     public List<Ray> constructRayThroughPixel (int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight)
     {
-        int numberOnXAndY = 3;
-        int scaleloop = (numberOnXAndY/2);
-        int NearIndex = 1;
+        int numberOnXAndY = 5;
         List<Ray> returnList= new ArrayList<Ray>();
-        double sizeBetweenPixelWidht = screenWidth / nX /2;
-        double sizeBetweenPixelHeight = screenHeight / nY /2;
-        for (double loop = 0;loop<numberOnXAndY;loop++ )
+        double sizeBetweenPixelWidht = (screenWidth / nX) / (numberOnXAndY+1);
+        double sizeBetweenPixelHeight = (screenHeight / nY) / (numberOnXAndY+1);
+        Point3D Pc = this.Origins.Add((this.Vto.scale(screenDistance)));
+        Point3D Result = new Point3D(Pc);
+        double ToScaleJ = (j - ((double)(nX - 1)) / 2) * (screenWidth / nX);
+        double ToScaleI = (i - ((double)(nY - 1)) / 2) * (screenHeight / nY);
+        if(ToScaleJ != 0)
         {
-            Point3D Pc = this.Origins.Add((this.Vto.scale(screenDistance)));
-            Point3D ResultOnX = new Point3D(Pc);
-            Point3D ResultOnY = new Point3D(Pc);
-            double ToScaleJOnX = ((j - (((double)(nX - 1)) / 2) * (screenWidth / nX)));
-            double ToScaleIOnX = (i - (((double)(nY - 1)) / 2)  * (screenHeight / nY));
-            if(ToScaleJOnX != 0)
+            Result =  Result.Add((this.Vright.scale(ToScaleJ)));
+        }
+        if(ToScaleI != 0)
+        {
+            Result = Result.Add(this.Vup.scale(-ToScaleI));
+        }
+        for (int number = (-numberOnXAndY);number <= numberOnXAndY;number++)
+        {
+            if(number == 0)
             {
-                ResultOnX =  ResultOnX.Add((this.Vright.scale(ToScaleJOnX)));
+                returnList.add(new Ray(Result.subtract(Origins),Origins));
+                continue;
             }
-            if(ToScaleIOnX != 0)
-            {
-                ResultOnX = ResultOnX.Add(this.Vup.scale(-ToScaleIOnX));
-            }
-            returnList.add(new Ray(ResultOnX.subtract(this.Origins),this.Origins));
+            Point3D ResultToADD = Result.Add(getVup().scale(sizeBetweenPixelHeight*number));
+            Point3D ResultToADDbis = Result.Add(getVright().scale(sizeBetweenPixelWidht*number));
+            returnList.add(new Ray(ResultToADD.subtract(Origins),Origins));
+            returnList.add(new Ray(ResultToADDbis.subtract(Origins),Origins));
         }
         return returnList;
     }
