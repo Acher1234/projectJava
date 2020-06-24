@@ -313,7 +313,6 @@ public class Render
     public void renderImage()
     {
         List<Ray> rayList;
-        List<ThreadRayIntersections> List = new ArrayList<ThreadRayIntersections>();
         double scalableColor;
         for(int j = 0;j < _imagewriter.getNx(); j++)
         {
@@ -321,10 +320,24 @@ public class Render
             {
                 rayList = _scene.get_camera().constructRayThroughPixel(_imagewriter.getNx(),
                         _imagewriter.getNy(),j,i,_scene.get_distance(),_imagewriter.getWidth(),_imagewriter.getHeight());
-                ThreadRayIntersections thread =  new ThreadRayIntersections(rayList,_scene,_imagewriter,j,i,this);
-
-                thread.run();
-                List.add(thread);
+                List<Intersectable.GeoPoint> intersectionsPoint;
+                scalableColor =  rayList.size();
+                primitives.Color returnColor = new primitives.Color(0,0,0);
+                for (Ray ray:rayList)
+                {
+                    intersectionsPoint = getSceneRayIntersections(ray);
+                    if(intersectionsPoint == null)
+                    {
+                        returnColor = returnColor.add(_scene.get_background());
+                    }
+                    else
+                    {
+                        Intersectable.GeoPoint closestPoint = getClosestPoint(intersectionsPoint);
+                        returnColor = returnColor.add(calcColor(closestPoint,ray));
+                    }
+                }
+                returnColor = returnColor.reduce(scalableColor);
+                _imagewriter.writePixel(j,i,returnColor.getColor());
             }
         }
     }

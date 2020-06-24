@@ -183,6 +183,12 @@ public class Plane extends Geometry implements FlatGeometry
         {
             //perpendicular
         }
+        if(_p.equals(ray.getPOO()))
+        {
+            List<Intersectable.GeoPoint> List = new ArrayList<Intersectable.GeoPoint>();
+            List.add(new Intersectable.GeoPoint(this,_p));
+            return List;
+        }
         Vector planToPoint = _p.subtract(ray.getPOO());
         double numerator = _normal.dotProduct(planToPoint);
         double denominator = ray.getDirection().dotProduct(_normal);

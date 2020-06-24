@@ -24,23 +24,6 @@ public class ThreadRayIntersections implements Runnable {
     }
     @Override
     public void run() {
-        List<Intersectable.GeoPoint> intersectionsPoint;
-        double scalableColor =  ListOfRayToTest.size();
-        primitives.Color returnColor = new primitives.Color(0,0,0);
-        for (Ray ray:ListOfRayToTest)
-        {
-            intersectionsPoint = render.getSceneRayIntersections(ray);
-            if(intersectionsPoint == null)
-            {
-                returnColor = returnColor.add(_scene.get_background());
-            }
-            else
-            {
-                Intersectable.GeoPoint closestPoint = render.getClosestPoint(intersectionsPoint);
-                returnColor = returnColor.add(render.calcColor(closestPoint,ray));
-            }
-        }
-        returnColor = returnColor.reduce(scalableColor);
-        _imagewriter.writePixel(j,i,returnColor.getColor());
+
     }
 }
