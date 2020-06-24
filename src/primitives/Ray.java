@@ -66,6 +66,8 @@ public class Ray
         Point3D testPoint = ((Ray)obj)._POO;
         return (Test.equals(this._direction) && testPoint.equals(this._POO));
     }
+
+
     /**
      * Instantiates a new Ray.
      *

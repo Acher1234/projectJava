@@ -4,6 +4,9 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DirectionalLight extends Light implements LightSource {
 
     private Vector _direction;
@@ -21,6 +24,14 @@ public class DirectionalLight extends Light implements LightSource {
     public DirectionalLight(Color _intensity,Vector  direction) {
         super(_intensity);
         _direction = direction;
+    }
+
+    @Override
+    public List<Vector> getmultipleL(Point3D p) {
+        List<Vector> ToReturn = new ArrayList<Vector>();
+        ToReturn.add(getL(p));
+        return ToReturn;
+
     }
 
     /**

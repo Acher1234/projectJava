@@ -141,7 +141,7 @@ public class Render
 
     }
 
-    private List<Intersectable.GeoPoint> getSceneRayIntersections(Ray ray)
+    public List<Intersectable.GeoPoint> getSceneRayIntersections(Ray ray)
     {
         List<Intersectable.GeoPoint> returnList = new ArrayList<Intersectable.GeoPoint>();
         List<Intersectable.GeoPoint> tempList;
@@ -181,7 +181,7 @@ public class Render
 
         //find good normal
         Vector Normal = p.geometry.getNormal(p.point);
-        // refraction / reflected ray work
+        // reflected ray work
         Ray ReflectedRay = constructReflectedRay(Normal,p.point,inRay);
         Intersectable.GeoPoint ReflectedNewPoint = findCLosestIntersection(ReflectedRay);
         primitives.Color reflectedLight = null;
@@ -199,6 +199,7 @@ public class Render
             }
             TotalLight = TotalLight.add(reflectedLight);
         }
+        //refraction Ray
         Ray refractedRay = constructRefractedRay(Normal,p.point,inRay);
         Intersectable.GeoPoint refractedNewPoint = findCLosestIntersection(refractedRay);
         primitives.Color refractedLight = null;
@@ -227,15 +228,16 @@ public class Render
         double dotProductVAndR;
         for (LightSource temp:tempLights)
         {
+            //test if the point is visibleby the camera if not you can skip
             if(sign(p.geometry.getNormal(p.point).dotProduct(temp.getL(p.point))) ==  sign(p.geometry.getNormal(p.point).dotProduct(_scene.get_camera().getVto())))
             {
 
                 Diffuse = new primitives.Color(0, 0, 0);//to estimate the diffuse light
                 Specular = new primitives.Color(0, 0, 0);//to estimate the specular light
-                double ktr = transparency(temp.getL(p.point),p.geometry.getNormal(p.point),p,temp);
+                double ktr = transparency(temp.getmultipleL(p.point),p.geometry.getNormal(p.point),p,temp);//ici
                 if(ktr*k > MIN_CALC_COLOR_K)
                 {
-                    tempColor = temp.getIntensity(p.point).scale(ktr);
+                    tempColor = temp.getIntensity(p.point).scale(ktr);//for the shadow transparency
                     //diffuseLight
                     normalToPoint = p.geometry.getNormal(p.point);//calcul diffuse light
                     dotProductNormalAndL = abs(temp.getL(p.point).dotProduct(normalToPoint));
@@ -252,7 +254,7 @@ public class Render
         return totalLight;
     }
 
-    private primitives.Color calcColor(Intersectable.GeoPoint gp, Ray ray)
+    public primitives.Color calcColor(Intersectable.GeoPoint gp, Ray ray)
     {
         return calcColor(gp, ray, 0,1).add(_scene.get_ambientLight().get_intensity());
     }
@@ -311,7 +313,7 @@ public class Render
     public void renderImage()
     {
         List<Ray> rayList;
-        List<Intersectable.GeoPoint> intersectionsPoint;
+        List<ThreadRayIntersections> List = new ArrayList<ThreadRayIntersections>();
         double scalableColor;
         for(int j = 0;j < _imagewriter.getNx(); j++)
         {
@@ -319,56 +321,52 @@ public class Render
             {
                 rayList = _scene.get_camera().constructRayThroughPixel(_imagewriter.getNx(),
                         _imagewriter.getNy(),j,i,_scene.get_distance(),_imagewriter.getWidth(),_imagewriter.getHeight());
-                scalableColor = 1.0/ rayList.size();
-                primitives.Color returnColor = new primitives.Color(0,0,0);
-                for (Ray ray:rayList)
-                {
-                    intersectionsPoint = getSceneRayIntersections(ray);
-                    if(intersectionsPoint == null)
-                    {
-                        returnColor = returnColor.add(_scene.get_background());
-                    }
-                    else
-                    {
-                        Intersectable.GeoPoint closestPoint = getClosestPoint(intersectionsPoint);
-                        returnColor = returnColor.add(this.calcColor(closestPoint,ray));
-                    }
-                }
-                returnColor = returnColor.scale(scalableColor);
-                _imagewriter.writePixel(j,i,returnColor.getColor());
+                ThreadRayIntersections thread =  new ThreadRayIntersections(rayList,_scene,_imagewriter,j,i,this);
+
+                thread.run();
+                List.add(thread);
             }
         }
     }
 
-    private double transparency(Vector lightVector, Vector normal, Intersectable.GeoPoint gp,LightSource light)
+    private double transparency(List<Vector> lightVectorArray, Vector normal, Intersectable.GeoPoint gp,LightSource light)
     {
-        Vector inverse= lightVector.scale(-1);
-        Ray Droite;
-        Vector EPS = normal.scale(normal.dotProduct(inverse) > 0 ? DELTA : -DELTA);
-        if(gp.geometry instanceof FlatGeometry)
+        int numberofPoint = lightVectorArray.size();
+        double kkrTotal = 0;
+        for (Vector lightVector:lightVectorArray)
         {
-            Droite = new Ray(inverse, gp.point);
-        }
-        else
-        {
-            Droite = new Ray(inverse, gp.point.Add(EPS));
-        }
-        List<Intersectable.GeoPoint> tempList;
-        double distance = light.getDistance(gp.point);
-        double kkr = 1;
-        for (Geometry temp:_scene.get_geometries())
-        {
-            tempList = temp.findIntersection(Droite,distance);
-            if(tempList != null)
+            Vector inverse= lightVector.scale(-1);
+            Ray Droite;
+            Vector EPS = normal.scale(normal.dotProduct(inverse) > 0 ? DELTA : -DELTA);
+            if(gp.geometry instanceof FlatGeometry)
             {
-                for (Intersectable.GeoPoint tempGeopoint : tempList)
+                Droite = new Ray(inverse, gp.point);
+            }
+            else
+            {
+                Droite = new Ray(inverse, gp.point.Add(EPS));
+            }
+            List<Intersectable.GeoPoint> tempList;
+            double distance = light.getDistance(gp.point);
+            double kkr = 1;
+            for (Geometry temp:_scene.get_geometries())
+            {
+                tempList = temp.findIntersection(Droite,distance);
+                if(tempList != null)
                 {
-                    if(!tempGeopoint.point.equals(gp.point))
-                        kkr*= gp.geometry.get_material().get_kT();
+                    for (Intersectable.GeoPoint tempGeopoint : tempList)
+                    {
+                        kkr*= tempGeopoint.geometry.get_material().get_kT();
+                    }
                 }
             }
+            kkrTotal+=kkr;
         }
-        return kkr;
+        if(kkrTotal/numberofPoint != 1)
+        {
+            double a =12;
+        }
+        return kkrTotal/numberofPoint;
     }
 
     public  Ray constructRefractedRay(Vector Normal,Point3D point,Ray inRay)

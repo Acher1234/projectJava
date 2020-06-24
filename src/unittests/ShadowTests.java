@@ -31,8 +31,8 @@ public class ShadowTests {
 				new Triangle(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 30), //
 						new Point3D(-70, 40, 0), new Point3D(-40, 70, 0), new Point3D(-68, 68, 4)));
 
-		scene.addLights(new SpotLight(new Color(400, 240, 0), //
-				new Point3D(-100, 100, -200), new Vector(1, -1, 3), 1, 1E-5, 1.5E-7));
+		scene.addLights(new reelSpotLight(new Color(400, 240, 0), //
+				new Point3D(-100, 100, -200), new Vector(1, -1, 3), 1, 1E-5, 1.5E-7,50));
 
 		ImageWriter imageWriter = new ImageWriter("sphereTriangleInitial", 200, 200, 400, 400);
 		Render render = new Render(imageWriter, scene);

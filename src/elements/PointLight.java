@@ -4,6 +4,9 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PointLight extends Light implements LightSource
 {
     protected Point3D _Position;
@@ -50,5 +53,13 @@ public class PointLight extends Light implements LightSource
     @Override
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();
+    }
+
+    @Override
+    public List<Vector> getmultipleL(Point3D p) {
+        List<Vector> ToReturn = new ArrayList<Vector>();
+        ToReturn.add(getL(p));
+        return ToReturn;
+
     }
 }
