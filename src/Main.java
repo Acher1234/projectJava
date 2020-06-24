@@ -20,6 +20,7 @@ public final class Main {
     public static void main(String[] args)
     {
         try{
+            /*
             new CylinderTest().getNormal();
             new PolygonTests().testGetNormal();
             new SphereTest().getNormal();
@@ -31,6 +32,8 @@ public final class Main {
             test.lenghtSquared();
             test.normalized();
             test.scale();
+
+             */
         }
         catch (Exception e)
         {
