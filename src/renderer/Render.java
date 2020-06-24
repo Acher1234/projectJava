@@ -278,7 +278,7 @@ public class Render
         if(points == null || returnGeo == null )return null;
         return new Intersectable.GeoPoint(returnGeo,minDistancePoint);
     }
-
+    
     public void printGrid(int interval, Color color)
     {
         for(int i=0;i<_imagewriter.getNx();i++)
