@@ -348,7 +348,7 @@ public class Render
                 for (Intersectable.GeoPoint tempGeopoint : tempList)
                 {
                     if(!tempGeopoint.point.equals(gp.point))
-                        kkr*= gp.geometry.get_material().get_kT();
+                        kkr*= tempGeopoint.geometry.get_material().get_kT();
                 }
             }
         }
