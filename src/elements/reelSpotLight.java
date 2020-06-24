@@ -20,14 +20,13 @@ public class reelSpotLight extends PointLight
      *
      * @param _intensity
      * @param _Position
-     * @param _direction
      * @param _kC
      * @param _kL
      * @param _kQ
      */
-    public reelSpotLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double rayon) {
+    public reelSpotLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ,double rayon) {
         super(_intensity, _Position, _kC, _kL, _kQ);
-        sphere = new Sphere(new Color(_intensity),new Material(0,0,0,1,0),rayon,_Position);
+        sphere = new Sphere(new Color(_intensity),new Material(0,0,0,0,0),rayon,_Position);
     }
 
 
@@ -44,7 +43,7 @@ public class reelSpotLight extends PointLight
         for (int i =0;i < nombrePointsGenerated ; i++)
         {
             Basis = Vector.GeneratedAleatoryVector(this.sphere.get_radius());
-            ReturnList.add(_Position.Add(Basis).subtract(p).normalized());
+            ReturnList.add(p.subtract(_Position.Add(Basis)).normalized());
         }
         return ReturnList;
     }

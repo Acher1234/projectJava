@@ -145,7 +145,6 @@ public class Render
     {
         List<Intersectable.GeoPoint> returnList = new ArrayList<Intersectable.GeoPoint>();
         List<Intersectable.GeoPoint> tempList;
-        Intersectable tempInter;
         for (Geometry temp:_scene.get_geometries())
         {
             tempList = temp.findIntersection(ray);
@@ -159,6 +158,7 @@ public class Render
         }
         return returnList.isEmpty() ? null : returnList;
     }
+
     protected boolean sign(double e)
     {
         return e >=0 ? true : false;
@@ -356,15 +356,12 @@ public class Render
                 {
                     for (Intersectable.GeoPoint tempGeopoint : tempList)
                     {
-                        kkr*= tempGeopoint.geometry.get_material().get_kT();
+                        if(!tempGeopoint.point.equals(gp.point))
+                            kkr*= tempGeopoint.geometry.get_material().get_kT();
                     }
                 }
             }
             kkrTotal+=kkr;
-        }
-        if(kkrTotal/numberofPoint != 1)
-        {
-            double a =12;
         }
         return kkrTotal/numberofPoint;
     }

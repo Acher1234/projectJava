@@ -89,13 +89,12 @@ public class Vector
         Vector Return = null;
         try
         {
-            Return = new Vector(tempX,tempY,tempZ);
+            return new Vector(tempX,tempY,tempZ);
         }
         catch (Exception e)
         {
             return null;
         }
-        return Return;
     }
 
     /**

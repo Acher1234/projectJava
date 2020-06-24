@@ -8,6 +8,7 @@ import primitives.Vector;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * The type Camera.
@@ -64,7 +65,8 @@ public class Camera {
      */
     public List<Ray> constructRayThroughPixel (int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight)
     {
-        int numberOnXAndY = 10;
+        Random r = new Random();
+        int numberOnXAndY = 5;
         List<Ray> returnList= new ArrayList<Ray>();
         double sizeBetweenPixelWidht = (screenWidth / nX) / (numberOnXAndY+1);
         double sizeBetweenPixelHeight = (screenHeight / nY) / (numberOnXAndY+1);
@@ -87,10 +89,9 @@ public class Camera {
                 returnList.add(new Ray(Result.subtract(Origins),Origins));
                 continue;
             }
-            Point3D ResultToADD = Result.Add(getVup().scale(sizeBetweenPixelHeight*number));
-            Point3D ResultToADDbis = Result.Add(getVright().scale(sizeBetweenPixelWidht*number));
+            Point3D ResultToADD = Result.Add(getVup().scale(sizeBetweenPixelHeight*(r.nextInt(numberOnXAndY+1)+1)));//add 1 to avoid 0
+            ResultToADD = ResultToADD.Add(getVright().scale(sizeBetweenPixelWidht*(r.nextInt(numberOnXAndY+1)+1)));
             returnList.add(new Ray(ResultToADD.subtract(Origins),Origins));
-            returnList.add(new Ray(ResultToADDbis.subtract(Origins),Origins));
         }
         return returnList;
     }
