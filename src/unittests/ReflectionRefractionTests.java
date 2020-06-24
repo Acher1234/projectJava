@@ -71,14 +71,16 @@ public class ReflectionRefractionTests {
 		scene.addLights(new SpotLight(new Color(1020, 400, 400),  new Point3D(-750, 750, 150), 
 				   new Vector(-1, 1, 4), 1, 0.00001, 0.000005));
 
-		/*
+
 		ImageWriter imageWriter = new ImageWriter("twoSpheresMirrored", 2500, 2500, 500, 500);
 		Render render = new Render(imageWriter, scene);
 
 		render.renderImage();
 		render.writeToImage();
 
-		*/
+
+
+		/*
 		ImageWriter imageWriter = new ImageWriter("teapot", 200, 200, 800, 800);
 		Render render = new Render(imageWriter, scene) //
 				.setMultithreading(3) //
@@ -87,6 +89,8 @@ public class ReflectionRefractionTests {
 		render.renderImage();
 		// render.printGrid(50, java.awt.Color.YELLOW);
 		render.writeToImage();
+
+		 */
 
 
 	}

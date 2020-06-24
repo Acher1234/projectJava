@@ -315,7 +315,7 @@ public class Render
         }
     }
 
-    /*
+
     public void renderImage()
     {
         List<Ray> rayList;
@@ -348,7 +348,7 @@ public class Render
         }
     }
 
-     */
+
 
     private double transparency(List<Vector> lightVectorArray, Vector normal, Intersectable.GeoPoint gp,LightSource light)
     {
@@ -496,6 +496,7 @@ public class Render
      * This function renders image's pixel color map from the scene included with
      * the Renderer object
      */
+    /*
     public void renderImage() {
         final int nX = _imagewriter.getNx();
         final int nY = _imagewriter.getNy();
@@ -531,6 +532,8 @@ public class Render
         for (Thread thread : threads) try { thread.join(); } catch (Exception e) {}
         if (_print) System.out.printf("\r100%%\n");
     }
+
+     */
 
 
 
