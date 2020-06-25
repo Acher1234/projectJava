@@ -26,8 +26,8 @@ public final class Main {
     public static void main(String[] args)
     {
         Scene scene = new Scene("Scene final");
-        scene.setCamera(new Camera(new Point3D(500, 900, 200), new Vector(0, -1, -0.15), new Vector(0, -0.15, 1)));
-        scene.setDistance(950);
+        scene.setCamera(new Camera(new Point3D(500, 1200, 400), new Vector(0, -1, 0), new Vector(0, 0, 1)));
+        scene.setDistance(900);
         scene.setBackground(Color.BLACK);
         scene.setAmbientLight(new AmbientLight(Color.BLACK, 0));
 
@@ -39,9 +39,9 @@ public final class Main {
                         new Point3D(0, 0, 10), new Point3D(1000, 300, 15), new Point3D(0, 300, 15)),
                 //miroir Derriere
                 new Triangle(new Color(70,70,70), new Material(0, 0, 30,0,1),
-                        new Point3D(0, 0, 10), new Point3D(1000, 0, 10), new Point3D(1000, 0, 3000)),
+                        new Point3D(0, 0, 10), new Point3D(1000, 0, 10), new Point3D(1000, -80, 3000)),
                 new Triangle(new Color(70,70,70), new Material(0, 0, 30,0,1),
-                        new Point3D(1000, 0, 3000), new Point3D(0, 0, 10), new Point3D(0, 0, 3000)),
+                        new Point3D(1000, -80, 3000), new Point3D(0, 0, 10), new Point3D(0, -80, 3000)),
                 //
                 new Sphere(new Color(100,100,100),new Material(0.5,0.5,30,0.5,0),20,new Point3D(300,60,30))
 
