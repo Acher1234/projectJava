@@ -4,6 +4,7 @@ import primitives.Color;
 
 public class Light {
     protected Color _intensity;
+    static int nombrePointsGenerated = 2;
 
     /**
      * Instantiates a new Light.

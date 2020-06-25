@@ -217,4 +217,8 @@ public class Cylinder extends Tube
         }
         return flag ? tempReturn : null;
     }
+
+    public double get_height() {
+        return _height;
+    }
 }
