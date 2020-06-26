@@ -34,10 +34,15 @@ public final class Main {
             scene.setBackground(Color.BLACK);
             scene.setAmbientLight(new AmbientLight(Color.BLACK, 0));
 
-            scene.addGeometries(new Triangle(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 30), //
-                    new Point3D(-70, 40, 0), new Point3D(-40, 70, 0), new Point3D(-68, 68, 4)),
-                    new Triangle(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 30), //
-                            new Point3D(-70, 40, 0), new Point3D(-40, 70, 0), new Point3D(-68, 68, 4)));
+            scene.addGeometries(
+                    new Sphere(new Color(255,0,0), new Material(0.5, 0.5, 30), //
+                            100, new Point3D(-40, 0, 100)),
+                    new Sphere(new Color(255,0,0), new Material(0.5, 0.5, 30), //
+                            100, new Point3D(1040, 0, 100)),
+                    new Triangle(new Color(255,0,0), new Material(0.5, 0.5, 30),
+                            new Point3D(0, 0, 200), new Point3D(1000, 0, 200), new Point3D(0, 150, 200)),
+                    new Triangle(new Color(255,0,0), new Material(0.5, 0.5, 30),
+                            new Point3D(1000, 0, 200), new Point3D(1000, 150, 200), new Point3D(0, 150, 150)));
 
             scene.addLights(new reelSpotLight(new Color(400, 240, 0), //
                     new Point3D(-100, 100, -200), 1, 1E-5, 1.5E-7,5));
