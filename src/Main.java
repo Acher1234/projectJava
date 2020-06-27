@@ -35,18 +35,18 @@ public final class Main {
 
                 //2 spheres pour le haut de la scene en mode rideau
                 //sphere droite
-                new Sphere(new Color(255,0,0), new Material(0.5, 0.5, 30), //
-                        360, new Point3D(-250, 0, 450)),
+                new Sphere(new Color(255,0,0), new Material(0, 0, 30), //
+                        360, new Point3D(-250, 0, 475)),
                 //sphere gauche
-                new Sphere(new Color(255,0,0), new Material(0.5, 0.5, 30), //
-                        360, new Point3D(1250, 0, 450)),
+                new Sphere(new Color(255,0,0), new Material(0, 0, 30), //
+                        360, new Point3D(1250, 0, 475)),
 
                 //2 triangle pour faire le rectangle aus dessus de la scene
                 //triangle droite
-                new Triangle(new Color(255,0,0), new Material(0.5, 0.5, 30),
+                new Triangle(new Color(255,0,0), new Material(0, 0, 30),
                         new Point3D(-100, 150, 550), new Point3D(1400, 150, 550), new Point3D(-100, 150, 400)),
                 //triangle gauche
-                new Triangle(new Color(255,0,0), new Material(0.5, 0.5, 30),
+                new Triangle(new Color(255,0,0), new Material(0, 0, 30),
                         new Point3D(1400, 150, 550), new Point3D(-100, 150, 400), new Point3D(1400, 150, 400)),
 
 
