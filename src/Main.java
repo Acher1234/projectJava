@@ -30,10 +30,11 @@ public final class Main {
     {
         try{
             Scene scene = new Scene("Test scene");
-            scene.setCamera(new Camera(new Point3D(500, 1200, 400), new Vector(0, -1, 0), new Vector(0, 0, 1)));
-            scene.setDistance(900);
-            scene.setBackground(Color.BLACK);
+            scene.setCamera(new Camera(new Point3D(500, 1200, 100), new Vector(0, -1, 0), new Vector(0, 0, 1)));
+            scene.setDistance(180);
+            scene.setBackground(new Color(222,184,135));
             scene.setAmbientLight(new AmbientLight(Color.BLACK, 0));
+
 
             scene.addGeometries(
                     //2 spheres pour le haut de la scene en mode rideau
@@ -47,12 +48,25 @@ public final class Main {
                     new Triangle(new Color(255,0,0), new Material(0.5, 0.5, 30),
                             new Point3D(120, -100, 50), new Point3D(-120, -40, 50), new Point3D(120, -40, 50)));
 
+
+            scene.addLights(
+                    new reelSpotLight(new Color(255, 255, 255), //
+                            new Point3D(500,0,400), 10, 0.00001, 0.000000001,81)
+                    /*
+                    new RayonLight(new Color(200, 0, 0), //
+                            new Point3D(200,100,500), new Vector(0,0,-1), 1, 0.00001,0.000000001,60)
+
+                     */
+            );
+
             /*
             scene.addLights(new reelSpotLight(new Color(400, 240, 0), //
                     new Point3D(-100, 100, -200), 1, 1E-5, 1.5E-7,5));
-            */
+
             scene.addLights(new SpotLight(new Color(400, 240, 0), //
                     new Point3D(-100, 100, -200), new Vector(1, -1, 3), 1, 1E-5, 1.5E-7));
+
+             */
 
 
 
