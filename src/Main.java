@@ -1,5 +1,6 @@
 import elements.AmbientLight;
 import elements.Camera;
+import elements.SpotLight;
 import elements.reelSpotLight;
 import geometries.Cylinder;
 import geometries.Sphere;
@@ -29,25 +30,33 @@ public final class Main {
     {
         try{
             Scene scene = new Scene("Test scene");
-            scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
-            scene.setDistance(1000);
+            scene.setCamera(new Camera(new Point3D(500, 1200, 400), new Vector(0, -1, 0), new Vector(0, 0, 1)));
+            scene.setDistance(900);
             scene.setBackground(Color.BLACK);
             scene.setAmbientLight(new AmbientLight(Color.BLACK, 0));
 
             scene.addGeometries(
+                    //2 spheres pour le haut de la scene en mode rideau
                     new Sphere(new Color(255,0,0), new Material(0.5, 0.5, 30), //
-                            100, new Point3D(-40, 0, 100)),
+                            100, new Point3D(-160, -60, 150)),
                     new Sphere(new Color(255,0,0), new Material(0.5, 0.5, 30), //
-                            100, new Point3D(1040, 0, 100)),
+                            100, new Point3D(160, -60, 150)),
+                    //2 triangle pour faire le rectangle aus dessus de la scene
                     new Triangle(new Color(255,0,0), new Material(0.5, 0.5, 30),
-                            new Point3D(0, 0, 200), new Point3D(1000, 0, 200), new Point3D(0, 150, 200)),
+                            new Point3D(-120, -100, 50), new Point3D(120, -100, 50), new Point3D(-120, -40, 50)),
                     new Triangle(new Color(255,0,0), new Material(0.5, 0.5, 30),
-                            new Point3D(1000, 0, 200), new Point3D(1000, 150, 200), new Point3D(0, 150, 150)));
+                            new Point3D(120, -100, 50), new Point3D(-120, -40, 50), new Point3D(120, -40, 50)));
 
+            /*
             scene.addLights(new reelSpotLight(new Color(400, 240, 0), //
                     new Point3D(-100, 100, -200), 1, 1E-5, 1.5E-7,5));
+            */
+            scene.addLights(new SpotLight(new Color(400, 240, 0), //
+                    new Point3D(-100, 100, -200), new Vector(1, -1, 3), 1, 1E-5, 1.5E-7));
 
-            ImageWriter imageWriter = new ImageWriter("SceneFinal", 1000, 700, 2000, 1400);
+
+
+            ImageWriter imageWriter = new ImageWriter("SceneFinal", 200, 140, 400, 280);
             Render render = new Render(imageWriter, scene);
 
             render.renderImage();

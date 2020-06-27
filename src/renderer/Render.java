@@ -27,8 +27,8 @@ public class Render
 
     //thread
     private int _threads = 1;
-    private final int SPARE_THREADS = 2;
-    private boolean _print = false;
+    private final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
+    private boolean _print = false; // printing progress percentage
 
     //---------Methodes-------
 
@@ -429,7 +429,9 @@ public class Render
             _maxCols = maxCols;
             _pixels = maxRows * maxCols;
             _nextCounter = _pixels / 100;
-            if (Render.this._print) System.out.printf("\r %02d%%", _percents);
+            if (Render.this._print) synchronized (System.out) {
+                System.out.printf("\r %02d%%", _percents);
+            }
         }
 
         /**
@@ -454,7 +456,7 @@ public class Render
             if (col < _maxCols) {
                 target.row = this.row;
                 target.col = this.col;
-                if (_counter == _nextCounter) {
+                if (_print && _counter == _nextCounter) {
                     ++_percents;
                     _nextCounter = _pixels * (_percents + 1) / 100;
                     return _percents;
@@ -464,7 +466,7 @@ public class Render
             ++row;
             if (row < _maxRows) {
                 col = 0;
-                if (_counter == _nextCounter) {
+                if (_print && _counter == _nextCounter) {
                     ++_percents;
                     _nextCounter = _pixels * (_percents + 1) / 100;
                     return _percents;
@@ -483,14 +485,33 @@ public class Render
          */
         public boolean nextPixel(Pixel target) {
             int percents = nextP(target);
-            if (percents > 0)
-                if (Render.this._print) System.out.printf("\r %02d%%", percents);
+            if (_print && percents > 0)
+                synchronized (System.out) {
+                    System.out.printf("\r %02d%%", percents);
+                }
             if (percents >= 0)
                 return true;
-            if (Render.this._print) System.out.printf("\r %02d%%", 100);
+            if (_print) synchronized (System.out) {
+                System.out.printf("\r %02d%%", 100);
+            }
             return false;
         }
     }
+
+    /**
+     * Only constructor
+     *
+     * @param imageWriter (ImageWriter)
+     * @param scene       (Scene) Contains geometries and lighting info
+     */
+    /*
+    public Render(ImageWriter imageWriter, Scene scene) {
+        this._imagewriter = imageWriter;
+        this._scene = scene;
+    }
+
+    private volatile int max = 0;
+     */
 
     /**
      * This function renders image's pixel color map from the scene included with
@@ -498,13 +519,17 @@ public class Render
      */
     /*
     public void renderImage() {
+        final Camera camera = _scene.get_camera();
         final int nX = _imagewriter.getNx();
         final int nY = _imagewriter.getNy();
         final double dist = _scene.get_distance();
         final double width = _imagewriter.getWidth();
         final double height = _imagewriter.getHeight();
-        final Camera camera = _scene.get_camera();
 
+        final Intersectable geometries = _scene.getGeometries();
+        final java.awt.Color background = _scene.getBackground().getColor();
+
+        // Multi-threading
         final Pixel thePixel = new Pixel(nY, nX);
 
         // Generate threads
@@ -512,25 +537,22 @@ public class Render
         for (int i = _threads - 1; i >= 0; --i) {
             threads[i] = new Thread(() -> {
                 Pixel pixel = new Pixel();
+                max = 0;
                 while (thePixel.nextPixel(pixel)) {
-                    List<Ray> rays = camera.constructRayThroughPixel(nX, nY, pixel.col, pixel.row,
-                            dist, width, height);
-                    for (Ray r: rays) {
-                        Intersectable.GeoPoint closestPoint = findCLosestIntersection(r);
-                        _imagewriter.writePixel(pixel.col, pixel.row, calcColor(closestPoint,r).getColor());
-                    }
+                    Ray ray = camera.constructRayThroughPixel(nX, nY, pixel.col, pixel.row, distance, width, height);
+                    GeoPoint closestPoint = findClosestIntersection(ray);
+                    _imageWriter.writePixel(pixel.col, pixel.row, closestPoint == null ? background :
+                            calcColor(closestPoint, ray).getColor());
                 }
             });
         }
-
-
-
         // Start threads
         for (Thread thread : threads) thread.start();
-
         // Wait for all threads to finish
-        for (Thread thread : threads) try { thread.join(); } catch (Exception e) {}
-        if (_print) System.out.printf("\r100%%\n");
+        for (Thread thread : threads) try { thread.join(); } catch (InterruptedException e) {}
+        if (_print) synchronized (System.out) {
+            System.out.printf("\r100%%\n");
+        }
     }
 
      */
@@ -551,10 +573,7 @@ public class Render
             _threads = threads;
         else {
             int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
-            if (cores <= 2)
-                _threads = 1;
-            else
-                _threads = cores;
+            _threads = cores <= 2 ? 1 : cores;
         }
         return this;
     }
