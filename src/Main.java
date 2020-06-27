@@ -26,30 +26,39 @@ public final class Main {
     public static void main(String[] args)
     {
         Scene scene = new Scene("Scene final");
-        scene.setCamera(new Camera(new Point3D(500, 1200, 400), new Vector(0, -1, 0), new Vector(0, 0, 1)));
+        scene.setCamera(new Camera(new Point3D(500, 1200, 100), new Vector(0, -1, 0), new Vector(0, 0, 1)));
         scene.setDistance(900);
-        scene.setBackground(Color.BLACK);
+        scene.setBackground(new Color(222,184,135));
         scene.setAmbientLight(new AmbientLight(Color.BLACK, 0));
 
         scene.addGeometries(
                 //plancher de la scene
-                new Triangle(new Color(109,7,26), new Material(0.5, 0.5, 30),
-                        new Point3D(0, 0, 10), new Point3D(1000, 0, 10), new Point3D(1000, 300, 15)),
-                new Triangle(new Color(109,7,26), new Material(0.5, 0.5, 30),
-                        new Point3D(0, 0, 10), new Point3D(1000, 300, 15), new Point3D(0, 300, 15)),
+                new Triangle(new Color(40,20,0), new Material(1, 0.5, 50),
+                        new Point3D(-100, 0, 10), new Point3D(1100, 0, 10), new Point3D(1100, 300, -22)),
+                new Triangle(new Color(40,20,0), new Material(1, 0.5, 50),
+                        new Point3D(-100, 0, 10), new Point3D(1100, 300, -22), new Point3D(-100, 300, -22)),
                 //miroir Derriere
-                new Triangle(new Color(70,70,70), new Material(0, 0, 30,0,1),
-                        new Point3D(0, 0, 10), new Point3D(1000, 0, 10), new Point3D(1000, -80, 3000)),
-                new Triangle(new Color(70,70,70), new Material(0, 0, 30,0,1),
-                        new Point3D(1000, -80, 3000), new Point3D(0, 0, 10), new Point3D(0, -80, 3000)),
-                //
-                new Sphere(new Color(100,100,100),new Material(0.5,0.5,30,0.5,0),20,new Point3D(300,60,30))
-
+                new Triangle(new Color(50,50,50), new Material(0, 0, 30,0,1),
+                        new Point3D(-100, 0, 10), new Point3D(1100, 0, 10), new Point3D(1100, -10, 500)),
+                new Triangle(new Color(50,50,50), new Material(0, 0, 30,0,1),
+                        new Point3D(1100, -10, 500), new Point3D(-100, 0, 10), new Point3D(-100, -10, 500)),
+                //Arrier Noir
+                new Triangle(new Color(0,0,0), new Material(0, 0, 30,0,1),
+                        new Point3D(-400, -100, 10), new Point3D(1500, -100, 10), new Point3D(1500, -100, 700)),
+                new Triangle(new Color(0,0,0), new Material(0, 0, 30,0,1),
+                        new Point3D(1500, -100, 700), new Point3D(-400, -100, 10), new Point3D(-400, -100, 700)),
+                //Objet de scene
+                new Sphere(new Color(100,100,100),new Material(0.5,0.5,30,0.5,0),20,new Point3D(300,60,30)),
+                new Cylinder(new Color(100,100,100),new Material(0.5,1,30,0.5,0),20,new Ray(new Point3D(280,60,30),new Vector(1,0,0)),20),
+                //Lumiere
+                new Sphere(new Color(255,255,255),new Material(0.5,0.5,30,0,0.2),80,new Point3D(500,0,400))
         );
 
         scene.addLights(
-                new PointLight(new Color(400, 0, 0), //
-                        new Point3D(300,60,1000), 1, 1E-5, 1.5E-7)
+                new reelSpotLight(new Color(255, 255, 255), //
+                        new Point3D(500,0,400), 10, 0.00001, 0.000000001,81),
+                new RayonLight(new Color(200, 0, 0), //
+                        new Point3D(200,100,500), new Vector(0,0,-1), 1, 0.00001,0.000000001,60)
         );
 
                 ImageWriter imageWriter = new ImageWriter("SceneFinal", 1000, 700, 2000, 1400);

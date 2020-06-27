@@ -4,6 +4,9 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpotLight extends PointLight
 {
     protected Vector _direction;
@@ -30,6 +33,14 @@ public class SpotLight extends PointLight
     @Override
     public Vector getL(Point3D p) {
         return _direction.normalized();
+    }
+
+    @Override
+    public List<Vector> getmultipleL(Point3D p) {
+        List<Vector> ToReturn = new ArrayList<Vector>();
+        ToReturn.add(this.getL(p));
+        return ToReturn;
+
     }
 
     /**

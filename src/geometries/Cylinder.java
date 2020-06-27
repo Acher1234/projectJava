@@ -99,7 +99,7 @@ public class Cylinder extends Tube
      * @param axisRay
      * @param _heigh
      */
-    public Cylinder(Color emission,RadialGeometry temp, Ray axisRay,double _heigh) {
+    public Cylinder(Color emission,double temp, Ray axisRay,double _heigh) {
         this(temp,axisRay,_heigh);
         this._emmission = emission;
     }
@@ -112,7 +112,7 @@ public class Cylinder extends Tube
      * @param axisRay
      * @param _heigh
      */
-    public Cylinder(Color emission,Material material,RadialGeometry temp, Ray axisRay,double _heigh) {
+    public Cylinder(Color emission,Material material,double temp, Ray axisRay,double _heigh) {
         this(temp,axisRay,_heigh);
         this._emmission = emission;
         this._material = material;
@@ -140,23 +140,28 @@ public class Cylinder extends Tube
     public List<Intersectable.GeoPoint> findIntersection(Ray ray)
     {
         List<Intersectable.GeoPoint> Listtemp =  super.findIntersection(ray);
+        if(Listtemp == null)
+        {
+            return null;
+        }
+        List<Intersectable.GeoPoint> ListTemp = new ArrayList<GeoPoint>();
         List<Intersectable.GeoPoint> List = new ArrayList<GeoPoint>();
         for (GeoPoint temp:Listtemp)
         {
-            List.add(new GeoPoint(this,temp.point));
+            ListTemp.add(new GeoPoint(this,temp.point));
         }
         List<Intersectable.GeoPoint> setCandidate = new ArrayList<Intersectable.GeoPoint>();
         Point3D P2Point = _axisRay.getPOO().Add(_axisRay.getDirection().scale(_height));
         Plane P1 = new Plane(_axisRay.getPOO(),_axisRay.getDirection());
         Plane P2 = new Plane(P2Point,_axisRay.getDirection());
         Vector testNull;
-        for (int i = 0;i < List.size();i++)// for the intersection without the plane
+        for (int i = 0;i < ListTemp.size();i++)// for the intersection without the plane
         {
-            double t = _axisRay.getDirection().dotProduct(List.get(i).point.subtract(_axisRay.getPOO()));
+            double t = _axisRay.getDirection().dotProduct(ListTemp.get(i).point.subtract(_axisRay.getPOO()));
             Point3D o = _axisRay.getPOO().Add(_axisRay.getDirection().scale(t));
-            if(o.subtract(_axisRay.getPOO()).length() > _height)
+            if(!(o.subtract(_axisRay.getPOO()).length() > _height))
             {
-                List.remove(i);
+                List.add(ListTemp.get(i));
             }
         }
         setCandidate = P1.findIntersection(ray);

@@ -75,8 +75,8 @@ public class LightsTests {
         scene.addGeometries(
                 new Sphere(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 100), 50, new Point3D(0, 0, 50)));
 
-        scene.addLights(new SpotLight(new Color(200, 1, 0), new Point3D(0, 0, -200),
-                new Vector(0,0 , 1), 1, 0.00001, 0.00000001));
+        scene.addLights(new RayonLight(new Color(200, 1, 0), new Point3D(0, 0, -200),
+                new Vector(0,0 , 1), 1, 0.0000001, 0.00000000001,100));
 
         ImageWriter imageWriter = new ImageWriter("sphereSpotTest", 150, 150, 500, 500);
         Render render = new Render(imageWriter, scene);

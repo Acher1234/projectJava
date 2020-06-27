@@ -4,6 +4,11 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static primitives.Util.alignZero;
+
 public class RayonLight extends SpotLight
 {
     protected double _Rayon;
@@ -36,7 +41,15 @@ public class RayonLight extends SpotLight
     @Override
     public Color getIntensity(Point3D p) {
         double t = _direction.dotProduct(p.subtract(_Position));
-        Point3D o = _Position.Add(_direction.scale(t));
+        Point3D o;
+        if(alignZero(t) == 0)
+        {
+            o = _Position;
+        }
+        else
+        {
+            o = _Position.Add(_direction.scale(t));
+        }
         if(o.subtract(p).length() < this._Rayon)
         {
             double distance = p.Distance(_Position);
@@ -48,6 +61,14 @@ public class RayonLight extends SpotLight
             }
         }
         return new Color(0,0,0);
+    }
+
+    @Override
+    public List<Vector> getmultipleL(Point3D p) {
+        List<Vector> ToReturn = new ArrayList<Vector>();
+        ToReturn.add(getL(p));
+        return ToReturn;
+
     }
 
     @Override

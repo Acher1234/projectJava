@@ -62,6 +62,12 @@ public class Tube extends RadialGeometry {
     public Vector getNormal(Point3D temp)
     {
         double t = _axisRay.getDirection().dotProduct(temp.subtract(_axisRay.getPOO()));
+        if(t == 0)
+        {
+            if(temp.Distance(_axisRay.getPOO()) > this._radius)
+                return this._axisRay.getDirection().scale(-1).normalized();
+            return this._axisRay.getDirection().normalized();
+        }
         Point3D o = _axisRay.getPOO().Add(_axisRay.getDirection().scale(t));
         return temp.subtract(o).normalized();
     }
@@ -88,7 +94,7 @@ public class Tube extends RadialGeometry {
         double VVA = ray.getDirection().dotProduct(_axisRay.getDirection());
         if(VVA == 0)
         {
-
+            return null;
         }
         vVAVA =_axisRay.getDirection().scale(VVA);
         try {
@@ -133,6 +139,10 @@ public class Tube extends RadialGeometry {
         double b = 2 * minus.dotProduct( dpminus );
         double c = dpminus.lengthSquared()- _radius*_radius;
         List<Double> result = MathHelp.SecondDegree(a,b,c);
+        if(result == null)
+        {
+            return null;
+        }
         resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(0))));
         resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(1))));
         return resultPoint;

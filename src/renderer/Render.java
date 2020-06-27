@@ -229,7 +229,7 @@ public class Render
         for (LightSource temp:tempLights)
         {
             //test if the point is visibleby the camera if not you can skip
-            if(sign(p.geometry.getNormal(p.point).dotProduct(temp.getL(p.point))) ==  sign(p.geometry.getNormal(p.point).dotProduct(_scene.get_camera().getVto())))
+            if(sign(p.geometry.getNormal(p.point).dotProduct(temp.getmultipleL(p.point).get(0))) ==  sign(p.geometry.getNormal(p.point).dotProduct(_scene.get_camera().getVto())))
             {
 
                 Diffuse = new primitives.Color(0, 0, 0);//to estimate the diffuse light
@@ -238,16 +238,26 @@ public class Render
                 if(ktr*k > MIN_CALC_COLOR_K)
                 {
                     tempColor = temp.getIntensity(p.point).scale(ktr);//for the shadow transparency
-                    //diffuseLight
                     normalToPoint = p.geometry.getNormal(p.point);//calcul diffuse light
-                    dotProductNormalAndL = abs(temp.getL(p.point).dotProduct(normalToPoint));
-                    Diffuse = Diffuse.add(tempColor.scale(dotProductNormalAndL*KD));
+                    //diffuseLight
+                    try {
+                        dotProductNormalAndL = abs(temp.getL(p.point).dotProduct(normalToPoint));
+                        Diffuse = Diffuse.add(tempColor.scale(dotProductNormalAndL * KD));
+                    }catch (IllegalArgumentException e )
+                    {
+                        Diffuse = new primitives.Color(0,0,0);
+                    }
                     //specular light
-                    symetrieOfL = (temp.getL(p.point)).subtract(normalToPoint.scale(2 * normalToPoint.dotProduct(temp.getL(p.point))));//calcul specular light
-                    PointToCamera = p.point.subtract(_scene.get_camera().getOrigins()).normalized();
-                    dotProductVAndR = abs(symetrieOfL.dotProduct(PointToCamera));
-                    Specular = Specular.add(tempColor.scale(KS).scale(pow(dotProductVAndR, nShininess)));
-                    totalLight = totalLight.add(Diffuse).add(Specular);
+                    try {
+                        symetrieOfL = (temp.getL(p.point)).subtract(normalToPoint.scale(2 * normalToPoint.dotProduct(temp.getL(p.point))));//calcul specular light
+                        PointToCamera = p.point.subtract(_scene.get_camera().getOrigins()).normalized();
+                        dotProductVAndR = abs(symetrieOfL.dotProduct(PointToCamera));
+                        Specular = Specular.add(tempColor.scale(KS).scale(pow(dotProductVAndR, nShininess)));
+                        totalLight = totalLight.add(Diffuse).add(Specular);
+                    }catch (IllegalArgumentException e)
+                    {
+                        Specular = new primitives.Color(0,0,0);
+                    }
                 }
             }
         }
