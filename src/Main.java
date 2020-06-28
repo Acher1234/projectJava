@@ -36,19 +36,64 @@ public final class Main {
                 //2 spheres pour le haut de la scene en mode rideau
                 //sphere droite
                 new Sphere(new Color(255,0,0), new Material(0, 0, 30), //
-                        360, new Point3D(-250, 0, 475)),
+                        360, new Point3D(-300, 0, 475)),
                 //sphere gauche
                 new Sphere(new Color(255,0,0), new Material(0, 0, 30), //
-                        360, new Point3D(1250, 0, 475)),
+                        360, new Point3D(1300, 0, 475)),
 
                 //2 triangle pour faire le rectangle aus dessus de la scene
                 //triangle droite
                 new Triangle(new Color(255,0,0), new Material(0, 0, 30),
-                        new Point3D(-100, 150, 550), new Point3D(1400, 150, 550), new Point3D(-100, 150, 400)),
+                        new Point3D(-100, 150, 550), new Point3D(1400, 150, 550), new Point3D(-100, 150, 425)),
                 //triangle gauche
                 new Triangle(new Color(255,0,0), new Material(0, 0, 30),
-                        new Point3D(1400, 150, 550), new Point3D(-100, 150, 400), new Point3D(1400, 150, 400)),
+                        new Point3D(1400, 150, 550), new Point3D(-100, 150, 425), new Point3D(1400, 150, 425)),
 
+                //lets go les 3 pyramides (= 9 triangles)
+                //pyramide de gauche
+                //patron de gauche
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(800, 150, -300), new Point3D(875, 150, -250), new Point3D(800, 150, -50)),
+                //triangle de droite
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(800, 150, -300), new Point3D(725, 150, -250), new Point3D(800, 150, -50)),
+                //triangle de derriere
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(875, 150, -250), new Point3D(725, 150, -250), new Point3D(800, 150, -50)),
+
+                //pyramide du milieu
+                //patron de gauche
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(550, 150, -300), new Point3D(650, 150, -275), new Point3D(600, 150, -100)),
+                //triangle de droite
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(550, 150, -300), new Point3D(537.5, 150, -250), new Point3D(600, 150, -100)),
+                //triangle de derriere
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(650, 150, -275), new Point3D(537.5, 150, -250), new Point3D(600, 150, -100)),
+
+                //pyramide de droite
+                //patron de gauche
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(50, 150, -250), new Point3D(0, 150, -275), new Point3D(0, 150, -25)),
+                //triangle de droite
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(-50, 150, -250), new Point3D(0, 150, -275), new Point3D(0, 150, -25)),
+                //triangle de derriere
+                new Triangle(new Color(150,100,0), new Material(0, 0, 30,1,0),
+                        new Point3D(50, 150, -250), new Point3D(-50, 150, -250), new Point3D(0, 150, -25)),
+
+
+                //lets go les tetes ! (3 spheres)
+                //sphere de gauche
+                new Sphere(new Color(0,100,100), new Material(0, 0, 30,0,0), //
+                        60, new Point3D(800, 150, -50)),
+                //sphere du milieu
+                new Sphere(new Color(0,100,100), new Material(0, 0, 30,0,0), //
+                        50, new Point3D(600, 150, -100)),
+                //sphere de droite
+                new Sphere(new Color(0,100,100), new Material(0, 0, 30,0,0), //
+                        57.5, new Point3D(0, 150, -25)),
 
 
                 //plancher de la scene
