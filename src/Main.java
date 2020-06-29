@@ -49,22 +49,50 @@ public final class Main {
                 new Triangle(new Color(130,0,0), new Material(0, 0, 30),
                         new Point3D(1400, 150, 550), new Point3D(-100, 150, 425), new Point3D(1400, 150, 425)),
 
+
                 //lets go la pyramide (= 3 triangles)
 
-                //pyramide de droite
+
+                /*
+                //1. pyramide de cote
+                //coord tout a droite cest le sommet apres bah les pieds
                 //patron de gauche transparancé
                 new Triangle(new Color(225,225,225), new Material(0, 0, 30,1,0),
-                        new Point3D(175, 305, -165), new Point3D(100, 385, -200), new Point3D(100, 385, 150)),
+                        new Point3D(200, 305, -165), new Point3D(125, 385, -200), new Point3D(125, 385, 200)),
                 //triangle de droite mirroiré
                 new Triangle(new Color(100,100,100), new Material(0, 0, 30,0,1),
-                        new Point3D(25, 305, -165), new Point3D(100, 385, -200), new Point3D(100, 385, 150)),
+                        new Point3D(50, 305, -165), new Point3D(125, 385, -200), new Point3D(125, 385, 200)),
                 //triangle de derrière mirroiré
                 new Triangle(new Color(100,100,100), new Material(0, 0, 30,0,1),
-                        new Point3D(175, 305, -165), new Point3D(25, 305, -165), new Point3D(100, 385, 150)),
+                        new Point3D(200, 305, -165), new Point3D(50, 305, -165), new Point3D(125, 385, 200)),
 
                 //sphere dans pyramide
-                new Sphere(new Color(100,100,0), new Material(0, 0, 30,1,0), //
-                        30, new Point3D(100, 340,-50)),
+                new Sphere(new Color(100,100,0), new Material(0, 0, 30,0,0), //
+                        30, new Point3D(125, 340,-50)),
+
+                 */
+
+
+
+                //2. pyramide de face (pour toi^^)
+                //coord tout a droite cest le sommet apres bah les pieds
+                //patron de face transparancé
+                new Triangle(new Color(225,225,225), new Material(0, 0, 30,1,0),
+                        new Point3D(225, 385, -200), new Point3D(75, 385, -200), new Point3D(150, 385, 200)),
+                //triangle de droite mirroiré
+                new Triangle(new Color(100,100,100), new Material(0, 0, 30,0,1),
+                        new Point3D(125, 305, -180), new Point3D(75, 385, -200), new Point3D(150, 385, 200)),
+                //triangle de gauche mirroiré
+                new Triangle(new Color(100,100,100), new Material(0, 0, 30,0,1),
+                        new Point3D(125, 305, -180), new Point3D(225, 385, -200), new Point3D(150, 385, 200)),
+
+                //sphere dans pyramide
+                new Sphere(new Color(100,100,0), new Material(1, 0, 30,0,0), //
+                        30, new Point3D(125, 340,-50)),
+
+
+
+
 
 
                 //plancher de la scene
