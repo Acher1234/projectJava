@@ -24,6 +24,10 @@ public class Render
     private static final int MAX_CALC_COLOR_LEVEL = 3;
     private static final double MIN_CALC_COLOR_K = 0.001;
 
+    //thread
+    private int _threads = 1;
+    private final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
+    private boolean _print = false; // printing progress percentage
 
     //---------Methodes-------
 
@@ -134,6 +138,11 @@ public class Render
         return returnTab;
     }*/
 
+    /**
+     * renders the scene and the immage
+     * @param Image
+     * @param scene
+     */
     public Render(ImageWriter Image, Scene scene)
     {
         _imagewriter = Image;
@@ -141,6 +150,11 @@ public class Render
 
     }
 
+    /**
+     * gets all ray intersections with the scene
+     * @param ray
+     * @return
+     */
     public List<Intersectable.GeoPoint> getSceneRayIntersections(Ray ray)
     {
         List<Intersectable.GeoPoint> returnList = new ArrayList<Intersectable.GeoPoint>();
@@ -159,11 +173,27 @@ public class Render
         return returnList.isEmpty() ? null : returnList;
     }
 
+    /**
+     * fonctions help for compare
+     * and we want bool true or false and if we have (5 == 4) that will be false
+     * whereas we want this true
+     * thats it's goal
+     * @param e
+     * @return
+     */
     protected boolean sign(double e)
     {
         return e >=0 ? true : false;
     }
 
+    /**
+     * to calculates color of every points
+     * @param p
+     * @param inRay
+     * @param level
+     * @param k
+     * @return
+     */
     public primitives.Color calcColor(Intersectable.GeoPoint p,Ray inRay,int level,double k)
     {
 
@@ -217,6 +247,17 @@ public class Render
         return TotalLight;
     }
 
+    /**
+     *  gets the specular color and diffuse color
+     * @param p
+     * @param k
+     * @param totalLight
+     * @param tempLights
+     * @param KD
+     * @param KS
+     * @param nShininess
+     * @return
+     */
     private primitives.Color getColorSpecandiffuse(Intersectable.GeoPoint p, double k, primitives.Color totalLight, List<LightSource> tempLights, double KD, double KS, double nShininess) {
         primitives.Color Diffuse;
         primitives.Color Specular;
@@ -228,7 +269,7 @@ public class Render
         double dotProductVAndR;
         for (LightSource temp:tempLights)
         {
-            //test if the point is visibleby the camera if not you can skip
+            //test if the point is visible by the camera if not you can skip
             if(sign(p.geometry.getNormal(p.point).dotProduct(temp.getmultipleL(p.point).get(0))) ==  sign(p.geometry.getNormal(p.point).dotProduct(_scene.get_camera().getVto())))
             {
 
@@ -264,11 +305,22 @@ public class Render
         return totalLight;
     }
 
+    /**
+     * we add scene to calculate its color
+     * @param gp
+     * @param ray
+     * @return
+     */
     public primitives.Color calcColor(Intersectable.GeoPoint gp, Ray ray)
     {
         return calcColor(gp, ray, 0,1).add(_scene.get_ambientLight().get_intensity());
     }
 
+    /**
+     * finds closest intersection
+     * @param ray
+     * @return
+     */
     private Intersectable.GeoPoint findCLosestIntersection(Ray ray)
     {
         List<Intersectable.GeoPoint> Listtemp =  getSceneRayIntersections(ray) ;
@@ -279,11 +331,22 @@ public class Render
         return getClosestPointFromPoint(getSceneRayIntersections(ray),ray.getPOO());
     }
 
+    /**
+     * gets closest point
+     * @param points
+     * @return
+     */
     public Intersectable.GeoPoint getClosestPoint(List<Intersectable.GeoPoint> points)
     {
         return getClosestPointFromPoint(points,_scene.get_camera().getOrigins());
     }
 
+    /**
+     * from a point gets its closest point
+     * @param points
+     * @param Origin
+     * @return
+     */
     public Intersectable.GeoPoint getClosestPointFromPoint(List<Intersectable.GeoPoint> points,Point3D Origin)
     {
         double distance = Double.MAX_VALUE;
@@ -302,6 +365,12 @@ public class Render
         if(points == null || returnGeo == null )return null;
         return new Intersectable.GeoPoint(returnGeo,minDistancePoint);
     }
+
+    /**
+     * prints the grid
+     * @param interval
+     * @param color
+     */
     public void printGrid(int interval, Color color)
     {
         for(int i=0;i<_imagewriter.getNx();i++)
@@ -320,6 +389,9 @@ public class Render
         }
     }
 
+    /**
+     * to renders image
+     */
     public void renderImage()
     {
         List<Ray> rayList;
@@ -352,6 +424,15 @@ public class Render
         }
     }
 
+    /**
+     * to know if there are some objects between the light and the points of the subject
+     * to calculates the shadow of the subject
+     * @param lightVectorArray
+     * @param normal
+     * @param gp
+     * @param light
+     * @return
+     */
     private double transparency(List<Vector> lightVectorArray, Vector normal, Intersectable.GeoPoint gp,LightSource light)
     {
         int numberofPoint = lightVectorArray.size();
@@ -389,12 +470,27 @@ public class Render
         return kkrTotal/numberofPoint;
     }
 
+    /**
+     * constructs refracted ray
+     * @param Normal
+     * @param point
+     * @param inRay
+     * @return
+     */
     public  Ray constructRefractedRay(Vector Normal,Point3D point,Ray inRay)
     {
         //double angleI = inRay.getDirection().normalized().dotProduct(Normal.normalized());
         //double angleR = inRay.getDirection().normalized().dotProduct(Normal.normalized());
         return new Ray(point,inRay.getDirection());//because all n == n
     }
+
+    /**
+     * constructs reflected ray
+     * @param Normal
+     * @param point
+     * @param inRay
+     * @return
+     */
     public  Ray constructReflectedRay(Vector Normal,Point3D point,Ray inRay)
     {
         Vector temp = Normal.scale((2*Normal.dotProduct(inRay.getDirection())));
@@ -402,8 +498,215 @@ public class Render
         return new Ray(point,Reflacted);
     }
 
+    /**
+     * writes to image
+     */
     public void writeToImage()
     {
         _imagewriter.writeToImage();
     }
+
+    /**
+     * Pixel is an internal helper class whose objects are associated with a Render object that
+     * they are generated in scope of. It is used for multithreading in the Renderer and for follow up
+     * its progress.<br/>
+     * There is a main follow up object and several secondary objects - one in each thread.
+     * @author Dan
+     *
+     */
+    private class Pixel {
+        private long _maxRows = 0;
+        private long _maxCols = 0;
+        private long _pixels = 0;
+        public volatile int row = 0;
+        public volatile int col = -1;
+        private long _counter = 0;
+        private int _percents = 0;
+        private long _nextCounter = 0;
+
+        /**
+         * The constructor for initializing the main follow up Pixel object
+         *
+         * @param maxRows the amount of pixel rows
+         * @param maxCols the amount of pixel columns
+         */
+        public Pixel(int maxRows, int maxCols) {
+            _maxRows = maxRows;
+            _maxCols = maxCols;
+            _pixels = maxRows * maxCols;
+            _nextCounter = _pixels / 100;
+            if (Render.this._print) synchronized (System.out) {
+                System.out.printf("\r %02d%%", _percents);
+            }
+        }
+
+        /**
+         * Default constructor for secondary Pixel objects
+         */
+        public Pixel() {
+        }
+
+        /**
+         * Internal function for thread-safe manipulating of main follow up Pixel object - this function is
+         * critical section for all the threads, and main Pixel object data is the shared data of this critical
+         * section.<br/>
+         * The function provides next pixel number each call.
+         *
+         * @param target target secondary Pixel object to copy the row/column of the next pixel
+         * @return the progress percentage for follow up: if it is 0 - nothing to print, if it is -1 - the task is
+         * finished, any other value - the progress percentage (only when it changes)
+         */
+        private synchronized int nextP(Pixel target) {
+            ++col;
+            ++_counter;
+            if (col < _maxCols) {
+                target.row = this.row;
+                target.col = this.col;
+                if (_print && _counter == _nextCounter) {
+                    ++_percents;
+                    _nextCounter = _pixels * (_percents + 1) / 100;
+                    return _percents;
+                }
+                return 0;
+            }
+            ++row;
+            if (row < _maxRows) {
+                col = 0;
+                if (_print && _counter == _nextCounter) {
+                    ++_percents;
+                    _nextCounter = _pixels * (_percents + 1) / 100;
+                    return _percents;
+                }
+                return 0;
+            }
+            return -1;
+        }
+
+        /**
+         * Public function for getting next pixel number into secondary Pixel object.
+         * The function prints also progress percentage in the console window.
+         *
+         * @param target target secondary Pixel object to copy the row/column of the next pixel
+         * @return true if the work still in progress, -1 if it's done
+         */
+        public boolean nextPixel(Pixel target) {
+            int percents = nextP(target);
+            if (_print && percents > 0)
+                synchronized (System.out) {
+                    System.out.printf("\r %02d%%", percents);
+                }
+            if (percents >= 0)
+                return true;
+            if (_print) synchronized (System.out) {
+                System.out.printf("\r %02d%%", 100);
+            }
+            return false;
+        }
+    }
+
+    /**
+     * Only constructor
+     *
+     * @param imageWriter (ImageWriter)
+     * @param scene       (Scene) Contains geometries and lighting info
+     */
+    /*
+    public Render(ImageWriter imageWriter, Scene scene) {
+        this._imagewriter = imageWriter;
+        this._scene = scene;
+    }
+
+    private volatile int max = 0;
+     */
+
+    /**
+     * This function renders image's pixel color map from the scene included with
+     * the Renderer object
+     * this is for multi-threading
+     * (cest le renderimage du prof il marche aussi teste en mettant lautre en commentaire tu verras
+     * les mecs ont supprime leur ancien render image apres a toi de voir parce que cest ton travail)
+     */
+    /*
+    public void renderImage() {
+        final Camera camera = _scene.get_camera();
+        final int nX = _imagewriter.getNx();
+        final int nY = _imagewriter.getNy();
+        final double dist = _scene.get_distance();
+        final double width = _imagewriter.getWidth();
+        final double height = _imagewriter.getHeight();
+
+        final Intersectable geometries = _scene.getGeometries();
+        final java.awt.Color background = _scene.getBackground().getColor();
+
+        // Multi-threading
+        final Pixel thePixel = new Pixel(nY, nX);
+
+        // Generate threads
+        Thread[] threads = new Thread[_threads];
+        for (int i = _threads - 1; i >= 0; --i) {
+            threads[i] = new Thread(() -> {
+                Pixel pixel = new Pixel();
+                max = 0;
+                while (thePixel.nextPixel(pixel)) {
+                    Ray ray = camera.constructRayThroughPixel(nX, nY, pixel.col, pixel.row, distance, width, height);
+                    GeoPoint closestPoint = findClosestIntersection(ray);
+                    _imageWriter.writePixel(pixel.col, pixel.row, closestPoint == null ? background :
+                            calcColor(closestPoint, ray).getColor());
+                }
+            });
+        }
+        // Start threads
+        for (Thread thread : threads) thread.start();
+        // Wait for all threads to finish
+        for (Thread thread : threads) try { thread.join(); } catch (InterruptedException e) {}
+        if (_print) synchronized (System.out) {
+            System.out.printf("\r100%%\n");
+        }
+    }
+
+     */
+
+
+
+    /**
+     * Set multithreading <br>
+     * - if the parameter is 0 - number of coress less 2 is taken
+     *
+     * @param threads number of threads
+     * @return the Render object itself
+     */
+    public Render setMultithreading(int threads) {
+        if (threads < 0)
+            throw new IllegalArgumentException("Multithreading patameter must be 0 or higher");
+        if (threads != 0)
+            _threads = threads;
+        else {
+            int cores = Runtime.getRuntime().availableProcessors() - SPARE_THREADS;
+            _threads = cores <= 2 ? 1 : cores;
+        }
+        return this;
+    }
+
+    /**
+     * Set debug printing on
+     *
+     * @return the Render object itself
+     */
+    public Render setDebugPrint() {
+        _print = true;
+        return this;
+    }
+
+    /*
+    // Example for setting multithreading an debug print in test files:
+        ......
+		ImageWriter imageWriter = new ImageWriter("teapot", 200, 200, 800, 800);
+		Render render = new Render(imageWriter, scene) //
+				.setMultithreading(3) //
+				.setDebugPrint();
+
+		render.renderImage();
+		// render.printGrid(50, java.awt.Color.YELLOW);
+		render.writeToImage();
+    */
 }
