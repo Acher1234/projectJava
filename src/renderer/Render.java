@@ -177,7 +177,7 @@ public class Render
      * fonctions help for compare
      * and we want bool true or false and if we have (5 == 4) that will be false
      * whereas we want this true
-     * thats it's goal
+     * thats its goal
      * @param e
      * @return
      */
