@@ -7,7 +7,8 @@ import java.util.List;
 
 public class CubeBox extends Geometry
 {
-    public List<rectangle> rectangleList;
+    protected List<rectangle> rectangleList;
+    protected double maxX,maxY,maxZ,minX,minY,minZ;
     //need to be P0 P1
     //           P3 P2
     //           P7 P6
@@ -22,6 +23,21 @@ public class CubeBox extends Geometry
         }
         List<Point3D> points;
         points = List.of(BasedCube);
+        maxX = points.get(0).getCoordX().get();
+        maxY = points.get(0).getCoordY().get();
+        maxZ = points.get(0).getCoordZ().get();
+        minX = points.get(0).getCoordX().get();
+        minY = points.get(0).getCoordY().get();
+        minZ = points.get(0).getCoordZ().get();
+        for (int i = 1; i < points.size(); i++)
+        {
+            maxX = points.get(i).getCoordX().get() > maxX ? points.get(i).getCoordX().get() : maxX;
+            maxY = points.get(i).getCoordY().get() > maxY ? points.get(i).getCoordY().get() : maxY;
+            maxZ = points.get(i).getCoordZ().get() > maxZ ? points.get(i).getCoordZ().get() : maxZ;
+            minX = points.get(i).getCoordX().get() < minX ? points.get(i).getCoordX().get() : minX;
+            minY = points.get(i).getCoordY().get() < minY ? points.get(i).getCoordY().get() : minY;
+            minZ = points.get(i).getCoordZ().get() < minZ ? points.get(i).getCoordZ().get() : minZ;
+        }
         this.rectangleList = new ArrayList<rectangle>();
         rectangleList.add(new rectangle(emission,material,points.get(0),points.get(1),points.get(2),points.get(3)));
         rectangleList.add(new rectangle(emission,material,points.get(4),points.get(5),points.get(6),points.get(7)));

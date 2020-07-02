@@ -27,7 +27,7 @@ public class ReflectionRefractionTests {
 	@Test
 	public void twoSpheres() {
 		Scene scene = new Scene("Test scene");
-		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
+		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0),false));
 		scene.setDistance(1000);
 		scene.setBackground(Color.BLACK);
 		scene.setAmbientLight(new AmbientLight(Color.BLACK, 0));
@@ -38,7 +38,7 @@ public class ReflectionRefractionTests {
 				new Sphere(new Color(java.awt.Color.RED), new Material(0.5, 0.5, 100), 25, new Point3D(0, 0, 50)));
 
 		scene.addLights(new SpotLight(new Color(1000, 600, 0), new Point3D(-100, 100, -500), new Vector(-1, 1, 2), 1,
-				0.0004, 0.0000006));
+				0.0004, 0.0000006,true));
 
 		ImageWriter imageWriter = new ImageWriter("twoSpheres", 150, 150, 500, 500);
 		Render render = new Render(imageWriter, scene);
@@ -55,7 +55,7 @@ public class ReflectionRefractionTests {
 	@Test
 	public void twoSpheresOnMirrors() {
 		Scene scene = new Scene("Test scene");
-		scene.setCamera(new Camera(new Point3D(0, 0, -10000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
+		scene.setCamera(new Camera(new Point3D(0, 0, -10000), new Vector(0, 0, 1), new Vector(0, -1, 0),true));
 		scene.setDistance(10000);
 		scene.setBackground(new Color(0,0,0));
 		scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0.1));

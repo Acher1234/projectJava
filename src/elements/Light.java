@@ -14,13 +14,13 @@ public class Light {
     public Light(Color _intensity) {
         this._intensity = _intensity;
         SoftShadow = false;
-        nombrePointsGenerated = SoftShadow ? 2 : 0;
+        nombrePointsGenerated = SoftShadow ? 50 : 0;
     }
 
     public Light(Color _intensity,boolean softShadow) {
         this._intensity = _intensity;
         softShadow = softShadow;
-        nombrePointsGenerated = softShadow ? 2 : 0;
+        nombrePointsGenerated = softShadow ? 15 : 0;
     }
 
 

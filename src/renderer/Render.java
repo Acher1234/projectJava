@@ -219,10 +219,13 @@ public class Render
 
         List<Ray> rayList;
         double scalableColor;
+        double numberOfpixel = 0;
         for(int j = 0;j < _imagewriter.getNx(); j++)
         {
-            for(int i = 0;i < _imagewriter.getNy(); i++)
+            System.out.println(numberOfpixel/(_imagewriter.getNx()*_imagewriter.getNx())*100);
+            for(int i = 0;i < _imagewriter.getNx(); i++)
             {
+                numberOfpixel++;
                 rayList = _scene.get_camera().constructRayThroughPixel(_imagewriter.getNx(),
                         _imagewriter.getNy(),j,i,_scene.get_distance(),_imagewriter.getWidth(),_imagewriter.getHeight());
                 List<Intersectable.GeoPoint> intersectionsPoint;
@@ -292,7 +295,13 @@ public class Render
     }
     public  Ray constructReflectedRay(Vector Normal,Point3D point,Ray inRay)
     {
-        Vector temp = Normal.scale((2*Normal.dotProduct(inRay.getDirection())));
+        Vector temp;
+        try {
+                temp = Normal.scale((2 * Normal.dotProduct(inRay.getDirection())));
+        }catch (IllegalArgumentException e)
+        {
+             temp = inRay.getDirection().scale(-1);
+        }
         Vector Reflacted = inRay.getDirection().subtract(temp);
         return new Ray(point,Reflacted);
     }
