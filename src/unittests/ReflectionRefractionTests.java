@@ -55,7 +55,7 @@ public class ReflectionRefractionTests {
 	@Test
 	public void twoSpheresOnMirrors() {
 		Scene scene = new Scene("Test scene");
-		scene.setCamera(new Camera(new Point3D(0, 0, -10000), new Vector(0, 0, 1), new Vector(0, -1, 0),true));
+		scene.setCamera(new Camera(new Point3D(0, 0, -10000), new Vector(0, 0, 1), new Vector(0, -1, 0),false));
 		scene.setDistance(10000);
 		scene.setBackground(new Color(0,0,0));
 		scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0.1));

@@ -44,6 +44,10 @@ public class CubeBox extends Geometry
         rectangleList.add(new rectangle(emission,material,points.get(0),points.get(1),points.get(6),points.get(7)));
         rectangleList.add(new rectangle(emission,material,points.get(4),points.get(5),points.get(2),points.get(3)));
     }
+    public CubeBox(Point3D... BasedCube)
+    {
+        this(new Color(255,255,255),new Material(0,0,0,0,0),BasedCube);
+    }
 
     @Override
     public Vector getNormal(Point3D temp) {

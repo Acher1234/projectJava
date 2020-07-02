@@ -245,7 +245,7 @@ public class Render
                     }
                 }
                 returnColor = returnColor.reduce(scalableColor);
-                _imagewriter.writePixel(i,j,returnColor.getColor());
+                _imagewriter.writePixel(j,i,returnColor.getColor());
             }
         }
     }

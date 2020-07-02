@@ -120,21 +120,22 @@ public class Tube extends RadialGeometry {
         }
         double a = minus.lengthSquared();
         double PVAaxys = deltaP.dotProduct(_axisRay.getDirection());
-        Vector dpminus = null,dpVAVA;
-        if(alignZero(PVAaxys) == 0)
+        Vector dpminus = null,dpVAVA = null;
+        try
+        {
+            dpVAVA = _axisRay.getDirection().scale(PVAaxys);
+
+        }catch (IllegalArgumentException e)
         {
             dpminus = deltaP;
         }
-        else {
-            dpVAVA = _axisRay.getDirection().scale(PVAaxys);
-            try
-            {
-                dpminus = deltaP.subtract(dpVAVA);
-            }
-            catch (Exception e)
-            {
+        try
+        {
+            dpminus = deltaP.subtract(dpVAVA);
+        }
+        catch (Exception e)
+        {
                 resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(Math.sqrt(_radius*_radius/a))));
-            }
         }
         double b = 2 * minus.dotProduct( dpminus );
         double c = dpminus.lengthSquared()- _radius*_radius;
