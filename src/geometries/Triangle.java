@@ -111,9 +111,52 @@ public class Triangle extends Polygon implements FlatGeometry
                 return Listreturn;
             }
             return null;
+    }
 
+    @Override
+    public boolean isInInside(Point3D temp) {
+        if(!_plane.isInInside(temp))
+        {
+            return false;
+        }
+        double number1;
+        double number2;
+        double number3;
+        Vector v1 = _vertices.get(1).subtract(_vertices.get(0)).normalized();
+        Vector v2 = _vertices.get(2).subtract(_vertices.get(1)).normalized();
+        Vector v3 = _vertices.get(0).subtract(_vertices.get(2)).normalized();
+        Vector n1 = v1.crossProduct(temp.subtract(_vertices.get(0)).normalized());
+        Vector n2 = v2.crossProduct(temp.subtract(_vertices.get(1)).normalized());
+        Vector n3 = v3.crossProduct(temp.subtract(_vertices.get(2)).normalized());
+        if(n1 == null)
+        {
+            number1 = 0;
+        }
+        else {
+            number1 = this._plane._normal.dotProduct(n1.normalized());
+        }
+        if(n2 == null)
+        {
+            number2 = 0;
+        }
+        else
+        {
+            number2 = this._plane._normal.dotProduct(n2.normalize());
+        }
+        if(n3 == null)
+        {
+            number3 = 0;
+        }
+        else
+        {
+            number3 = this._plane._normal.dotProduct(n3.normalize());
+        }
 
-
+        if(number1>= 0 && number2 >= 0 && number3 >= 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package unittests;
 
 import elements.Camera;
+import geometries.Plane;
 import org.junit.jupiter.api.Test;
 import primitives.Point3D;
 import primitives.Ray;
@@ -33,5 +34,12 @@ class CameraTest {
             }
         }
         assertEquals(45,rayTest.size());
+    }
+    @Test
+    void PlaneTest()
+    {
+        Plane a = new Plane(new Point3D(1,1,1),new Vector(25,42,12));
+        double result = a.findPerpendicularVector(3,5.6).dotProduct(new Vector(25,42,12));
+        assertEquals(0.000,result,0.000001);
     }
 }

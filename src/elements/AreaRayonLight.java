@@ -1,17 +1,19 @@
 package elements;
 
+import geometries.Plane;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static primitives.Util.alignZero;
 
-public class RayonLight extends SpotLight
+public class AreaRayonLight extends RayonLight
 {
-    protected double _Rayon;
+    protected Plane _Plane;
     /**
      * Instantiates a new SpotLight.
      *
@@ -21,18 +23,17 @@ public class RayonLight extends SpotLight
      * @param _kC
      * @param _kL
      * @param _kQ
+     * @param Rayon
      */
-    public RayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double Rayon) {
-        super(_intensity, _Position, _direction, _kC, _kL, _kQ);
-        this._Rayon = Rayon;
+    public AreaRayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ, double Rayon) {
+        super(_intensity, _Position, _direction, _kC, _kL, _kQ, Rayon);
+        _Plane = new Plane(_Position,_direction);
     }
 
-
-    public RayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double Rayon,boolean softShadow) {
-        super(_intensity, _Position, _direction, _kC, _kL, _kQ,softShadow);
-        this._Rayon = Rayon;
+    public AreaRayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ, double Rayon,boolean softShadow) {
+        super(_intensity, _Position, _direction, _kC, _kL, _kQ, Rayon,softShadow);
+        _Plane = new Plane(_Position,_direction);
     }
-
 
     @Override
     public Vector getL(Point3D p) {
@@ -71,8 +72,15 @@ public class RayonLight extends SpotLight
 
     @Override
     public List<Vector> getmultipleL(Point3D p) {
+        Random r = new Random();
         List<Vector> ToReturn = new ArrayList<Vector>();
         ToReturn.add(getL(p));
+        for(int i = 0;i < nombrePointsGenerated;i++)
+        {
+            Vector basis = _Plane.findPerpendicularVector(r.nextDouble(),r.nextDouble());
+            basis.normalize().scale(r.nextDouble()*this._Rayon + 0.001);
+            ToReturn.add(p.subtract(_Position.Add(basis)));
+        }
         return ToReturn;
 
     }
@@ -81,5 +89,4 @@ public class RayonLight extends SpotLight
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();
     }
-
 }

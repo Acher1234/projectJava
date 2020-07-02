@@ -22,8 +22,17 @@ public class Plane extends Geometry implements FlatGeometry
      */
     Vector _normal;
 
+    double d;
+
     //************************METHODE****************
 
+    public Vector findPerpendicularVector(double x,double y)
+    {
+        Vector Normal = this._normal;
+        double getZ = ((Normal.getHead().getCoordX().get()*x + Normal.getHead().getCoordY().get()*y) / (double)-Normal.getHead().getCoordZ().get());
+        Vector Parralel = new Vector(x,y,getZ);
+        return Parralel.normalized();
+    }
     /**
      * Instantiates a new Plane.
      *
@@ -36,6 +45,7 @@ public class Plane extends Geometry implements FlatGeometry
         Vector VectorPlane1 = _point2.subtract(_point1);
         Vector VectorPlane2 = _point3.subtract(_point1);
         this._normal = VectorPlane1.crossProduct(VectorPlane2);
+        this.d = _p.getCoordX().get() * this._normal.getHead().getCoordX().get() + _p.getCoordY().get() * this._normal.getHead().getCoordY().get() + _p.getCoordZ().get() * this._normal.getHead().getCoordZ().get();
     }
 
     /**
@@ -48,6 +58,12 @@ public class Plane extends Geometry implements FlatGeometry
     public Plane(Color emission,Point3D _point1,Point3D _point2,Point3D _point3) {
         this(_point1,_point2,_point3);
         this._emmission = emission;
+    }
+
+    @Override
+    public boolean isInInside(Point3D temp) {
+        double a = this.d = _p.getCoordX().get() * this._normal.getHead().getCoordX().get() + _p.getCoordY().get() * this._normal.getHead().getCoordY().get() + _p.getCoordZ().get() * this._normal.getHead().getCoordZ().get();
+        return a == d ? true:false;
     }
 
     /**
@@ -73,6 +89,7 @@ public class Plane extends Geometry implements FlatGeometry
     {
         this._p = _point1;
         this._normal = Normal.normalized();
+        this.d = _p.getCoordX().get() * this._normal.getHead().getCoordX().get() + _p.getCoordY().get() * this._normal.getHead().getCoordY().get() + _p.getCoordZ().get() * this._normal.getHead().getCoordZ().get();
     }
 
     /**

@@ -4,7 +4,8 @@ import primitives.Color;
 
 public class Light {
     protected Color _intensity;
-    static int nombrePointsGenerated = 2;
+    protected  boolean SoftShadow;
+    int nombrePointsGenerated;
 
     /**
      * Instantiates a new Light.
@@ -12,7 +13,16 @@ public class Light {
      */
     public Light(Color _intensity) {
         this._intensity = _intensity;
+        SoftShadow = false;
+        nombrePointsGenerated = SoftShadow ? 2 : 0;
     }
+
+    public Light(Color _intensity,boolean softShadow) {
+        this._intensity = _intensity;
+        softShadow = softShadow;
+        nombrePointsGenerated = softShadow ? 2 : 0;
+    }
+
 
     /**
      * gets intensity.

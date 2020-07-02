@@ -57,6 +57,15 @@ public class Sphere extends RadialGeometry
         this._center = center;
     }
 
+    @Override
+    public boolean isInInside(Point3D temp) {
+        if(temp.Distance(_center) == _radius)
+        {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Instantiates a new Sphere.
      *

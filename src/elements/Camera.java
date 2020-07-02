@@ -31,6 +31,8 @@ public class Camera {
      * The Vright.
      */
     protected Vector Vright;
+
+    boolean SuperSampling;
     //--------------Methode--------
 
     /**
@@ -49,6 +51,12 @@ public class Camera {
         Vup = vup.normalize();
         Vto = vto.normalize();
         Vright = vto.crossProduct(vup).normalize();
+        SuperSampling = false;
+    }
+    public Camera(Point3D origins, Vector vto, Vector vup,boolean superSampling)
+    {
+        this(origins,vto,vup);
+        SuperSampling = superSampling;
     }
 
     /**
@@ -66,7 +74,7 @@ public class Camera {
     public List<Ray> constructRayThroughPixel (int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight)
     {
         Random r = new Random();
-        int numberOnXAndY = 0;
+        int numberOnXAndY = (SuperSampling == true ? 2 : 0);
         List<Ray> returnList= new ArrayList<Ray>();
         double sizeBetweenPixelWidht = (screenWidth / nX) / (numberOnXAndY+1);
         double sizeBetweenPixelHeight = (screenHeight / nY) / (numberOnXAndY+1);

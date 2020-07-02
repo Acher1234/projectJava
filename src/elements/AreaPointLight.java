@@ -10,7 +10,7 @@ import geometries.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class reelSpotLight extends PointLight
+public class AreaPointLight extends PointLight
 {
     protected Sphere sphere;
 
@@ -23,8 +23,14 @@ public class reelSpotLight extends PointLight
      * @param _kL
      * @param _kQ
      */
-    public reelSpotLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ,double rayon) {
+    public AreaPointLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ,double rayon) {
         super(_intensity, _Position, _kC, _kL, _kQ);
+        sphere = new Sphere(new Color(_intensity),new Material(0,0,0,0,0),rayon,_Position);
+    }
+
+
+    public AreaPointLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ,double rayon,boolean softShadow) {
+        super(_intensity, _Position, _kC, _kL, _kQ,softShadow);
         sphere = new Sphere(new Color(_intensity),new Material(0,0,0,0,0),rayon,_Position);
     }
 
@@ -37,12 +43,12 @@ public class reelSpotLight extends PointLight
     public List<Vector> getmultipleL(Point3D p)
     {
         List<Vector> ReturnList = new ArrayList<Vector>();
-        Vector Basis = _Position.subtract(p).normalized();
-        ReturnList.add(_Position.Add(Basis).subtract(p));
+        Vector Basis = p.subtract(_Position).normalized();
+        ReturnList.add(Basis);
         for (int i =0;i < nombrePointsGenerated ; i++)
         {
             Basis = Vector.GeneratedAleatoryVector(this.sphere.get_radius());
-            ReturnList.add(p.subtract(_Position.Add(Basis)).normalized());
+            ReturnList.add(p.subtract(_Position.Add(Basis)));
         }
         return ReturnList;
     }

@@ -2,17 +2,19 @@ package elements;
 
 import primitives.Color;
 import primitives.Point3D;
-import primitives.Vector;
+import primitives.*;
+import geometries.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpotLight extends PointLight
+public class AreaSpotLight extends SpotLight
 {
-    protected Vector _direction;
 
+    protected Sphere sphere;
     /**
      * Instantiates a new SpotLight.
+     *
      * @param _intensity
      * @param _Position
      * @param _direction
@@ -20,16 +22,11 @@ public class SpotLight extends PointLight
      * @param _kL
      * @param _kQ
      */
-    public SpotLight(Color _intensity, Point3D _Position,Vector _direction, double _kC, double _kL, double _kQ) {
-        super(_intensity, _Position, _kC, _kL, _kQ);
-        this._direction = _direction.normalized();
+    public AreaSpotLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double radius,boolean softShadow) {
+        super(_intensity, _Position, _direction, _kC, _kL, _kQ, softShadow);
+        sphere = new Sphere(radius,_Position);
     }
 
-
-    public SpotLight(Color _intensity, Point3D _Position,Vector _direction, double _kC, double _kL, double _kQ,boolean softShadow) {
-        super(_intensity, _Position, _kC, _kL, _kQ,softShadow);
-        this._direction = _direction.normalized();
-    }
     /**
      * gets L
      * @param p
@@ -44,9 +41,12 @@ public class SpotLight extends PointLight
     public List<Vector> getmultipleL(Point3D p) {
         List<Vector> ToReturn = new ArrayList<Vector>();
         ToReturn.add(this.getL(p));
-        return ToReturn;
+        for (int i = 0; i < nombrePointsGenerated; i++) {
 
+        }
+        return ToReturn;
     }
+
 
     /**
      * gets intenity
@@ -69,4 +69,5 @@ public class SpotLight extends PointLight
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();
     }
+
 }

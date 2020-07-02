@@ -92,7 +92,7 @@ public class Tube extends RadialGeometry {
         Vector vVAVA;
         Vector minus,deltaP;
         double VVA = ray.getDirection().dotProduct(_axisRay.getDirection());
-        if(VVA == 0)
+        if(alignZero(VVA) == 0)
         {
             return null;
         }
@@ -121,7 +121,7 @@ public class Tube extends RadialGeometry {
         double a = minus.lengthSquared();
         double PVAaxys = deltaP.dotProduct(_axisRay.getDirection());
         Vector dpminus = null,dpVAVA;
-        if(PVAaxys == 0)
+        if(alignZero(PVAaxys) == 0)
         {
             dpminus = deltaP;
         }
@@ -144,9 +144,16 @@ public class Tube extends RadialGeometry {
             return null;
         }
         resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(0))));
-        resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(1))));
+        if(result.size() >1)
+            resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(1))));
         return resultPoint;
     }
+
+    @Override
+    public boolean isInInside(Point3D temp) {
+        return false;
+    }
+
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
         boolean flag = false;

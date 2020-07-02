@@ -39,6 +39,8 @@ public abstract class Geometry implements Intersectable
      * @return the normal
      */
     public abstract Vector getNormal(Point3D temp);
+
+    public abstract boolean isInInside(Point3D temp);
 //---------GET/SET
 
     /**

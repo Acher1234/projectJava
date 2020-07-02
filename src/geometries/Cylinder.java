@@ -158,6 +158,11 @@ public class Cylinder extends Tube
         for (int i = 0;i < ListTemp.size();i++)// for the intersection without the plane
         {
             double t = _axisRay.getDirection().dotProduct(ListTemp.get(i).point.subtract(_axisRay.getPOO()));
+            if(alignZero(t) == 0)
+            {
+                List.add(ListTemp.get(i));
+                continue;
+            }
             Point3D o = _axisRay.getPOO().Add(_axisRay.getDirection().scale(t));
             if(!(o.subtract(_axisRay.getPOO()).length() > _height))
             {

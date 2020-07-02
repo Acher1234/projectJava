@@ -7,7 +7,7 @@ import primitives.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DirectionalLight extends Light implements LightSource {
+public class DirectionalLight extends Light implements LightSource  {
 
     private Vector _direction;
 
@@ -23,6 +23,11 @@ public class DirectionalLight extends Light implements LightSource {
      */
     public DirectionalLight(Color _intensity,Vector  direction) {
         super(_intensity);
+        _direction = direction;
+    }
+
+    public DirectionalLight(Color _intensity,Vector  direction,boolean softShadow) {
+        super(_intensity,softShadow);
         _direction = direction;
     }
 

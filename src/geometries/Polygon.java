@@ -78,6 +78,11 @@ public class Polygon extends Geometry {
     }
 
     @Override
+    public boolean isInInside(Point3D temp) {
+        return false;
+    }
+
+    @Override
     public Vector getNormal(Point3D point) {
         return _plane.getNormal();
     }

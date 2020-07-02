@@ -29,6 +29,13 @@ public class tubeAreaLight extends  PointLight
         cylinderDown = new Cylinder(rayon,new Ray(cylRay.getDirection().scale(-1),cylRay.getPOO()),height/2);
     }
 
+    public tubeAreaLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ, double rayon, double height, Vector DirectionOfTube,boolean softShadow) {
+        super(_intensity, _Position, _kC, _kL, _kQ,softShadow);
+        Ray cylRay = new Ray(_Position,DirectionOfTube);
+        cylinderHight = new Cylinder(rayon,cylRay,height/2);
+        cylinderDown = new Cylinder(rayon,new Ray(cylRay.getDirection().scale(-1),cylRay.getPOO()),height/2);
+    }
+
     @Override
     public Vector getL(Point3D p) {
         return super.getL(p);
