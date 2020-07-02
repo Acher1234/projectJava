@@ -222,8 +222,8 @@ public class Render
         double numberOfpixel = 0;
         for(int j = 0;j < _imagewriter.getNx(); j++)
         {
-            System.out.println(numberOfpixel/(_imagewriter.getNx()*_imagewriter.getNx())*100);
-            for(int i = 0;i < _imagewriter.getNx(); i++)
+            System.out.println(numberOfpixel/(_imagewriter.getNx()*_imagewriter.getNy())*100);
+            for(int i = 0;i < _imagewriter.getNy(); i++)
             {
                 numberOfpixel++;
                 rayList = _scene.get_camera().constructRayThroughPixel(_imagewriter.getNx(),
@@ -245,7 +245,7 @@ public class Render
                     }
                 }
                 returnColor = returnColor.reduce(scalableColor);
-                _imagewriter.writePixel(j,i,returnColor.getColor());
+                _imagewriter.writePixel(i,j,returnColor.getColor());
             }
         }
     }
