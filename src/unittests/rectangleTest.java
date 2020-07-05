@@ -11,7 +11,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Rectangle test.
+ */
 class rectangleTest {
+    /**
+     * T est triangleisinpoint.
+     */
     @Test
     void TEstTriangleisinpoint()
     {
@@ -25,6 +31,10 @@ class rectangleTest {
         boolean z = r.isInInside(new Point3D(-0.75,-0.68,0));
         boolean w = r.isInInside(new Point3D(-0.75,-0.68,0));
     }
+
+    /**
+     * Create rectangle.
+     */
     @Test
     void CreateRectangle()
     {
@@ -35,6 +45,10 @@ class rectangleTest {
         test.add(new Point3D(2,0,0));
         rectangle r = new rectangle(new Color(255,255,255),new Material(0,0,0,0,0),test.get(0),test.get(1),test.get(2),test.get(3));
     }
+
+    /**
+     * Createfalse rectangle.
+     */
     @Test
     void createfalseRectangle()
     {
@@ -45,6 +59,10 @@ class rectangleTest {
         test2.add(new Point3D(2,0,0));
         rectangle r = new rectangle(new Color(255,255,255),new Material(0,0,0,0,0),test2.get(0),test2.get(1),test2.get(2),test2.get(3));
     }
+
+    /**
+     * Createfalsesize rectangle.
+     */
     @Test
     void createfalsesizeRectangle()
     {
@@ -57,6 +75,9 @@ class rectangleTest {
     }
 
 
+    /**
+     * Find intersection.
+     */
     @Test
     void findIntersection()
     {

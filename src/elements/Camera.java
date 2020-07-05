@@ -32,8 +32,14 @@ public class Camera {
      */
     protected Vector Vright;
 
+    /**
+     * The Super sampling.
+     */
     boolean SuperSampling;
 
+    /**
+     * The Number points super sampling.
+     */
     static int numberPointsSuperSampling = 50;
     //--------------Methode--------
 
@@ -41,8 +47,8 @@ public class Camera {
      * Instantiates a new Camera.
      *
      * @param origins the origins
-     * @param vup     the vup
      * @param vto     the vto
+     * @param vup     the vup
      */
     public Camera(Point3D origins, Vector vto, Vector vup) {
         if(vup.dotProduct(vto) != 0)
@@ -55,6 +61,15 @@ public class Camera {
         Vright = vto.crossProduct(vup).normalize();
         SuperSampling = false;
     }
+
+    /**
+     * Instantiates a new Camera.
+     *
+     * @param origins       the origins
+     * @param vto           the vto
+     * @param vup           the vup
+     * @param superSampling the super sampling
+     */
     public Camera(Point3D origins, Vector vto, Vector vup,boolean superSampling)
     {
         this(origins,vto,vup);
@@ -62,7 +77,7 @@ public class Camera {
     }
 
     /**
-     * Construct ray through pixel ray.
+     * Construct ray through pixel list.
      *
      * @param nX             the n x
      * @param nY             the n y
@@ -71,7 +86,7 @@ public class Camera {
      * @param screenDistance the screen distance
      * @param screenWidth    the screen width
      * @param screenHeight   the screen height
-     * @return the ray
+     * @return the list
      */
     public List<Ray> constructRayThroughPixel (int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight)
     {

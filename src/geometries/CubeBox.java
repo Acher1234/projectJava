@@ -5,11 +5,43 @@ import primitives.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Cube box.
+ */
 public class CubeBox extends Geometry
 {
+    /**
+     * The Rectangle list.
+     */
     protected List<rectangle> rectangleList;
-    protected double maxX,maxY,maxZ,minX,minY,minZ;
-    //need to be P0 P1
+    /**
+     * The Max x.
+     */
+    protected double maxX, /**
+ * The Max y.
+ */
+maxY, /**
+ * The Max z.
+ */
+maxZ, /**
+ * The Min x.
+ */
+minX, /**
+ * The Min y.
+ */
+minY, /**
+ * The Min z.
+ */
+minZ;
+
+    /**
+     * Instantiates a new Cube box.
+     *
+     * @param emission  the emission
+     * @param material  the material
+     * @param BasedCube the based cube
+     */
+//need to be P0 P1
     //           P3 P2
     //           P7 P6
     //           P4 P5
@@ -45,7 +77,14 @@ public class CubeBox extends Geometry
         rectangleList.add(new rectangle(emission,material,points.get(4),points.get(5),points.get(2),points.get(3)));
     }
 
-    //need to bee in max x,y,z and after min x,y,z
+    /**
+     * Instantiates a new Cube box.
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param MaxMin   the max min
+     */
+//need to bee in max x,y,z and after min x,y,z
     public CubeBox(Color emission, Material material,double... MaxMin)
     {
         this._emmission = emission;
@@ -77,6 +116,11 @@ public class CubeBox extends Geometry
         rectangleList.add(new rectangle(emission,material,points.get(4),points.get(5),points.get(2),points.get(3)));
     }
 
+    /**
+     * Instantiates a new Cube box.
+     *
+     * @param BasedCube the based cube
+     */
     public CubeBox(Point3D... BasedCube)
     {
         this(new Color(255,255,255),new Material(0,0,0,0,0),BasedCube);
@@ -94,6 +138,11 @@ public class CubeBox extends Geometry
         return null;
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public boolean isInInside(Point3D temp)
     {
@@ -107,16 +156,28 @@ public class CubeBox extends Geometry
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return maxX;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return maxY;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return maxZ;

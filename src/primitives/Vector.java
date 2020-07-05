@@ -33,6 +33,12 @@ public class Vector
         return this.head.compareTo(vector.head);
     }
 
+    /**
+     * Generated aleatory vector vector.
+     *
+     * @param scale the scale
+     * @return the vector
+     */
     public static Vector  GeneratedAleatoryVector(double scale)
     {
         return new Vector(Math.random(),Math.random(),Math.random()).normalized().scale(scale);

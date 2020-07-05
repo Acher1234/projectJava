@@ -11,6 +11,9 @@ import renderer.Render;
 import scene.Scene;
 
 
+/**
+ * The type With and without soft shadow test.
+ */
 public class WithAndWithoutSoftShadowTest {
 
     /**
@@ -59,6 +62,9 @@ public class WithAndWithoutSoftShadowTest {
         render.writeToImage();
     }
 
+    /**
+     * With and without soft shadow test spot light.
+     */
     @Test
     public void WithAndWithoutSoftShadowTestSpotLight() {
         Scene scene = new Scene("Test scene");
@@ -102,6 +108,9 @@ public class WithAndWithoutSoftShadowTest {
         render.writeToImage();
     }
 
+    /**
+     * With and without soft shadow test rayon light.
+     */
     @Test
     public void WithAndWithoutSoftShadowTestRayonLight() {
         Scene scene = new Scene("Test scene");

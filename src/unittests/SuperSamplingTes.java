@@ -12,6 +12,9 @@ import renderer.*;
 import scene.Scene;
 
 
+/**
+ * The type Super sampling tes.
+ */
 public class SuperSamplingTes {
 
     /**

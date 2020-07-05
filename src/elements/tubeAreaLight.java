@@ -9,18 +9,31 @@ import primitives.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Tube area light.
+ */
 public class tubeAreaLight extends  PointLight
 {
-    Cylinder cylinderHight;
-    Cylinder cylinderDown;
     /**
-     * Instantiates a new PointLight.
+     * The Cylinder hight.
+     */
+    Cylinder cylinderHight;
+    /**
+     * The Cylinder down.
+     */
+    Cylinder cylinderDown;
+
+    /**
+     * Instantiates a new Tube area light.
      *
-     * @param _intensity
-     * @param _Position
-     * @param _kC
-     * @param _kL
-     * @param _kQ
+     * @param _intensity      the intensity
+     * @param _Position       the position
+     * @param _kC             the k c
+     * @param _kL             the k l
+     * @param _kQ             the k q
+     * @param rayon           the rayon
+     * @param height          the height
+     * @param DirectionOfTube the direction of tube
      */
     public tubeAreaLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ, double rayon, double height, Vector DirectionOfTube) {
         super(_intensity, _Position, _kC, _kL, _kQ);
@@ -29,6 +42,19 @@ public class tubeAreaLight extends  PointLight
         cylinderDown = new Cylinder(rayon,new Ray(cylRay.getDirection().scale(-1),cylRay.getPOO()),height/2);
     }
 
+    /**
+     * Instantiates a new Tube area light.
+     *
+     * @param _intensity      the intensity
+     * @param _Position       the position
+     * @param _kC             the k c
+     * @param _kL             the k l
+     * @param _kQ             the k q
+     * @param rayon           the rayon
+     * @param height          the height
+     * @param DirectionOfTube the direction of tube
+     * @param softShadow      the soft shadow
+     */
     public tubeAreaLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ, double rayon, double height, Vector DirectionOfTube,boolean softShadow) {
         super(_intensity, _Position, _kC, _kL, _kQ,softShadow);
         Ray cylRay = new Ray(_Position,DirectionOfTube);

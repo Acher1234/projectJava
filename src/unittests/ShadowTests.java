@@ -10,15 +10,15 @@ import scene.Scene;
 
 /**
  * Testing basic shadows
- * 
+ *
  * @author Dan
  */
 public class ShadowTests {
 
-	/**
-	 * Produce a picture of a sphere and triangle with point light and shade
-	 */
-	@Test
+    /**
+     * Produce a picture of a sphere and triangle with point light and shade
+     */
+    @Test
 	public void SphereTriangleInitial() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
@@ -39,10 +39,10 @@ public class ShadowTests {
 		render.writeToImage();
 	}
 
-	/**
-	 * Sphere-Triangle shading - move triangle up-right
-	 */
-	@Test
+    /**
+     * Sphere-Triangle shading - move triangle up-right
+     */
+    @Test
 	public void SphereTriangleMove1() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
@@ -64,11 +64,11 @@ public class ShadowTests {
 		render.renderImage();
 		render.writeToImage();
 	}
-	
-	/**
-	 * Sphere-Triangle shading - move triangle upper-righter
-	 */
-	@Test
+
+    /**
+     * Sphere-Triangle shading - move triangle upper-righter
+     */
+    @Test
 	public void SphereTriangleMove2() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
@@ -91,10 +91,10 @@ public class ShadowTests {
 		render.writeToImage();
 	}
 
-	/**
-	 * Sphere-Triangle shading - move spot closer
-	 */
-	@Test
+    /**
+     * Sphere-Triangle shading - move spot closer
+     */
+    @Test
 	public void SphereTriangleSpot1() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
@@ -115,12 +115,12 @@ public class ShadowTests {
 
 		render.renderImage();
 		render.writeToImage();
-	}	
-	
-	/**
-	 * Sphere-Triangle shading - move spot even more close
-	 */
-	@Test
+	}
+
+    /**
+     * Sphere-Triangle shading - move spot even more close
+     */
+    @Test
 	public void SphereTriangleSpot2() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
@@ -141,12 +141,12 @@ public class ShadowTests {
 
 		render.renderImage();
 		render.writeToImage();
-	}	
-	
-	/**
-	 * Produce a picture of a two triangles lighted by a spot light with a Sphere producing a shading
-	 */
-	@Test
+	}
+
+    /**
+     * Produce a picture of a two triangles lighted by a spot light with a Sphere producing a shading
+     */
+    @Test
 	public void trianglesSphere() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));

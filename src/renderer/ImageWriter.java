@@ -12,7 +12,8 @@ import javax.imageio.stream.*;
  * Image writer class combines accumulation of pixel color matrix and
  * finally producing a non-optimized jpeg image from this matrix.
  * The class although is responsible of holding image related parameters
- * of View Plane - pixel matrix size and resolution 
+ * of View Plane - pixel matrix size and resolution
+ *
  * @author Dan
  */
 public class ImageWriter {
@@ -26,15 +27,17 @@ public class ImageWriter {
 	private String _imageName;
 
 	// ***************** Constructors ********************** //
-	/**
-	 * Image Writer constructor accepting image name and View Plane parameters,
-	 * @param imageName the name of jpeg file
-	 * @param width View Plane width in size units
-	 * @param height View Plane height in size units
-	 * @param nX amount of pixels by Width 
-	 * @param nY amount of pixels by height
-	 */
-	public ImageWriter(String imageName, double width, double height, int nX, int nY) {
+
+    /**
+     * Image Writer constructor accepting image name and View Plane parameters,
+     *
+     * @param imageName the name of jpeg file
+     * @param width     View Plane width in size units
+     * @param height    View Plane height in size units
+     * @param nX        amount of pixels by Width
+     * @param nY        amount of pixels by height
+     */
+    public ImageWriter(String imageName, double width, double height, int nX, int nY) {
 		_imageName = imageName;
 		_imageWidth = width;
 		_imageHeight = height;
@@ -45,36 +48,43 @@ public class ImageWriter {
 	}
 
 	// ***************** Getters/Setters ********************** //
-	/**
-	 * View Plane width getter
-	 * @return the width
-	 */
-	public double getWidth()  { return _imageWidth;  }
+
+    /**
+     * View Plane width getter
+     *
+     * @return the width
+     */
+    public double getWidth()  { return _imageWidth;  }
+
     /**
      * View Plane height getter
+     *
      * @return the height
      */
-	public double getHeight() { return _imageHeight; }
+    public double getHeight() { return _imageHeight; }
 
     /**
      * View Plane Y axis resolution
+     *
      * @return the amount of vertical pixels
      */
-	public int getNy() { return _nY; }
+    public int getNy() { return _nY; }
+
     /**
      * View Plane X axis resolution
+     *
      * @return the amount of horizontal pixels
      */
-	public int getNx() { return _nX; }
+    public int getNx() { return _nX; }
 
 	// ***************** Operations ******************** //
 
-	/**
-	 * Function writeToImage produces unoptimized jpeg file of
-	 * the image according to pixel color matrix in the directory
-	 * of the project
-	 */
-	public void writeToImage(){
+    /**
+     * Function writeToImage produces unoptimized jpeg file of
+     * the image according to pixel color matrix in the directory
+     * of the project
+     */
+    public void writeToImage(){
 		File ouFile = new File(PROJECT_PATH + "/" + _imageName + ".jpg");
 		try {
 			javax.imageio.ImageWriter jpgWriter = ImageIO.getImageWritersByFormatName("jpg").next();
@@ -89,14 +99,15 @@ public class ImageWriter {
 		}
 	}
 
-	/**
-	 * The function writePixel writes a color of a specific pixel
-	 * into pixel color matrix
-	 * @param xIndex X axis index of the pixel
-	 * @param yIndex Y axis index of the pixel
-	 * @param color final color of the pixel
-	 */
-	public void writePixel(int xIndex, int yIndex, Color color){
+    /**
+     * The function writePixel writes a color of a specific pixel
+     * into pixel color matrix
+     *
+     * @param xIndex X axis index of the pixel
+     * @param yIndex Y axis index of the pixel
+     * @param color  final color of the pixel
+     */
+    public void writePixel(int xIndex, int yIndex, Color color){
 		_image.setRGB(xIndex, yIndex, color.getRGB());
 	}
 

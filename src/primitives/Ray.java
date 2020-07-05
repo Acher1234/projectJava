@@ -86,11 +86,18 @@ public class Ray
         return "Point Origins:" + _POO.toString() + " Vector direction: " + _direction.toString();
     }
 
+    /**
+     * Instantiates a new Ray.
+     *
+     * @param origin the origin
+     * @param direct the direct
+     */
     public Ray(Point3D origin, Vector direct)
     {
         _direction = new Vector(direct).normalized();
         this._POO = new Point3D(origin);
     }
+
     /**
      * Instantiates a new Ray.
      */

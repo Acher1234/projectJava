@@ -11,24 +11,46 @@ import java.util.Random;
 
 import static primitives.Util.alignZero;
 
+/**
+ * The type Area rayon light.
+ */
 public class AreaRayonLight extends RayonLight
 {
-    protected Sphere sphere;
     /**
-     * Instantiates a new SpotLight.
+     * The Sphere.
+     */
+    protected Sphere sphere;
+
+    /**
+     * Instantiates a new Area rayon light.
      *
-     * @param _intensity
-     * @param _Position
-     * @param _direction
-     * @param _kC
-     * @param _kL
-     * @param _kQ
+     * @param _intensity  the intensity
+     * @param _Position   the position
+     * @param _direction  the direction
+     * @param _kC         the k c
+     * @param _kL         the k l
+     * @param _kQ         the k q
+     * @param RayonLight  the rayon light
+     * @param RayonSphere the rayon sphere
      */
     public AreaRayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ, double RayonLight,double RayonSphere) {
         super(_intensity, _Position, _direction, _kC, _kL, _kQ, RayonLight);
         sphere = new Sphere(RayonSphere,_Position);
     }
 
+    /**
+     * Instantiates a new Area rayon light.
+     *
+     * @param _intensity  the intensity
+     * @param _Position   the position
+     * @param _direction  the direction
+     * @param _kC         the k c
+     * @param _kL         the k l
+     * @param _kQ         the k q
+     * @param RayonLight  the rayon light
+     * @param RayonSphere the rayon sphere
+     * @param softShadow  the soft shadow
+     */
     public AreaRayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double RayonLight,double RayonSphere,boolean softShadow) {
         super(_intensity, _Position, _direction, _kC, _kL, _kQ, RayonLight,softShadow);
         sphere = new Sphere(RayonSphere,_Position);
@@ -39,11 +61,6 @@ public class AreaRayonLight extends RayonLight
         return _direction.normalized();
     }
 
-    /**
-     * gets intenity
-     * @param p
-     * @return
-     */
     @Override
     public Color getIntensity(Point3D p) {
         double t = _direction.dotProduct(p.subtract(_Position));

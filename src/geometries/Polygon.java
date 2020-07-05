@@ -13,7 +13,25 @@ import static primitives.Util.*;
  */
 public class Polygon extends Geometry {
 
-    protected double Xmax,Xmin,Ymax,Ymin,Zmax,Zmin;
+    /**
+     * The Xmax.
+     */
+    protected double Xmax, /**
+     * The Xmin.
+     */
+    Xmin, /**
+     * The Ymax.
+     */
+    Ymax, /**
+     * The Ymin.
+     */
+    Ymin, /**
+     * The Zmax.
+     */
+    Zmax, /**
+     * The Zmin.
+     */
+    Zmin;
     /**
      * List of polygon's vertices
      */
@@ -23,10 +41,24 @@ public class Polygon extends Geometry {
      */
     protected Plane _plane;
 
+    /**
+     * Instantiates a new Polygon.
+     *
+     * @param _emmission the emmission
+     * @param vertices   the vertices
+     */
     public Polygon(Color _emmission,Point3D... vertices) {
         this(vertices);
         this._emmission = _emmission;
     }
+
+    /**
+     * Instantiates a new Polygon.
+     *
+     * @param _emmission the emmission
+     * @param material   the material
+     * @param vertices   the vertices
+     */
     public Polygon(Color _emmission,Material material,Point3D... vertices) {
         this(_emmission,vertices);
         this._material = material;

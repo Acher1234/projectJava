@@ -15,18 +15,37 @@ public interface Intersectable {
      */
     public List<GeoPoint>findIntersection(Ray ray);
 
+    /**
+     * Find intersection list.
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return the list
+     */
     public List<GeoPoint>findIntersection(Ray ray,double max);
+
+    /**
+     * The type Geo point.
+     */
     public static class GeoPoint {
+        /**
+         * The Geometry.
+         */
         public Geometry geometry;
+        /**
+         * The Point.
+         */
         public Point3D point;
 
 
 
         //Constructor
+
         /**
          * Instantiates a GeoPoint
-         * @param geometry
-         * @param point
+         *
+         * @param geometry the geometry
+         * @param point    the point
          */
         public GeoPoint(Geometry geometry, Point3D point) {
             this.geometry = geometry;
@@ -36,8 +55,9 @@ public interface Intersectable {
 
         /**
          * checks if they are equals
-         * @param other
-         * @return
+         *
+         * @param other the other
+         * @return boolean
          */
         public boolean equals(GeoPoint other) {
             if(other.geometry.equals(geometry) && other.point.equals(point))

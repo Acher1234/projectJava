@@ -11,20 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * The type Area point light.
  */
 public class AreaPointLight extends PointLight
 {
+    /**
+     * The Sphere.
+     */
     protected Sphere sphere;
 
     /**
-     * Instantiates a new SpotLight.
+     * Instantiates a new Area point light.
      *
-     * @param _intensity
-     * @param _Position
-     * @param _kC
-     * @param _kL
-     * @param _kQ
+     * @param _intensity the intensity
+     * @param _Position  the position
+     * @param _kC        the k c
+     * @param _kL        the k l
+     * @param _kQ        the k q
+     * @param rayon      the rayon
      */
     public AreaPointLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ,double rayon) {
         super(_intensity, _Position, _kC, _kL, _kQ);
@@ -32,6 +36,17 @@ public class AreaPointLight extends PointLight
     }
 
 
+    /**
+     * Instantiates a new Area point light.
+     *
+     * @param _intensity the intensity
+     * @param _Position  the position
+     * @param _kC        the k c
+     * @param _kL        the k l
+     * @param _kQ        the k q
+     * @param rayon      the rayon
+     * @param softShadow the soft shadow
+     */
     public AreaPointLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ,double rayon,boolean softShadow) {
         super(_intensity, _Position, _kC, _kL, _kQ,softShadow);
         sphere = new Sphere(new Color(_intensity),new Material(0,0,0,0,0),rayon,_Position);

@@ -5,13 +5,27 @@ import primitives.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Cube contenair.
+ */
 public class CubeContenair extends Geometry implements Contenair
 {
+    /**
+     * The Geometries.
+     */
     public List<Geometry> geometries;
+    /**
+     * The Contenair.
+     */
     public CubeBox contenair;
 
 
-    //need to be P1 P2
+    /**
+     * Instantiates a new Cube contenair.
+     *
+     * @param BasedCube the based cube
+     */
+//need to be P1 P2
     //           P3 P4
     //           P5 P6
     //           P7 P8
@@ -21,7 +35,12 @@ public class CubeContenair extends Geometry implements Contenair
         this.geometries = new ArrayList<Geometry>();
     }
 
-    //need to bee in max x,y,z and after min x,y,z
+    /**
+     * Instantiates a new Cube contenair.
+     *
+     * @param BasedCube the based cube
+     */
+//need to bee in max x,y,z and after min x,y,z
     public CubeContenair(double... BasedCube)
     {
         contenair = new CubeBox(new Color(0,0,0),new Material(0,0,0,0,0),BasedCube);

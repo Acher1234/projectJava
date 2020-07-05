@@ -9,8 +9,14 @@ import renderer.ImageWriter;
 import renderer.Render;
 import scene.Scene;
 
+/**
+ * The type Max min test.
+ */
 public class MaxMinTest
 {
+    /**
+     * Test spere.
+     */
     @Test
     public void testSpere()
     {
@@ -29,6 +35,10 @@ public class MaxMinTest
         render.renderImage();
         render.writeToImage();
     }
+
+    /**
+     * Test rectangle.
+     */
     @Test
     public void testRectangle()
     {
@@ -47,6 +57,10 @@ public class MaxMinTest
         render.renderImage();
         render.writeToImage();
     }
+
+    /**
+     * Testcylinder.
+     */
     @Test
     public void testcylinder()
     {
@@ -65,6 +79,10 @@ public class MaxMinTest
         render.renderImage();
         render.writeToImage();
     }
+
+    /**
+     * Testpyramide.
+     */
     @Test
     public void testpyramide()
     {

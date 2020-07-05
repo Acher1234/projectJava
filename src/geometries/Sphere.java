@@ -33,10 +33,11 @@ public class Sphere extends RadialGeometry
 
     /**
      * Instantiates a new Sphere.
-     * @param emission
-     * @param material
-     * @param _radius
-     * @param center
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param _radius  the radius
+     * @param center   the center
      */
     public Sphere(Color emission,Material material,double _radius,Point3D center)
     {
@@ -47,9 +48,10 @@ public class Sphere extends RadialGeometry
 
     /**
      * Instantiates a new Sphere.
-     * @param emission
-     * @param _radius
-     * @param center
+     *
+     * @param emission the emission
+     * @param _radius  the radius
+     * @param center   the center
      */
     public Sphere(Color emission,double _radius,Point3D center)
     {

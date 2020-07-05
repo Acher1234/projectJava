@@ -9,8 +9,14 @@ import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Cube contenair test.
+ */
 class CubeContenairTest {
 
+    /**
+     * Checkifistouched.
+     */
     @Test
     void checkifistouched()
     {

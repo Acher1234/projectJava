@@ -9,18 +9,26 @@ import java.util.List;
 
 import static primitives.Util.alignZero;
 
+/**
+ * The type Rayon light.
+ */
 public class RayonLight extends SpotLight
 {
-    protected double RayonLight;
     /**
-     * Instantiates a new SpotLight.
+     * The Rayon light.
+     */
+    protected double RayonLight;
+
+    /**
+     * Instantiates a new Rayon light.
      *
-     * @param _intensity
-     * @param _Position
-     * @param _direction
-     * @param _kC
-     * @param _kL
-     * @param _kQ
+     * @param _intensity the intensity
+     * @param _Position  the position
+     * @param _direction the direction
+     * @param _kC        the k c
+     * @param _kL        the k l
+     * @param _kQ        the k q
+     * @param RayonLight the rayon light
      */
     public RayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double RayonLight) {
         super(_intensity, _Position, _direction, _kC, _kL, _kQ);
@@ -28,6 +36,18 @@ public class RayonLight extends SpotLight
     }
 
 
+    /**
+     * Instantiates a new Rayon light.
+     *
+     * @param _intensity the intensity
+     * @param _Position  the position
+     * @param _direction the direction
+     * @param _kC        the k c
+     * @param _kL        the k l
+     * @param _kQ        the k q
+     * @param RayonLight the rayon light
+     * @param softShadow the soft shadow
+     */
     public RayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double RayonLight,boolean softShadow) {
         super(_intensity, _Position, _direction, _kC, _kL, _kQ,softShadow);
         this.RayonLight = RayonLight;
@@ -39,11 +59,6 @@ public class RayonLight extends SpotLight
         return _direction.normalized();
     }
 
-    /**
-     * gets intenity
-     * @param p
-     * @return
-     */
     @Override
     public Color getIntensity(Point3D p) {
         double t = _direction.dotProduct(p.subtract(_Position));

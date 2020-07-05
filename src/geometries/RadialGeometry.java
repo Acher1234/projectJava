@@ -28,7 +28,8 @@ public abstract class RadialGeometry extends Geometry
     /**
      * Instantiates a new Radial geometry.
      *
-     * @param _radius the radius
+     * @param emission the emission
+     * @param _radius  the radius
      */
     public RadialGeometry( Color emission,double _radius)
     {
@@ -38,12 +39,14 @@ public abstract class RadialGeometry extends Geometry
 
     /**
      * Instantiates a Radial geometry.
-     * @param _radius
+     *
+     * @param _radius the radius
      */
     public RadialGeometry(double _radius)
     {
         this._radius = _radius;
     }
+
     /**
      * Instantiates a new Radial geometry.
      *

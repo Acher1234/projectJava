@@ -30,10 +30,27 @@ public class Tube extends RadialGeometry {
         super(_radius);
         _axisRay = axisRay;
     }
+
+    /**
+     * Instantiates a new Tube.
+     *
+     * @param emission the emission
+     * @param _radius  the radius
+     * @param axisRay  the axis ray
+     */
     public Tube(Color emission,double _radius,Ray axisRay) {
         super(emission,_radius);
         _axisRay = axisRay;
     }
+
+    /**
+     * Instantiates a new Tube.
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param _radius  the radius
+     * @param axisRay  the axis ray
+     */
     public Tube(Color emission,Material material,double _radius,Ray axisRay) {
         super(emission,_radius);
         _axisRay = axisRay;

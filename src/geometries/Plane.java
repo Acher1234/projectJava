@@ -22,10 +22,20 @@ public class Plane extends Geometry implements FlatGeometry
      */
     Vector _normal;
 
+    /**
+     * The D.
+     */
     double d;
 
     //************************METHODE****************
 
+    /**
+     * Find perpendicular vector vector.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the vector
+     */
     public Vector findPerpendicularVector(double x,double y)
     {
         Vector Normal = this._normal;
@@ -33,6 +43,7 @@ public class Plane extends Geometry implements FlatGeometry
         Vector Parralel = new Vector(x,y,getZ);
         return Parralel.normalized();
     }
+
     /**
      * Instantiates a new Plane.
      *
@@ -50,10 +61,11 @@ public class Plane extends Geometry implements FlatGeometry
 
     /**
      * Instantiates a new  Plane
-     * @param emission
-     * @param _point1
-     * @param _point2
-     * @param _point3
+     *
+     * @param emission the emission
+     * @param _point1  the point 1
+     * @param _point2  the point 2
+     * @param _point3  the point 3
      */
     public Plane(Color emission,Point3D _point1,Point3D _point2,Point3D _point3) {
         this(_point1,_point2,_point3);
@@ -98,11 +110,12 @@ public class Plane extends Geometry implements FlatGeometry
 
     /**
      * Instantiates a new Plane
-     * @param emission
-     * @param material
-     * @param _point1
-     * @param _point2
-     * @param _point3
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param _point1  the point 1
+     * @param _point2  the point 2
+     * @param _point3  the point 3
      */
     public Plane(Color emission,Material material,Point3D _point1,Point3D _point2,Point3D _point3) {
         this(emission,_point1,_point2,_point3);
@@ -124,9 +137,10 @@ public class Plane extends Geometry implements FlatGeometry
 
     /**
      * Instantiates a new Plane
-     * @param emission
-     * @param _point1
-     * @param Normal
+     *
+     * @param emission the emission
+     * @param _point1  the point 1
+     * @param Normal   the normal
      */
     public Plane(Color emission,Point3D _point1,Vector Normal)
     {
@@ -136,10 +150,11 @@ public class Plane extends Geometry implements FlatGeometry
 
     /**
      * Instantiates a new Plane
-     * @param emission
-     * @param material
-     * @param _point1
-     * @param Normal
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param _point1  the point 1
+     * @param Normal   the normal
      */
     public Plane(Color emission,Material material,Point3D _point1,Vector Normal)
     {
@@ -159,8 +174,9 @@ public class Plane extends Geometry implements FlatGeometry
 
     /**
      * Instantiates a new Plane.
-     * @param emission
-     * @param other
+     *
+     * @param emission the emission
+     * @param other    the other
      */
     public Plane(Color emission,Plane other){
         this(other);
@@ -169,9 +185,10 @@ public class Plane extends Geometry implements FlatGeometry
 
     /**
      * Instantiates a new Plane.
-     * @param emission
-     * @param material
-     * @param other
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param other    the other
      */
     public Plane(Color emission,Material material,Plane other)
     {

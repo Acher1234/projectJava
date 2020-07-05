@@ -7,18 +7,36 @@ import primitives.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Point light.
+ */
 public class PointLight extends Light implements LightSource
 {
+    /**
+     * The Position.
+     */
     protected Point3D _Position;
-    protected double _kC,_kL,_kQ;
+    /**
+     * The K c.
+     */
+    protected double _kC,
+    /**
+     * The K l.
+     */
+    _kL,
+    /**
+     * The K q.
+     */
+    _kQ;
 
     /**
-     * Instantiates a new PointLight.
-     * @param _intensity
-     * @param _Position
-     * @param _kC
-     * @param _kL
-     * @param _kQ
+     * Instantiates a new Point light.
+     *
+     * @param _intensity the intensity
+     * @param _Position  the position
+     * @param _kC        the k c
+     * @param _kL        the k l
+     * @param _kQ        the k q
      */
     public PointLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ) {
         super(_intensity);
@@ -28,6 +46,16 @@ public class PointLight extends Light implements LightSource
         this._kQ = _kQ;
     }
 
+    /**
+     * Instantiates a new Point light.
+     *
+     * @param _intensity the intensity
+     * @param _Position  the position
+     * @param _kC        the k c
+     * @param _kL        the k l
+     * @param _kQ        the k q
+     * @param softShadow the soft shadow
+     */
     public PointLight(Color _intensity, Point3D _Position, double _kC, double _kL, double _kQ,boolean softShadow) {
         super(_intensity,softShadow);
         this._Position = _Position;
@@ -36,11 +64,6 @@ public class PointLight extends Light implements LightSource
         this._kQ = _kQ;
     }
 
-    /**
-     * gets intensity.
-     * @param p
-     * @return
-     */
     @Override
     public Color getIntensity(Point3D p) {
         double distance = p.Distance(_Position);
@@ -48,11 +71,6 @@ public class PointLight extends Light implements LightSource
         return _intensity.scale(1/toDivide);
     }
 
-    /**
-     * gets L.
-     * @param p
-     * @return
-     */
     @Override
     public Vector getL(Point3D p) {
         return p.subtract(_Position).normalized();

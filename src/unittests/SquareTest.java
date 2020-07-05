@@ -11,8 +11,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Square test.
+ */
 class SquareTest
 {
+    /**
+     * Create square.
+     */
     @Test
     void CreateSquare()
     {
@@ -23,6 +29,10 @@ class SquareTest
         test.add(new Point3D(-3,3,0));
         Square r = new Square(new Color(255,255,255),new Material(0,0,0,0,0),test.get(0),test.get(1),test.get(2),test.get(3));
     }
+
+    /**
+     * Create false square.
+     */
     @Test
     void CreateFalseSquare()
     {
@@ -33,6 +43,10 @@ class SquareTest
         test.add(new Point3D(2,0,0));
         Square r = new Square(new Color(255,255,255),new Material(0,0,0,0,0),test.get(0),test.get(1),test.get(2),test.get(3));
     }
+
+    /**
+     * Create false size square.
+     */
     @Test
     void CreateFalseSizeSquare()
     {
@@ -45,6 +59,9 @@ class SquareTest
     }
 
 
+    /**
+     * Find intersection.
+     */
     @Test
     void findIntersection()
     {

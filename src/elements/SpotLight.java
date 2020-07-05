@@ -7,18 +7,25 @@ import primitives.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Spot light.
+ */
 public class SpotLight extends PointLight
 {
+    /**
+     * The Direction.
+     */
     protected Vector _direction;
 
     /**
-     * Instantiates a new SpotLight.
-     * @param _intensity
-     * @param _Position
-     * @param _direction
-     * @param _kC
-     * @param _kL
-     * @param _kQ
+     * Instantiates a new Spot light.
+     *
+     * @param _intensity the intensity
+     * @param _Position  the position
+     * @param _direction the direction
+     * @param _kC        the k c
+     * @param _kL        the k l
+     * @param _kQ        the k q
      */
     public SpotLight(Color _intensity, Point3D _Position,Vector _direction, double _kC, double _kL, double _kQ) {
         super(_intensity, _Position, _kC, _kL, _kQ);
@@ -26,15 +33,21 @@ public class SpotLight extends PointLight
     }
 
 
+    /**
+     * Instantiates a new Spot light.
+     *
+     * @param _intensity the intensity
+     * @param _Position  the position
+     * @param _direction the direction
+     * @param _kC        the k c
+     * @param _kL        the k l
+     * @param _kQ        the k q
+     * @param softShadow the soft shadow
+     */
     public SpotLight(Color _intensity, Point3D _Position,Vector _direction, double _kC, double _kL, double _kQ,boolean softShadow) {
         super(_intensity, _Position, _kC, _kL, _kQ,softShadow);
         this._direction = _direction.normalized();
     }
-    /**
-     * gets L
-     * @param p
-     * @return
-     */
     @Override
     public Vector getL(Point3D p) {
         return _direction.normalized();
@@ -48,11 +61,6 @@ public class SpotLight extends PointLight
 
     }
 
-    /**
-     * gets intenity
-     * @param p
-     * @return
-     */
     @Override
     public Color getIntensity(Point3D p) {
         double distance = p.Distance(_Position);

@@ -7,9 +7,22 @@ import java.util.List;
 
 import static primitives.Util.alignZero;
 
+/**
+ * The type Rectangle.
+ */
 public class rectangle extends Polygon implements FlatGeometry
 {
 
+    /**
+     * Instantiates a new Rectangle.
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param point1   the point 1
+     * @param point2   the point 2
+     * @param point3   the point 3
+     * @param point4   the point 4
+     */
     public rectangle(Color emission, Material material, Point3D point1, Point3D point2, Point3D point3,Point3D point4)
     {
         //point neeed to bo in hour clock sens

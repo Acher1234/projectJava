@@ -16,10 +16,19 @@ import java.util.List;
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
+/**
+ * The type Render.
+ */
 public class Render
 {
     private static final double DELTA = 0.1;
+    /**
+     * The Scene.
+     */
     Scene _scene;
+    /**
+     * The Imagewriter.
+     */
     ImageWriter _imagewriter;
     private static final int MAX_CALC_COLOR_LEVEL = 5;
     private static final double MIN_CALC_COLOR_K = 0.0000001;
@@ -28,6 +37,12 @@ public class Render
     //---------Methodes-------
 
 
+    /**
+     * Instantiates a new Render.
+     *
+     * @param Image the image
+     * @param scene the scene
+     */
     public Render(ImageWriter Image, Scene scene)
     {
         _imagewriter = Image;
@@ -35,6 +50,12 @@ public class Render
 
     }
 
+    /**
+     * Gets scene ray intersections.
+     *
+     * @param ray the ray
+     * @return the scene ray intersections
+     */
     public List<Intersectable.GeoPoint> getSceneRayIntersections(Ray ray)
     {
         List<Intersectable.GeoPoint> returnList = new ArrayList<Intersectable.GeoPoint>();
@@ -53,11 +74,26 @@ public class Render
         return returnList.isEmpty() ? null : returnList;
     }
 
+    /**
+     * Sign boolean.
+     *
+     * @param e the e
+     * @return the boolean
+     */
     protected boolean sign(double e)
     {
         return e >=0 ? true : false;
     }
 
+    /**
+     * Calc color primitives . color.
+     *
+     * @param p     the p
+     * @param inRay the in ray
+     * @param level the level
+     * @param k     the k
+     * @return the primitives . color
+     */
     public primitives.Color calcColor(Intersectable.GeoPoint p,Ray inRay,int level,double k)
     {
 
@@ -158,6 +194,13 @@ public class Render
         return totalLight;
     }
 
+    /**
+     * Calc color primitives . color.
+     *
+     * @param gp  the gp
+     * @param ray the ray
+     * @return the primitives . color
+     */
     public primitives.Color calcColor(Intersectable.GeoPoint gp, Ray ray)
     {
         return calcColor(gp, ray, 0,1).add(_scene.get_ambientLight().get_intensity());
@@ -173,11 +216,24 @@ public class Render
         return getClosestPointFromPoint(getSceneRayIntersections(ray),ray.getPOO());
     }
 
+    /**
+     * Gets closest point.
+     *
+     * @param points the points
+     * @return the closest point
+     */
     public Intersectable.GeoPoint getClosestPoint(List<Intersectable.GeoPoint> points)
     {
         return getClosestPointFromPoint(points,_scene.get_camera().getOrigins());
     }
 
+    /**
+     * Gets closest point from point.
+     *
+     * @param points the points
+     * @param Origin the origin
+     * @return the closest point from point
+     */
     public Intersectable.GeoPoint getClosestPointFromPoint(List<Intersectable.GeoPoint> points,Point3D Origin)
     {
         double distance = Double.MAX_VALUE;
@@ -196,6 +252,13 @@ public class Render
         if(points == null || returnGeo == null )return null;
         return new Intersectable.GeoPoint(returnGeo,minDistancePoint);
     }
+
+    /**
+     * Print grid.
+     *
+     * @param interval the interval
+     * @param color    the color
+     */
     public void printGrid(int interval, Color color)
     {
         for(int i=0;i<_imagewriter.getNx();i++)
@@ -214,6 +277,9 @@ public class Render
         }
     }
 
+    /**
+     * Render image.
+     */
     public void renderImage()
     {
 
@@ -287,12 +353,29 @@ public class Render
         return kkrTotal/numberofPoint;
     }
 
+    /**
+     * Construct refracted ray ray.
+     *
+     * @param Normal the normal
+     * @param point  the point
+     * @param inRay  the in ray
+     * @return the ray
+     */
     public  Ray constructRefractedRay(Vector Normal,Point3D point,Ray inRay)
     {
         //double angleI = inRay.getDirection().normalized().dotProduct(Normal.normalized());
         //double angleR = inRay.getDirection().normalized().dotProduct(Normal.normalized());
         return new Ray(point,inRay.getDirection());//because all n == n
     }
+
+    /**
+     * Construct reflected ray ray.
+     *
+     * @param Normal the normal
+     * @param point  the point
+     * @param inRay  the in ray
+     * @return the ray
+     */
     public  Ray constructReflectedRay(Vector Normal,Point3D point,Ray inRay)
     {
         Vector temp;
@@ -306,6 +389,9 @@ public class Render
         return new Ray(point,Reflacted);
     }
 
+    /**
+     * Write to image.
+     */
     public void writeToImage()
     {
         _imagewriter.writeToImage();

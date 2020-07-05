@@ -7,6 +7,9 @@ import primitives.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Directional light.
+ */
 public class DirectionalLight extends Light implements LightSource  {
 
     private Vector _direction;
@@ -17,15 +20,23 @@ public class DirectionalLight extends Light implements LightSource  {
     }
 
     /**
-     * Instantiates a new DirectionalLight.
-     * @param _intensity
-     * @param direction
+     * Instantiates a new Directional light.
+     *
+     * @param _intensity the intensity
+     * @param direction  the direction
      */
     public DirectionalLight(Color _intensity,Vector  direction) {
         super(_intensity);
         _direction = direction;
     }
 
+    /**
+     * Instantiates a new Directional light.
+     *
+     * @param _intensity the intensity
+     * @param direction  the direction
+     * @param softShadow the soft shadow
+     */
     public DirectionalLight(Color _intensity,Vector  direction,boolean softShadow) {
         super(_intensity,softShadow);
         _direction = direction;
@@ -40,28 +51,19 @@ public class DirectionalLight extends Light implements LightSource  {
     }
 
     /**
-     * gets L
-     * @return
+     * Gets l.
+     *
+     * @return the l
      */
     public Vector getL() {
         return _direction.normalized();
     }
 
-    /**
-     * gets intensity.
-     * @param p
-     * @return
-     */
     @Override
     public Color getIntensity(Point3D p) {
         return _intensity;
     }
 
-    /**
-     * gets L.
-     * @param p
-     * @return
-     */
     @Override
     public Vector getL(Point3D p) {
         return _direction;

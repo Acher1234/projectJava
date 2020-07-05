@@ -13,19 +13,47 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The type Scene.
+ */
 public class Scene {
+    /**
+     * The Name.
+     */
     String _name;
+    /**
+     * The Background.
+     */
     Color _background;
+    /**
+     * The Ambient light.
+     */
     AmbientLight _ambientLight;
+    /**
+     * The Geometries.
+     */
     List<Geometry> _geometries;
+    /**
+     * The Camera.
+     */
     Camera _camera;
+    /**
+     * The Distance.
+     */
     double _distance;
+    /**
+     * The Lights.
+     */
     List<LightSource> _lights = new LinkedList<LightSource>();
+    /**
+     * The D box.
+     */
     static double DBox = 20;
 
     /**
      * Instantiates a new addLights.
-     * @param lights
+     *
+     * @param lights the lights
      */
     public void addLights(LightSource... lights)
     {
@@ -38,7 +66,8 @@ public class Scene {
 
     /**
      * Instantiates a new Scene.
-     * @param _name
+     *
+     * @param _name the name
      */
     public Scene(String _name) {
         this._name = _name;
@@ -48,7 +77,8 @@ public class Scene {
 
     /**
      * Instantiates a new addGeometries.
-     * @param geometries
+     *
+     * @param geometries the geometries
      */
     public void addGeometries(Intersectable... geometries)
     {
@@ -57,6 +87,12 @@ public class Scene {
             _geometries.add((Geometry) temp);
         }
     }
+
+    /**
+     * Add geometries.
+     *
+     * @param contenairs the contenairs
+     */
     public void addGeometries(List<Contenair> contenairs)
     {
         for (Intersectable temp :contenairs)
@@ -64,6 +100,12 @@ public class Scene {
             _geometries.add((Geometry) temp);
         }
     }
+
+    /**
+     * Add geometries withhis contenair.
+     *
+     * @param geometries the geometries
+     */
     public void addGeometriesWithhisContenair(Geometry... geometries)
     {
         Contenair tempContenair;
@@ -120,6 +162,13 @@ public class Scene {
         }
     }
 
+    /**
+     * Create merging box contenair.
+     *
+     * @param temp1 the temp 1
+     * @param temp2 the temp 2
+     * @return the contenair
+     */
     public Contenair createMergingBox(Geometry temp1,Geometry temp2)
     {
         double MaxX,MaxY,MaxZ,MinX,MinY,MinZ,tempDouble1,tempDouble2;
@@ -148,7 +197,8 @@ public class Scene {
 
     /**
      * gets Name.
-     * @return
+     *
+     * @return name
      */
     public String get_name() {
         return _name;
@@ -156,7 +206,8 @@ public class Scene {
 
     /**
      * gets Background
-     * @return
+     *
+     * @return background
      */
     public Color get_background() {
         return _background;
@@ -164,7 +215,8 @@ public class Scene {
 
     /**
      * gets AmbientLight
-     * @return
+     *
+     * @return ambient light
      */
     public AmbientLight get_ambientLight() {
         return _ambientLight;
@@ -173,7 +225,8 @@ public class Scene {
 
     /**
      * gets Geometries
-     * @return
+     *
+     * @return geometries
      */
     public List<Geometry> get_geometries() {
         return _geometries;
@@ -181,7 +234,8 @@ public class Scene {
 
     /**
      * gets camera
-     * @return
+     *
+     * @return camera
      */
     public Camera get_camera() {
         return _camera;
@@ -189,7 +243,8 @@ public class Scene {
 
     /**
      * gets distance
-     * @return
+     *
+     * @return distance
      */
     public double get_distance() {
         return _distance;
@@ -197,7 +252,8 @@ public class Scene {
 
     /**
      * sets background
-     * @param _backgroung
+     *
+     * @param _backgroung the backgroung
      */
     public void setBackground(Color _backgroung) {
         this._background = _backgroung;
@@ -205,7 +261,8 @@ public class Scene {
 
     /**
      * sets ambientLight
-     * @param _ambientLight
+     *
+     * @param _ambientLight the ambient light
      */
     public void setAmbientLight(AmbientLight _ambientLight) {
         this._ambientLight = _ambientLight;
@@ -213,7 +270,8 @@ public class Scene {
 
     /**
      * sets Camera
-     * @param _camera
+     *
+     * @param _camera the camera
      */
     public void setCamera(Camera _camera) {
         this._camera = _camera;
@@ -221,7 +279,8 @@ public class Scene {
 
     /**
      * sets Distance
-     * @param _distance
+     *
+     * @param _distance the distance
      */
     public void setDistance(double _distance) {
         this._distance = _distance;
@@ -229,7 +288,8 @@ public class Scene {
 
     /**
      * gets lights
-     * @return
+     *
+     * @return lights
      */
     public List<LightSource> get_lights() {
         return _lights;

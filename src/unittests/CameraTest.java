@@ -12,8 +12,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Camera test.
+ */
 class CameraTest {
 
+    /**
+     * Construct ray through pixel.
+     */
     @Test
     void constructRayThroughPixel()
     {
@@ -35,6 +41,10 @@ class CameraTest {
         }
         assertEquals(45,rayTest.size());
     }
+
+    /**
+     * Plane test.
+     */
     @Test
     void PlaneTest()
     {

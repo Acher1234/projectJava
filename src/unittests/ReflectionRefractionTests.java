@@ -15,16 +15,15 @@ import scene.Scene;
 /**
  * Tests for reflection and transparency functionality, test for partial shadows
  * (with transparency)
- * 
- * @author dzilb
  *
+ * @author dzilb
  */
 public class ReflectionRefractionTests {
 
-	/**
-	 * Produce a picture of a sphere lighted by a spot light
-	 */
-	@Test
+    /**
+     * Produce a picture of a sphere lighted by a spot light
+     */
+    @Test
 	public void twoSpheres() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0),false));
@@ -48,11 +47,10 @@ public class ReflectionRefractionTests {
 	}
 
 
-
-	/**
-	 * Produce a picture of a sphere lighted by a spot light
-	 */
-	@Test
+    /**
+     * Produce a picture of a sphere lighted by a spot light
+     */
+    @Test
 	public void twoSpheresOnMirrors() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -10000), new Vector(0, 0, 1), new Vector(0, -1, 0),false));
@@ -77,12 +75,12 @@ public class ReflectionRefractionTests {
 		render.renderImage();
 		render.writeToImage();
 	}
-	
-	/**
-	 * Produce a picture of a two triangles lighted by a spot light with a partially transparent Sphere
-	 *  producing partial shadow
-	 */
-	@Test
+
+    /**
+     * Produce a picture of a two triangles lighted by a spot light with a partially transparent Sphere
+     * producing partial shadow
+     */
+    @Test
 	public void trianglesTransparentSphere() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
@@ -108,7 +106,10 @@ public class ReflectionRefractionTests {
 		render.writeToImage();
 	}
 
-	@Test
+    /**
+     * Mytest.
+     */
+    @Test
 	public void Mytest() {
 		Scene scene = new Scene("Test scene");
 		scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));

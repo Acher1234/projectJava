@@ -21,9 +21,10 @@ public class Cylinder extends Tube
 
     /**
      * Instantiates a new Cylinder.
-     * @param _radius
-     * @param axisRay
-     * @param material
+     *
+     * @param _radius  the radius
+     * @param axisRay  the axis ray
+     * @param material the material
      */
     public Cylinder(double _radius, Ray axisRay, Material material) {
         super(_radius, axisRay);
@@ -32,10 +33,11 @@ public class Cylinder extends Tube
 
     /**
      * Instantiates a new Cylinder.
-     * @param emission
-     * @param material
-     * @param _radius
-     * @param axisRay
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param _radius  the radius
+     * @param axisRay  the axis ray
      */
     public Cylinder(Color emission,Material material,double _radius, Ray axisRay) {
         super(emission, _radius, axisRay);
@@ -44,9 +46,10 @@ public class Cylinder extends Tube
 
     /**
      * Instantiates a new Cylinder.
-     * @param temp
-     * @param axisRay
-     * @param material
+     *
+     * @param temp     the temp
+     * @param axisRay  the axis ray
+     * @param material the material
      */
     public Cylinder(RadialGeometry temp, Ray axisRay, Material material) {
         super(temp, axisRay);
@@ -68,10 +71,11 @@ public class Cylinder extends Tube
 
     /**
      * Instantiates a new Cylinder.
-     * @param _radius
-     * @param axisRay
-     * @param _height
-     * @param emission
+     *
+     * @param _radius  the radius
+     * @param axisRay  the axis ray
+     * @param _height  the height
+     * @param emission the emission
      */
     public Cylinder(double _radius, Ray axisRay, double _height,Color emission) {
         this(_radius,axisRay,_height);
@@ -92,10 +96,11 @@ public class Cylinder extends Tube
 
     /**
      * Instantiates a new Cylinder.
-     * @param emission
-     * @param temp
-     * @param axisRay
-     * @param _heigh
+     *
+     * @param emission the emission
+     * @param temp     the temp
+     * @param axisRay  the axis ray
+     * @param _heigh   the heigh
      */
     public Cylinder(Color emission,double temp, Ray axisRay,double _heigh) {
         this(temp,axisRay,_heigh);
@@ -104,11 +109,12 @@ public class Cylinder extends Tube
 
     /**
      * Instantiates a new Cylinder.
-     * @param emission
-     * @param material
-     * @param temp
-     * @param axisRay
-     * @param _heigh
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param temp     the temp
+     * @param axisRay  the axis ray
+     * @param _heigh   the heigh
      */
     public Cylinder(Color emission,Material material,double temp, Ray axisRay,double _heigh) {
         this(temp,axisRay,_heigh);
@@ -226,6 +232,11 @@ public class Cylinder extends Tube
         return flag ? tempReturn : null;
     }
 
+    /**
+     * Gets height.
+     *
+     * @return the height
+     */
     public double get_height() {
         return _height;
     }

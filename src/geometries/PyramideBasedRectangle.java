@@ -5,11 +5,47 @@ import primitives.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Pyramide based rectangle.
+ */
 public class PyramideBasedRectangle extends Geometry
 {
+    /**
+     * The Listof geometry.
+     */
     List<Geometry> listofGeometry;
-    double Xmax,Ymax,Zmax,Xmin,Ymin,Zmin;
-    //need to be in this order p1 p2
+    /**
+     * The Xmax.
+     */
+    double Xmax, /**
+ * The Ymax.
+ */
+Ymax, /**
+ * The Zmax.
+ */
+Zmax, /**
+ * The Xmin.
+ */
+Xmin, /**
+ * The Ymin.
+ */
+Ymin, /**
+ * The Zmin.
+ */
+Zmin;
+
+    /**
+     * Instantiates a new Pyramide based rectangle.
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param p1       the p 1
+     * @param p2       the p 2
+     * @param p3       the p 3
+     * @param p4       the p 4
+     * @param p5       the p 5
+     */
+//need to be in this order p1 p2
     //                         P4 p3
     //make in first p3,p4:p1,p2:p1,p4:p2,p3
     public PyramideBasedRectangle(Color emission, Material material,Point3D p1, Point3D p2, Point3D p3, Point3D p4,Point3D p5)
@@ -43,6 +79,26 @@ public class PyramideBasedRectangle extends Geometry
         }
 
     }
+
+    /**
+     * Instantiates a new Pyramide based rectangle.
+     *
+     * @param emission1 the emission 1
+     * @param emission2 the emission 2
+     * @param emission3 the emission 3
+     * @param emission4 the emission 4
+     * @param emission5 the emission 5
+     * @param material1 the material 1
+     * @param material2 the material 2
+     * @param material3 the material 3
+     * @param material4 the material 4
+     * @param material5 the material 5
+     * @param p1        the p 1
+     * @param p2        the p 2
+     * @param p3        the p 3
+     * @param p4        the p 4
+     * @param p5        the p 5
+     */
     public PyramideBasedRectangle(Color emission1,Color emission2,Color emission3,Color emission4,Color emission5, Material material1,Material material2,Material material3,Material material4,Material material5,Point3D p1, Point3D p2, Point3D p3, Point3D p4,Point3D p5)
     {
         Triangle t1 = new Triangle(emission1,material1,p3,p4,p5);

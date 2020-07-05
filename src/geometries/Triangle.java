@@ -27,10 +27,29 @@ public class Triangle extends Polygon implements FlatGeometry
     public Triangle(Point3D point1,Point3D point2,Point3D point3){
         super(point1,point2,point3);
     }
+
+    /**
+     * Instantiates a new Triangle.
+     *
+     * @param emission the emission
+     * @param point1   the point 1
+     * @param point2   the point 2
+     * @param point3   the point 3
+     */
     public Triangle(Color emission,Point3D point1,Point3D point2,Point3D point3){
         super(emission,point1,point2,point3);
         this._emmission = emission;
     }
+
+    /**
+     * Instantiates a new Triangle.
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param point1   the point 1
+     * @param point2   the point 2
+     * @param point3   the point 3
+     */
     public Triangle(Color emission,Material material,Point3D point1,Point3D point2,Point3D point3){
         super(emission,material,point1,point2,point3);
     }

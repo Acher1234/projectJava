@@ -5,8 +5,21 @@ import primitives.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Square.
+ */
 public class Square extends rectangle
 {
+    /**
+     * Instantiates a new Square.
+     *
+     * @param emission the emission
+     * @param material the material
+     * @param point1   the point 1
+     * @param point2   the point 2
+     * @param point3   the point 3
+     * @param point4   the point 4
+     */
     public Square(Color emission, Material material, Point3D point1, Point3D point2, Point3D point3, Point3D point4) {
         super(emission, material, point1, point2, point3, point4);
         double v1 = point1.Distance(point2);

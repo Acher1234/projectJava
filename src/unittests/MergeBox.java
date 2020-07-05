@@ -14,8 +14,14 @@ import scene.Scene;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * The type Merge box.
+ */
 public class MergeBox
 {
+    /**
+     * Merge box test.
+     */
     @Test
     public void MergeBoxTest()
     {
@@ -35,6 +41,10 @@ public class MergeBox
         assertEquals(scene.get_geometries().size(),1);
 
     }
+
+    /**
+     * Merge box test 2.
+     */
     @Test
     public void MergeBoxTest2()
     {
