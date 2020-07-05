@@ -1,6 +1,6 @@
 package elements;
 
-import geometries.Plane;
+import geometries.*;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
@@ -13,7 +13,7 @@ import static primitives.Util.alignZero;
 
 public class AreaRayonLight extends RayonLight
 {
-    protected Plane _Plane;
+    protected Sphere sphere;
     /**
      * Instantiates a new SpotLight.
      *
@@ -23,16 +23,15 @@ public class AreaRayonLight extends RayonLight
      * @param _kC
      * @param _kL
      * @param _kQ
-     * @param Rayon
      */
-    public AreaRayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ, double Rayon) {
-        super(_intensity, _Position, _direction, _kC, _kL, _kQ, Rayon);
-        _Plane = new Plane(_Position,_direction);
+    public AreaRayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ, double RayonLight,double RayonSphere) {
+        super(_intensity, _Position, _direction, _kC, _kL, _kQ, RayonLight);
+        sphere = new Sphere(RayonSphere,_Position);
     }
 
-    public AreaRayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ, double Rayon,boolean softShadow) {
-        super(_intensity, _Position, _direction, _kC, _kL, _kQ, Rayon,softShadow);
-        _Plane = new Plane(_Position,_direction);
+    public AreaRayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double RayonLight,double RayonSphere,boolean softShadow) {
+        super(_intensity, _Position, _direction, _kC, _kL, _kQ, RayonLight,softShadow);
+        sphere = new Sphere(RayonSphere,_Position);
     }
 
     @Override
@@ -57,7 +56,7 @@ public class AreaRayonLight extends RayonLight
         {
             o = _Position.Add(_direction.scale(t));
         }
-        if(o.subtract(p).length() < this._Rayon)
+        if(o.subtract(p).length() < this.RayonLight)
         {
             double distance = p.Distance(_Position);
             double toDivide = _kC +_kL*distance + _kQ*distance*distance;
@@ -77,9 +76,8 @@ public class AreaRayonLight extends RayonLight
         ToReturn.add(getL(p));
         for(int i = 0;i < nombrePointsGenerated;i++)
         {
-            Vector basis = _Plane.findPerpendicularVector(r.nextDouble(),r.nextDouble());
-            basis.normalize().scale(r.nextDouble()*this._Rayon + 0.001);
-            ToReturn.add(p.subtract(_Position.Add(basis)));
+            Vector Basis = Vector.GeneratedAleatoryVector(this.sphere.get_radius());
+            ToReturn.add(p.subtract(_Position.Add(Basis)));
         }
         return ToReturn;
 

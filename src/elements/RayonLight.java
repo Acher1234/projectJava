@@ -11,7 +11,7 @@ import static primitives.Util.alignZero;
 
 public class RayonLight extends SpotLight
 {
-    protected double _Rayon;
+    protected double RayonLight;
     /**
      * Instantiates a new SpotLight.
      *
@@ -22,15 +22,15 @@ public class RayonLight extends SpotLight
      * @param _kL
      * @param _kQ
      */
-    public RayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double Rayon) {
+    public RayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double RayonLight) {
         super(_intensity, _Position, _direction, _kC, _kL, _kQ);
-        this._Rayon = Rayon;
+        this.RayonLight = RayonLight;
     }
 
 
-    public RayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double Rayon,boolean softShadow) {
+    public RayonLight(Color _intensity, Point3D _Position, Vector _direction, double _kC, double _kL, double _kQ,double RayonLight,boolean softShadow) {
         super(_intensity, _Position, _direction, _kC, _kL, _kQ,softShadow);
-        this._Rayon = Rayon;
+        this.RayonLight = RayonLight;
     }
 
 
@@ -56,7 +56,7 @@ public class RayonLight extends SpotLight
         {
             o = _Position.Add(_direction.scale(t));
         }
-        if(o.subtract(p).length() < this._Rayon)
+        if(o.subtract(p).length() < this.RayonLight)
         {
             double distance = p.Distance(_Position);
             double toDivide = _kC +_kL*distance + _kQ*distance*distance;

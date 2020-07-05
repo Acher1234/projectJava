@@ -12,6 +12,8 @@ import static primitives.Util.*;
  * @author Dan
  */
 public class Polygon extends Geometry {
+
+    protected double Xmax,Xmin,Ymax,Ymin,Zmax,Zmin;
     /**
      * List of polygon's vertices
      */
@@ -74,12 +76,58 @@ public class Polygon extends Geometry {
             if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
                 throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
         }
+        List<Point3D> points = List.of(vertices);
+        Xmax = points.get(0).getCoordX().get();
+        Ymax = points.get(0).getCoordY().get();
+        Zmax = points.get(0).getCoordZ().get();
+        Xmin = points.get(0).getCoordX().get();
+        Ymin = points.get(0).getCoordY().get();
+        Zmin = points.get(0).getCoordZ().get();
+        for (int i = 1; i < points.size(); i++)
+        {
+            Xmax = points.get(i).getCoordX().get() > Xmax ? points.get(i).getCoordX().get() : Xmax;
+            Ymax = points.get(i).getCoordY().get() > Ymax ? points.get(i).getCoordY().get() : Ymax;
+            Zmax = points.get(i).getCoordZ().get() > Zmax ? points.get(i).getCoordZ().get() : Zmax;
+            Xmin = points.get(i).getCoordX().get() < Xmin ? points.get(i).getCoordX().get() : Xmin;
+            Ymin = points.get(i).getCoordY().get() < Ymin ? points.get(i).getCoordY().get() : Ymin;
+            Zmin = points.get(i).getCoordZ().get() < Zmin ? points.get(i).getCoordZ().get() : Zmin;
+        }
 
     }
 
     @Override
     public boolean isInInside(Point3D temp) {
         return false;
+    }
+
+    @Override
+    public double getMaxX() {
+        return Xmax;
+    }
+
+    @Override
+    public double getMaxY() {
+        return Ymax;
+    }
+
+    @Override
+    public double getMaxZ() {
+        return Zmax;
+    }
+
+    @Override
+    public double getMinX() {
+        return Xmin;
+    }
+
+    @Override
+    public double getMinY() {
+        return Ymin;
+    }
+
+    @Override
+    public double getMinZ() {
+        return Zmin;
     }
 
     @Override

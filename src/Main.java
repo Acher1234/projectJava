@@ -75,19 +75,19 @@ public final class Main {
                 new AreaPointLight(new Color(70, 70, 70), //
                         new Point3D(500,30,400), 1.1, 0.000000000000001, 0.00000000000000001,80,SoftShadow),
                 new AreaSpotLight(new Color(100,100,100), //
-                    new Point3D(600, 1100, -110), new Vector(0,-1,0), 1, 0.00000000001,0.000000001,30,SoftShadow),
+                        new Point3D(600, 1100, -110), new Vector(0,-1,0), 1, 0.00000000001,0.000000001,30,SoftShadow),
                 new AreaRayonLight(new Color(255, 255, 255), //
-                        new Point3D(660,100,1100), new Vector(0.3,0,-1), 1, 0.00001,0.000000001,100,SoftShadow),
+                        new Point3D(660,100,1100), new Vector(0.3,0,-1), 1, 0.00001,0.000000001,100,1,SoftShadow),
                 new AreaRayonLight(new Color(0, 255, 0), //
-                        new Point3D(460,150,1100), new Vector(0.3,0,-1), 1, 0.00001,0.000000001,100,SoftShadow),
+                        new Point3D(460,150,1100), new Vector(0.3,0,-1), 1, 0.00001,0.000000001,100,1,SoftShadow),
                 new AreaRayonLight(new Color(0, 0, 255), //
-                        new Point3D(260,200,1100), new Vector(0.3,0,-1), 1, 0.00001,0.000000001,100,SoftShadow),
+                        new Point3D(260,200,1100), new Vector(0.3,0,-1), 1, 0.00001,0.000000001,100,1,SoftShadow),
                 new AreaRayonLight(new Color(255, 255, 0), //
-                        new Point3D(740,200,1100), new Vector(-0.3,0,-1), 1, 0.00001,0.000000001,100,SoftShadow),
+                        new Point3D(740,200,1100), new Vector(-0.3,0,-1), 1, 0.00001,0.000000001,100,1,SoftShadow),
                 new AreaRayonLight(new Color(238, 130, 238), //
-                        new Point3D(540,150,1100), new Vector(-0.3,0,-1), 1, 0.00001,0.000000001,100,SoftShadow),
+                        new Point3D(540,150,1100), new Vector(-0.3,0,-1), 1, 0.00001,0.000000001,100,1,SoftShadow),
                 new AreaRayonLight(new Color(238, 0, 0), //
-                        new Point3D(340,100,1100), new Vector(-0.3,0,-1), 1, 0.00001,0.000000001,100,SoftShadow)
+                        new Point3D(340,100,1100), new Vector(-0.3,0,-1), 1, 0.00001,0.000000001,100,1,SoftShadow)
         );
 
                 ImageWriter imageWriter = new ImageWriter("SceneFinal", 1000, 700, 2000, 1400);

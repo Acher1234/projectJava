@@ -8,6 +8,7 @@ import java.util.List;
 public class PyramideBasedRectangle extends Geometry
 {
     List<Geometry> listofGeometry;
+    double Xmax,Ymax,Zmax,Xmin,Ymin,Zmin;
     //need to be in this order p1 p2
     //                         P4 p3
     //make in first p3,p4:p1,p2:p1,p4:p2,p3
@@ -69,6 +70,36 @@ public class PyramideBasedRectangle extends Geometry
     }
 
     @Override
+    public double getMaxX() {
+        return 0;
+    }
+
+    @Override
+    public double getMaxY() {
+        return 0;
+    }
+
+    @Override
+    public double getMaxZ() {
+        return 0;
+    }
+
+    @Override
+    public double getMinX() {
+        return 0;
+    }
+
+    @Override
+    public double getMinY() {
+        return 0;
+    }
+
+    @Override
+    public double getMinZ() {
+        return 0;
+    }
+
+    @Override
     public List<GeoPoint> findIntersection(Ray ray)
     {
         List<GeoPoint> TotalReturnList = new ArrayList<GeoPoint>();
@@ -89,6 +120,23 @@ public class PyramideBasedRectangle extends Geometry
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max)
     {
-        return null;
+        List<GeoPoint> listpossible = this.findIntersection(ray);
+        List<GeoPoint> listReturn = new ArrayList<GeoPoint>();
+        if(listpossible == null)
+        {
+            return null;
+        }
+        for (GeoPoint p:listpossible)
+        {
+            if(ray.getPOO().Distance(p.point) <= max)
+            {
+                listReturn.add(p);
+            }
+        }
+        if(listReturn.size() == 0)
+        {
+            return null;
+        }
+        return listReturn;
     }
 }

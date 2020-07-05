@@ -231,4 +231,63 @@ public class Cylinder extends Tube
     public double get_height() {
         return _height;
     }
+
+    @Override
+    public double getMaxX() {
+        if(this._axisRay.getDirection().getHead().getCoordX().get() <= 0)
+        {
+            return this._axisRay.getPOO().getCoordX().get();
+        }
+        else return this._axisRay.getDirection().getHead().getCoordX().get()*_axisRay.getPOO().getCoordX().get()*_height;
+    }
+
+    @Override
+    public double getMaxY() {
+        if(this._axisRay.getDirection().getHead().getCoordY().get() <= 0)
+        {
+            return this._axisRay.getPOO().getCoordY().get();
+        }
+        else
+            return this._axisRay.getDirection().getHead().getCoordY().get()*_axisRay.getPOO().getCoordY().get()*_height;
+    }
+
+    @Override
+    public double getMaxZ() {
+        if(this._axisRay.getDirection().getHead().getCoordZ().get() <= 0)
+        {
+            return this._axisRay.getPOO().getCoordZ().get();
+        }
+        else
+            return this._axisRay.getDirection().getHead().getCoordZ().get()*_axisRay.getPOO().getCoordZ().get()*_height;
+    }
+
+    @Override
+    public double getMinX() {
+        if(this._axisRay.getDirection().getHead().getCoordX().get() >= 0)
+        {
+            return this._axisRay.getPOO().getCoordX().get();
+        }
+        else
+            return this._axisRay.getDirection().getHead().getCoordX().get()*_axisRay.getPOO().getCoordX().get()*_height;
+    }
+
+    @Override
+    public double getMinY() {
+        if(this._axisRay.getDirection().getHead().getCoordY().get() >= 0)
+        {
+            return this._axisRay.getPOO().getCoordY().get();
+        }
+        else
+            return this._axisRay.getDirection().getHead().getCoordY().get()*_axisRay.getPOO().getCoordY().get()*_height;
+    }
+
+    @Override
+    public double getMinZ() {
+        if(this._axisRay.getDirection().getHead().getCoordZ().get() >= 0)
+        {
+            return this._axisRay.getPOO().getCoordZ().get();
+        }
+        else
+            return this._axisRay.getDirection().getHead().getCoordZ().get()*_axisRay.getPOO().getCoordZ().get()*_height;
+    }
 }

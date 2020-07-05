@@ -76,4 +76,57 @@ public class rectangle extends Polygon implements FlatGeometry
         }
         return null;
     }
+
+    @Override
+    public List<GeoPoint> findIntersection(Ray ray, double max)
+    {
+        List<GeoPoint> listpossible = this.findIntersection(ray);
+        List<GeoPoint> listReturn = new ArrayList<GeoPoint>();
+        if(listpossible == null)
+        {
+            return null;
+        }
+        for (GeoPoint p:listpossible)
+        {
+            if(ray.getPOO().Distance(p.point) <= max)
+            {
+                listReturn.add(p);
+            }
+        }
+        if(listReturn.size() == 0)
+        {
+            return null;
+        }
+        return listReturn;
+    }
+
+    @Override
+    public double getMaxX() {
+        return super.getMaxX();
+    }
+
+    @Override
+    public double getMaxY() {
+        return super.getMaxY();
+    }
+
+    @Override
+    public double getMaxZ() {
+        return super.getMaxZ();
+    }
+
+    @Override
+    public double getMinX() {
+        return super.getMinX();
+    }
+
+    @Override
+    public double getMinY() {
+        return super.getMinY();
+    }
+
+    @Override
+    public double getMinZ() {
+        return super.getMinZ();
+    }
 }

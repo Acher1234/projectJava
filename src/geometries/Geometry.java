@@ -58,4 +58,12 @@ public abstract class Geometry implements Intersectable
     public Color get_emmission() {
         return _emmission;
     }
+
+    //Methode getCoordone
+    abstract public double getMaxX();
+    abstract public double getMaxY();
+    abstract public double getMaxZ();
+    abstract public double getMinX();
+    abstract public double getMinY();
+    abstract public double getMinZ();
 }

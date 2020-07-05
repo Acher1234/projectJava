@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Square extends rectangle
@@ -29,7 +30,42 @@ public class Square extends rectangle
     }
 
     @Override
+    public List<GeoPoint> findIntersection(Ray ray, double max) {
+       return super.findIntersection(ray,max);
+    }
+
+    @Override
     public boolean isInInside(Point3D temp) {
         return super.isInInside(temp);
+    }
+
+    @Override
+    public double getMaxX() {
+        return super.getMaxX();
+    }
+
+    @Override
+    public double getMaxY() {
+        return super.getMaxY();
+    }
+
+    @Override
+    public double getMaxZ() {
+        return super.getMaxZ();
+    }
+
+    @Override
+    public double getMinX() {
+        return super.getMinX();
+    }
+
+    @Override
+    public double getMinY() {
+        return super.getMinY();
+    }
+
+    @Override
+    public double getMinZ() {
+        return super.getMinZ();
     }
 }

@@ -3,6 +3,7 @@ package scene;
 import elements.AmbientLight;
 import elements.Camera;
 import elements.LightSource;
+import geometries.Contenair;
 import geometries.Geometries;
 import geometries.Geometry;
 import geometries.Intersectable;
@@ -51,6 +52,13 @@ public class Scene {
     public void addGeometries(Intersectable... geometries)
     {
         for (Intersectable temp :geometries)
+        {
+            _geometries.add((Geometry) temp);
+        }
+    }
+    public void addGeometries(List<Contenair> contenairs)
+    {
+        for (Intersectable temp :contenairs)
         {
             _geometries.add((Geometry) temp);
         }

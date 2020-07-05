@@ -66,6 +66,36 @@ public class Sphere extends RadialGeometry
         return false;
     }
 
+    @Override
+    public double getMaxX() {
+        return this._center.Add(new Vector(1,0,0).scale(this._radius)).getCoordX().get();
+    }
+
+    @Override
+    public double getMaxY() {
+        return this._center.Add(new Vector(0,1,0).scale(this._radius)).getCoordY().get();
+    }
+
+    @Override
+    public double getMaxZ() {
+        return this._center.Add(new Vector(0,0,1).scale(this._radius)).getCoordZ().get();
+    }
+
+    @Override
+    public double getMinX() {
+        return this._center.Add(new Vector(-1,0,0).scale(this._radius)).getCoordX().get();
+    }
+
+    @Override
+    public double getMinY() {
+        return this._center.Add(new Vector(0,-1,0).scale(this._radius)).getCoordY().get();
+    }
+
+    @Override
+    public double getMinZ() {
+        return this._center.Add(new Vector(0,0,-1).scale(this._radius)).getCoordZ().get();
+    }
+
     /**
      * Instantiates a new Sphere.
      *

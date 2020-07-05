@@ -18,7 +18,7 @@ public class CubeContenair extends Geometry implements Contenair
     public CubeContenair(Point3D... BasedCube)
     {
         contenair = new CubeBox(new Color(0,0,0),new Material(0,0,0,0,0),BasedCube);
-
+        this.geometries = new ArrayList<Geometry>();
     }
 
     @Override
@@ -42,6 +42,36 @@ public class CubeContenair extends Geometry implements Contenair
     }
 
     @Override
+    public double getMaxX() {
+        return this.contenair.maxX;
+    }
+
+    @Override
+    public double getMaxY() {
+        return this.contenair.maxY;
+    }
+
+    @Override
+    public double getMaxZ() {
+        return this.contenair.maxZ;
+    }
+
+    @Override
+    public double getMinX() {
+        return this.contenair.minX;
+    }
+
+    @Override
+    public double getMinY() {
+        return this.contenair.minY;
+    }
+
+    @Override
+    public double getMinZ() {
+        return this.contenair.minZ;
+    }
+
+    @Override
     public List<GeoPoint> findIntersection(Ray ray)
     {
         List<GeoPoint> ReturnList = new ArrayList<GeoPoint>();
@@ -51,7 +81,8 @@ public class CubeContenair extends Geometry implements Contenair
         }
         for (Geometry temp :geometries)
         {
-            ReturnList.addAll(temp.findIntersection(ray));
+            if(temp.findIntersection(ray) != null)
+                ReturnList.addAll(temp.findIntersection(ray));
         }
         if(ReturnList.size() == 0)
         {
@@ -61,8 +92,26 @@ public class CubeContenair extends Geometry implements Contenair
     }
 
     @Override
-    public List<GeoPoint> findIntersection(Ray ray, double max) {
-        return null;
+    public List<GeoPoint> findIntersection(Ray ray, double max)
+    {
+        List<GeoPoint> listpossible = this.findIntersection(ray);
+        List<GeoPoint> listReturn = new ArrayList<GeoPoint>();
+        if(listpossible == null)
+        {
+            return null;
+        }
+        for (GeoPoint p:listpossible)
+        {
+         if(ray.getPOO().Distance(p.point) <= max)
+         {
+             listReturn.add(p);
+         }
+        }
+        if(listReturn.size() == 0)
+        {
+            return null;
+        }
+        return listReturn;
     }
 
     @Override

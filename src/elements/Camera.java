@@ -33,6 +33,8 @@ public class Camera {
     protected Vector Vright;
 
     boolean SuperSampling;
+
+    static int numberPointsSuperSampling = 50;
     //--------------Methode--------
 
     /**
@@ -74,7 +76,7 @@ public class Camera {
     public List<Ray> constructRayThroughPixel (int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight)
     {
         Random r = new Random();
-        int numberOnXAndY = (SuperSampling == true ? 25 : 0);
+        int numberOnXAndY = (SuperSampling == true ? numberPointsSuperSampling : 0);
         List<Ray> returnList= new ArrayList<Ray>();
         double sizeBetweenPixelWidht = (screenWidth / nX) / (numberOnXAndY+1);
         double sizeBetweenPixelHeight = (screenHeight / nY) / (numberOnXAndY+1);

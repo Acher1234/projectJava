@@ -6,6 +6,7 @@ public class Light {
     protected Color _intensity;
     protected  boolean SoftShadow;
     int nombrePointsGenerated;
+    static int nombrePoint = 25;
 
     /**
      * Instantiates a new Light.
@@ -14,13 +15,13 @@ public class Light {
     public Light(Color _intensity) {
         this._intensity = _intensity;
         SoftShadow = false;
-        nombrePointsGenerated = SoftShadow ? 50 : 0;
+        nombrePointsGenerated = SoftShadow ? nombrePoint : 0;
     }
 
     public Light(Color _intensity,boolean softShadow) {
         this._intensity = _intensity;
         softShadow = softShadow;
-        nombrePointsGenerated = softShadow ? 15 : 0;
+        nombrePointsGenerated = softShadow ? nombrePoint : 0;
     }
 
 

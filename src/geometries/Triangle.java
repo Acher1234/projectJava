@@ -185,4 +185,34 @@ public class Triangle extends Polygon implements FlatGeometry
         }
         return flag ? tempReturn : null;
     }
+
+    @Override
+    public double getMaxX() {
+        return super.getMaxX();
+    }
+
+    @Override
+    public double getMaxY() {
+        return super.getMaxY();
+    }
+
+    @Override
+    public double getMaxZ() {
+        return super.getMaxZ();
+    }
+
+    @Override
+    public double getMinX() {
+        return super.getMinX();
+    }
+
+    @Override
+    public double getMinY() {
+        return super.getMinY();
+    }
+
+    @Override
+    public double getMinZ() {
+        return super.getMinZ();
+    }
 }

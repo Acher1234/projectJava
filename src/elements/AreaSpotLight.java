@@ -41,8 +41,10 @@ public class AreaSpotLight extends SpotLight
     public List<Vector> getmultipleL(Point3D p) {
         List<Vector> ToReturn = new ArrayList<Vector>();
         ToReturn.add(this.getL(p));
-        for (int i = 0; i < nombrePointsGenerated; i++) {
-
+        for (int i = 0; i < nombrePointsGenerated; i++)
+        {
+            Vector Basis = Vector.GeneratedAleatoryVector(this.sphere.get_radius());
+            ToReturn.add(p.subtract(_Position.Add(Basis)));
         }
         return ToReturn;
     }

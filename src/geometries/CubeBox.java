@@ -44,6 +44,39 @@ public class CubeBox extends Geometry
         rectangleList.add(new rectangle(emission,material,points.get(0),points.get(1),points.get(6),points.get(7)));
         rectangleList.add(new rectangle(emission,material,points.get(4),points.get(5),points.get(2),points.get(3)));
     }
+
+    //need to bee in max x,y,z and after min x,y,z
+    public CubeBox(Color emission, Material material,double... MaxMin)
+    {
+        this._emmission = emission;
+        this._material = material;
+        if (MaxMin.length != 6)
+        {
+            throw  new IllegalArgumentException("bad cube");
+        }
+        double[] doublelist = MaxMin;
+        maxX = doublelist[0];
+        maxY = doublelist[1];
+        maxZ = doublelist[2];
+        minX = doublelist[3];
+        minY = doublelist[4];
+        minZ = doublelist[5];
+        List<Point3D> points = new ArrayList<Point3D>();
+        points.add(new Point3D(maxX,maxY,maxZ));
+        points.add(new Point3D(minX,maxY,maxZ));
+        points.add(new Point3D(minX,maxY,minZ));
+        points.add(new Point3D(maxX,maxY,minZ));
+        points.add(new Point3D(maxX,minY,minZ));
+        points.add(new Point3D(minX,minY,minZ));
+        points.add(new Point3D(minX,minY,maxZ));
+        points.add(new Point3D(maxX,minY,maxZ));
+        this.rectangleList = new ArrayList<rectangle>();
+        rectangleList.add(new rectangle(emission,material,points.get(0),points.get(1),points.get(2),points.get(3)));
+        rectangleList.add(new rectangle(emission,material,points.get(4),points.get(5),points.get(6),points.get(7)));
+        rectangleList.add(new rectangle(emission,material,points.get(0),points.get(1),points.get(6),points.get(7)));
+        rectangleList.add(new rectangle(emission,material,points.get(4),points.get(5),points.get(2),points.get(3)));
+    }
+
     public CubeBox(Point3D... BasedCube)
     {
         this(new Color(255,255,255),new Material(0,0,0,0,0),BasedCube);
@@ -75,6 +108,36 @@ public class CubeBox extends Geometry
     }
 
     @Override
+    public double getMaxX() {
+        return maxX;
+    }
+
+    @Override
+    public double getMaxY() {
+        return maxY;
+    }
+
+    @Override
+    public double getMaxZ() {
+        return maxZ;
+    }
+
+    @Override
+    public double getMinX() {
+        return minX;
+    }
+
+    @Override
+    public double getMinY() {
+        return minY;
+    }
+
+    @Override
+    public double getMinZ() {
+        return minZ;
+    }
+
+    @Override
     public List<GeoPoint> findIntersection(Ray ray)
     {
         List<GeoPoint> temp,ReturnResult = new ArrayList<GeoPoint>();
@@ -92,7 +155,25 @@ public class CubeBox extends Geometry
     }
 
     @Override
-    public List<GeoPoint> findIntersection(Ray ray, double max) {
-        return null;
+    public List<GeoPoint> findIntersection(Ray ray, double max)
+    {
+        List<GeoPoint> listpossible = this.findIntersection(ray);
+        List<GeoPoint> listReturn = new ArrayList<GeoPoint>();
+        if(listpossible == null)
+        {
+            return null;
+        }
+        for (GeoPoint p:listpossible)
+        {
+            if(ray.getPOO().Distance(p.point) <= max)
+            {
+                listReturn.add(p);
+            }
+        }
+        if(listReturn.size() == 0)
+        {
+            return null;
+        }
+        return listReturn;
     }
 }
