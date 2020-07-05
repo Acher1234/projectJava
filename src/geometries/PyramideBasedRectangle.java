@@ -25,6 +25,22 @@ public class PyramideBasedRectangle extends Geometry
         listofGeometry.add(t3);
         listofGeometry.add(t4);
         listofGeometry.add(based);
+        List<Point3D> points = List.of(p1,p2,p3,p4,p5);
+        Xmax = points.get(0).getCoordX().get();
+        Ymax = points.get(0).getCoordY().get();
+        Zmax = points.get(0).getCoordZ().get();
+        Xmin = points.get(0).getCoordX().get();
+        Ymin = points.get(0).getCoordY().get();
+        Zmin = points.get(0).getCoordZ().get();
+        for (int i = 1; i < points.size(); i++)
+        {
+            Xmax = points.get(i).getCoordX().get() > Xmax ? points.get(i).getCoordX().get() : Xmax;
+            Ymax = points.get(i).getCoordY().get() > Ymax ? points.get(i).getCoordY().get() : Ymax;
+            Zmax = points.get(i).getCoordZ().get() > Zmax ? points.get(i).getCoordZ().get() : Zmax;
+            Xmin = points.get(i).getCoordX().get() < Xmin ? points.get(i).getCoordX().get() : Xmin;
+            Ymin = points.get(i).getCoordY().get() < Ymin ? points.get(i).getCoordY().get() : Ymin;
+            Zmin = points.get(i).getCoordZ().get() < Zmin ? points.get(i).getCoordZ().get() : Zmin;
+        }
 
     }
     public PyramideBasedRectangle(Color emission1,Color emission2,Color emission3,Color emission4,Color emission5, Material material1,Material material2,Material material3,Material material4,Material material5,Point3D p1, Point3D p2, Point3D p3, Point3D p4,Point3D p5)
@@ -40,7 +56,22 @@ public class PyramideBasedRectangle extends Geometry
         listofGeometry.add(t3);
         listofGeometry.add(t4);
         listofGeometry.add(based);
-
+        List<Point3D> points = List.of(p1,p2,p3,p4,p5);
+        Xmax = points.get(0).getCoordX().get();
+        Ymax = points.get(0).getCoordY().get();
+        Zmax = points.get(0).getCoordZ().get();
+        Xmin = points.get(0).getCoordX().get();
+        Ymin = points.get(0).getCoordY().get();
+        Zmin = points.get(0).getCoordZ().get();
+        for (int i = 1; i < points.size(); i++)
+        {
+            Xmax = points.get(i).getCoordX().get() > Xmax ? points.get(i).getCoordX().get() : Xmax;
+            Ymax = points.get(i).getCoordY().get() > Ymax ? points.get(i).getCoordY().get() : Ymax;
+            Zmax = points.get(i).getCoordZ().get() > Zmax ? points.get(i).getCoordZ().get() : Zmax;
+            Xmin = points.get(i).getCoordX().get() < Xmin ? points.get(i).getCoordX().get() : Xmin;
+            Ymin = points.get(i).getCoordY().get() < Ymin ? points.get(i).getCoordY().get() : Ymin;
+            Zmin = points.get(i).getCoordZ().get() < Zmin ? points.get(i).getCoordZ().get() : Zmin;
+        }
     }
 
     @Override
@@ -71,32 +102,32 @@ public class PyramideBasedRectangle extends Geometry
 
     @Override
     public double getMaxX() {
-        return 0;
+        return Xmax;
     }
 
     @Override
     public double getMaxY() {
-        return 0;
+        return Ymax;
     }
 
     @Override
     public double getMaxZ() {
-        return 0;
+        return Zmax;
     }
 
     @Override
     public double getMinX() {
-        return 0;
+        return Xmin;
     }
 
     @Override
     public double getMinY() {
-        return 0;
+        return Ymin;
     }
 
     @Override
     public double getMinZ() {
-        return 0;
+        return Zmin;
     }
 
     @Override

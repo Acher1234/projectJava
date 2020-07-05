@@ -21,6 +21,13 @@ public class CubeContenair extends Geometry implements Contenair
         this.geometries = new ArrayList<Geometry>();
     }
 
+    //need to bee in max x,y,z and after min x,y,z
+    public CubeContenair(double... BasedCube)
+    {
+        contenair = new CubeBox(new Color(0,0,0),new Material(0,0,0,0,0),BasedCube);
+        this.geometries = new ArrayList<Geometry>();
+    }
+
     @Override
     public void setGeometry(Geometry... geometries)
     {

@@ -10,6 +10,9 @@ import geometries.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class AreaPointLight extends PointLight
 {
     protected Sphere sphere;
@@ -39,6 +42,7 @@ public class AreaPointLight extends PointLight
     public Vector getL(Point3D p) {
         return super.getL(p);
     }
+
 
     public List<Vector> getmultipleL(Point3D p)
     {

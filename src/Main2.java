@@ -1,13 +1,9 @@
 import elements.*;
 import geometries.*;
 import primitives.*;
-import static java.lang.System.out;
-import static primitives.Util.*;
-
 import renderer.ImageWriter;
 import renderer.Render;
 import scene.Scene;
-import unittests.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +38,15 @@ public final class Main2 {
                 new Point3D(-100, 0, 10), new Point3D(1100, 0, 10), new Point3D(1100, 300, -22),new Point3D(-100, 300, -22)));
 
         //contenair of the mirror
-        /*contenairsGeometrie.add(new CubeContenair(new Point3D(1110,-3,530),new Point3D(-110,-3,530),
+        contenairsGeometrie.add(new CubeContenair(new Point3D(1110,-3,530),new Point3D(-110,-3,530),
                 new Point3D(-110,-3,9),new Point3D(1110,-3,9),
                 new Point3D(1110,3,9),new Point3D(-110,3,9),
                 new Point3D(-110,3,530),new Point3D(1110,3,530)));
         contenairsGeometrie.get(1).setGeometry(new rectangle(new Color(50,50,50), new Material(0, 0, 30,0,1),
-                new Point3D(1100, 0, 500), new Point3D(-100,0,500), new Point3D(-100, 0, 10),new Point3D(1100, 0, 10)));*/
+                new Point3D(1100, 0, 500), new Point3D(-100,0,500), new Point3D(-100, 0, 10),new Point3D(1100, 0, 10)));
 
         //pyramide and sphere inside
-        /*contenairsGeometrie.add(new CubeContenair(new Point3D(750,100,-20),new Point3D(400,100,-20),
+        contenairsGeometrie.add(new CubeContenair(new Point3D(750,100,-20),new Point3D(400,100,-20),
                 new Point3D(400,100,-170),new Point3D(750,100,-170),
                 new Point3D(750,500,-170),new Point3D(400,500,-170),
                 new Point3D(400,500,-20),new Point3D(750,500,-20)));
@@ -60,7 +56,7 @@ public final class Main2 {
                         new Material(0,0,0,1,0.2),new Material(0,0,0,0,0.2),new Material(0,0,0,0,1),
                         new Point3D(750,500,-170), new Point3D(750,100,-170),new Point3D(400,100,-170),new Point3D(400,500,-170),new Point3D(600,300,-20)),
                 new Sphere(new Color(0,0,100),new Material(0.5,1,20,0.5,0),60,new Point3D(600, 300, -110)),
-                new Sphere(new Color(100,20,20),new Material(0.5,1,20,0,0.5),30,new Point3D(600, 300, -110)));*/
+                new Sphere(new Color(100,20,20),new Material(0.5,1,20,0,0.5),30,new Point3D(600, 300, -110)));
         //left personn
         contenairsGeometrie.add(new CubeContenair(new Point3D(990,90,130),new Point3D(810,90,130),
                 new Point3D(810,90,-12),new Point3D(990,90,-12),
@@ -85,11 +81,11 @@ public final class Main2 {
                 new Cylinder(new Color(100,100,100),new Material(0,0,30,0,0),5,new Ray(new Point3D(110,100,20),new Vector(0,0,1)),30),
                 new Cylinder(new Color(100,100,100),new Material(0,0,30,0,0),5,new Ray(new Point3D(90,100,20),new Vector(0,0.5,1)),30));
         //lumiere
-        /*contenairsGeometrie.add(new CubeContenair(new Point3D(590,-80,490),new Point3D(410,-80,490),
+        contenairsGeometrie.add(new CubeContenair(new Point3D(590,-80,490),new Point3D(410,-80,490),
                 new Point3D(410,-80,310),new Point3D(590,-80,310),
                 new Point3D(590,100,310),new Point3D(410,100,310),
                 new Point3D(410,100,490),new Point3D(590,100,490)));
-        contenairsGeometrie.get(5).setGeometry(new Sphere(new Color(100,100,100),new Material(0,0,30,1,0),80,new Point3D(500,10,400)));*/
+        contenairsGeometrie.get(5).setGeometry(new Sphere(new Color(100,100,100),new Material(0,0,30,1,0),80,new Point3D(500,10,400)));
 
 
         scene.addGeometries(contenairsGeometrie);

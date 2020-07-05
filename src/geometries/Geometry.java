@@ -1,6 +1,9 @@
 package geometries;
 
-import primitives.*;
+import primitives.Color;
+import primitives.Material;
+import primitives.Point3D;
+import primitives.Vector;
 
 
 /**
@@ -66,4 +69,13 @@ public abstract class Geometry implements Intersectable
     abstract public double getMinX();
     abstract public double getMinY();
     abstract public double getMinZ();
+
+    public boolean canMergeBox(Geometry temp)
+    {
+        if((getMaxX() >= temp.getMaxX() && getMinX() <= temp.getMaxX()) || (getMaxX() >= temp.getMinX() && getMinX() <= temp.getMinX()))
+            if((getMaxY() >= temp.getMaxY() && getMinY() <= temp.getMaxY()) || (getMaxY() >= temp.getMinY() && getMinY() <= temp.getMinY()))
+                if((getMaxZ() >= temp.getMaxZ() && getMinZ() <= temp.getMaxZ()) || (getMaxZ() >= temp.getMinZ() && getMinZ() <= temp.getMinZ()))
+                    return true;
+        return false;
+    }
 }

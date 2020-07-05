@@ -1,13 +1,11 @@
 package geometries;
 
 import primitives.*;
-import primitives.Vector;
 
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
+import java.util.ArrayList;
+import java.util.List;
+
 import static primitives.Util.alignZero;
-
-import java.util.*;
 
 /**
  * The type Cylinder.
@@ -233,61 +231,33 @@ public class Cylinder extends Tube
     }
 
     @Override
-    public double getMaxX() {
-        if(this._axisRay.getDirection().getHead().getCoordX().get() <= 0)
-        {
-            return this._axisRay.getPOO().getCoordX().get();
-        }
-        else return this._axisRay.getDirection().getHead().getCoordX().get()*_axisRay.getPOO().getCoordX().get()*_height;
+    public double getMaxX()
+    {
+            return this._axisRay.getDirection().getHead().getCoordX().get()*_height + _axisRay.getPOO().getCoordX().get() + _radius;
     }
 
     @Override
     public double getMaxY() {
-        if(this._axisRay.getDirection().getHead().getCoordY().get() <= 0)
-        {
-            return this._axisRay.getPOO().getCoordY().get();
-        }
-        else
-            return this._axisRay.getDirection().getHead().getCoordY().get()*_axisRay.getPOO().getCoordY().get()*_height;
+            return this._axisRay.getDirection().getHead().getCoordY().get()*_height + _axisRay.getPOO().getCoordY().get()  + _radius;
     }
 
     @Override
     public double getMaxZ() {
-        if(this._axisRay.getDirection().getHead().getCoordZ().get() <= 0)
-        {
-            return this._axisRay.getPOO().getCoordZ().get();
-        }
-        else
-            return this._axisRay.getDirection().getHead().getCoordZ().get()*_axisRay.getPOO().getCoordZ().get()*_height;
+            return this._axisRay.getDirection().getHead().getCoordZ().get()*_height + _axisRay.getPOO().getCoordZ().get() + _radius;
     }
 
     @Override
     public double getMinX() {
-        if(this._axisRay.getDirection().getHead().getCoordX().get() >= 0)
-        {
-            return this._axisRay.getPOO().getCoordX().get();
-        }
-        else
-            return this._axisRay.getDirection().getHead().getCoordX().get()*_axisRay.getPOO().getCoordX().get()*_height;
+            return this._axisRay.getDirection().getHead().getCoordX().get()*-_height + _axisRay.getPOO().getCoordX().get()  - _radius;
     }
 
     @Override
     public double getMinY() {
-        if(this._axisRay.getDirection().getHead().getCoordY().get() >= 0)
-        {
-            return this._axisRay.getPOO().getCoordY().get();
-        }
-        else
-            return this._axisRay.getDirection().getHead().getCoordY().get()*_axisRay.getPOO().getCoordY().get()*_height;
+            return this._axisRay.getDirection().getHead().getCoordY().get()*-_height + _axisRay.getPOO().getCoordY().get()  - _radius;
     }
 
     @Override
     public double getMinZ() {
-        if(this._axisRay.getDirection().getHead().getCoordZ().get() >= 0)
-        {
-            return this._axisRay.getPOO().getCoordZ().get();
-        }
-        else
-            return this._axisRay.getDirection().getHead().getCoordZ().get()*_axisRay.getPOO().getCoordZ().get()*_height;
+            return this._axisRay.getDirection().getHead().getCoordZ().get()*-_height + _axisRay.getPOO().getCoordZ().get()   - _radius;
     }
 }
