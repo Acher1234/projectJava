@@ -147,6 +147,17 @@ public class Render
         return TotalLight;
     }
 
+    /**
+     *
+     * @param p
+     * @param k
+     * @param totalLight
+     * @param tempLights
+     * @param KD
+     * @param KS
+     * @param nShininess
+     * @return
+     */
     private primitives.Color getColorSpecandiffuse(Intersectable.GeoPoint p, double k, primitives.Color totalLight, List<LightSource> tempLights, double KD, double KS, double nShininess) {
         primitives.Color Diffuse;
         primitives.Color Specular;
@@ -292,30 +303,19 @@ public class Render
             for(int i = 0;i < _imagewriter.getNy(); i++)
             {
                 numberOfpixel++;
-                rayList = _scene.get_camera().constructRayThroughPixel(_imagewriter.getNx(),
-                        _imagewriter.getNy(),j,i,_scene.get_distance(),_imagewriter.getWidth(),_imagewriter.getHeight());
-                List<Intersectable.GeoPoint> intersectionsPoint;
-                scalableColor =  rayList.size();
-                primitives.Color returnColor = new primitives.Color(0,0,0);
-                for (Ray ray:rayList)
-                {
-                    intersectionsPoint = getSceneRayIntersections(ray);
-                    if(intersectionsPoint == null)
-                    {
-                        returnColor = returnColor.add(_scene.get_background());
-                    }
-                    else
-                    {
-                        Intersectable.GeoPoint closestPoint = getClosestPoint(intersectionsPoint);
-                        returnColor = returnColor.add(calcColor(closestPoint,ray));
-                    }
-                }
-                returnColor = returnColor.reduce(scalableColor);
-                _imagewriter.writePixel(j,i,returnColor.getColor());
+                new Thread(new ThreadRunnable(this,_imagewriter,_scene,j,i)).start();
             }
         }
     }
 
+    /**
+     *
+     * @param lightVectorArray
+     * @param normal
+     * @param gp
+     * @param light
+     * @return
+     */
     private double transparency(List<Vector> lightVectorArray, Vector normal, Intersectable.GeoPoint gp,LightSource light)
     {
         int numberofPoint = lightVectorArray.size();

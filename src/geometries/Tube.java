@@ -167,41 +167,76 @@ public class Tube extends RadialGeometry {
         return resultPoint;
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public boolean isInInside(Point3D temp) {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return 0;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
         boolean flag = false;

@@ -211,6 +211,12 @@ public class Cylinder extends Tube
         return List;
     }
 
+    /**
+     *
+     * @param ray
+     * @param max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
         boolean flag = false;
@@ -241,32 +247,56 @@ public class Cylinder extends Tube
         return _height;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX()
     {
             return this._axisRay.getDirection().getHead().getCoordX().get()*_height + _axisRay.getPOO().getCoordX().get() + _radius;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
             return this._axisRay.getDirection().getHead().getCoordY().get()*_height + _axisRay.getPOO().getCoordY().get()  + _radius;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
             return this._axisRay.getDirection().getHead().getCoordZ().get()*_height + _axisRay.getPOO().getCoordZ().get() + _radius;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
             return this._axisRay.getDirection().getHead().getCoordX().get()*-_height + _axisRay.getPOO().getCoordX().get()  - _radius;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
             return this._axisRay.getDirection().getHead().getCoordY().get()*-_height + _axisRay.getPOO().getCoordY().get()  - _radius;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
             return this._axisRay.getDirection().getHead().getCoordZ().get()*-_height + _axisRay.getPOO().getCoordZ().get()   - _radius;

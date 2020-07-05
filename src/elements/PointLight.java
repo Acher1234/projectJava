@@ -64,6 +64,11 @@ public class PointLight extends Light implements LightSource
         this._kQ = _kQ;
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public Color getIntensity(Point3D p) {
         double distance = p.Distance(_Position);
@@ -71,16 +76,31 @@ public class PointLight extends Light implements LightSource
         return _intensity.scale(1/toDivide);
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public Vector getL(Point3D p) {
         return p.subtract(_Position).normalized();
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public List<Vector> getmultipleL(Point3D p) {
         List<Vector> ToReturn = new ArrayList<Vector>();

@@ -56,11 +56,21 @@ public class AreaRayonLight extends RayonLight
         sphere = new Sphere(RayonSphere,_Position);
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public Vector getL(Point3D p) {
         return _direction.normalized();
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public Color getIntensity(Point3D p) {
         double t = _direction.dotProduct(p.subtract(_Position));
@@ -86,6 +96,11 @@ public class AreaRayonLight extends RayonLight
         return new Color(0,0,0);
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public List<Vector> getmultipleL(Point3D p) {
         Random r = new Random();
@@ -100,6 +115,11 @@ public class AreaRayonLight extends RayonLight
 
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();

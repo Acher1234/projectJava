@@ -53,12 +53,21 @@ public class RayonLight extends SpotLight
         this.RayonLight = RayonLight;
     }
 
-
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public Vector getL(Point3D p) {
         return _direction.normalized();
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public Color getIntensity(Point3D p) {
         double t = _direction.dotProduct(p.subtract(_Position));
@@ -84,6 +93,11 @@ public class RayonLight extends SpotLight
         return new Color(0,0,0);
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public List<Vector> getmultipleL(Point3D p) {
         List<Vector> ToReturn = new ArrayList<Vector>();
@@ -92,6 +106,11 @@ public class RayonLight extends SpotLight
 
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();

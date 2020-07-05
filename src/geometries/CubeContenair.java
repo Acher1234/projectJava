@@ -24,11 +24,12 @@ public class CubeContenair extends Geometry implements Contenair
      * Instantiates a new Cube contenair.
      *
      * @param BasedCube the based cube
+     *     //need to be P1 P2
+     *     //           P3 P4
+     *     //           P5 P6
+     *     //           P7 P8
      */
-//need to be P1 P2
-    //           P3 P4
-    //           P5 P6
-    //           P7 P8
+
     public CubeContenair(Point3D... BasedCube)
     {
         contenair = new CubeBox(new Color(0,0,0),new Material(0,0,0,0,0),BasedCube);
@@ -38,15 +39,19 @@ public class CubeContenair extends Geometry implements Contenair
     /**
      * Instantiates a new Cube contenair.
      *
-     * @param BasedCube the based cube
+     * @param BasedCube the based cube need to bee in max x,y,z and after min x,y,z
      */
-//need to bee in max x,y,z and after min x,y,z
+
     public CubeContenair(double... BasedCube)
     {
         contenair = new CubeBox(new Color(0,0,0),new Material(0,0,0,0,0),BasedCube);
         this.geometries = new ArrayList<Geometry>();
     }
 
+    /**
+     *
+     * @param geometries the geometries
+     */
     @Override
     public void setGeometry(Geometry... geometries)
     {
@@ -56,47 +61,86 @@ public class CubeContenair extends Geometry implements Contenair
         }
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp) {
         return null;
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public boolean isInInside(Point3D temp)
     {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return this.contenair.maxX;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return this.contenair.maxY;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return this.contenair.maxZ;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return this.contenair.minX;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return this.contenair.minY;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return this.contenair.minZ;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray)
     {
@@ -117,6 +161,12 @@ public class CubeContenair extends Geometry implements Contenair
         return ReturnList;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max)
     {
@@ -140,6 +190,11 @@ public class CubeContenair extends Geometry implements Contenair
         return listReturn;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @return
+     */
     @Override
     public boolean Checkifistouched(Ray ray)
     {

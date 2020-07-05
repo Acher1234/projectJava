@@ -62,11 +62,21 @@ public class tubeAreaLight extends  PointLight
         cylinderDown = new Cylinder(rayon,new Ray(cylRay.getDirection().scale(-1),cylRay.getPOO()),height/2);
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public Vector getL(Point3D p) {
         return super.getL(p);
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     public List<Vector> getmultipleL(Point3D p)
     {
         List<Vector> ReturnList = new ArrayList<Vector>();
@@ -82,11 +92,21 @@ public class tubeAreaLight extends  PointLight
         return ReturnList;
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public Color getIntensity(Point3D p) {
         return super.getIntensity(p);
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return super.getDistance(p);

@@ -72,37 +72,66 @@ public class Plane extends Geometry implements FlatGeometry
         this._emmission = emission;
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public boolean isInInside(Point3D temp) {
         double a = this.d = _p.getCoordX().get() * this._normal.getHead().getCoordX().get() + _p.getCoordY().get() * this._normal.getHead().getCoordY().get() + _p.getCoordZ().get() * this._normal.getHead().getCoordZ().get();
         return a == d ? true:false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return 0;
@@ -266,6 +295,12 @@ public class Plane extends Geometry implements FlatGeometry
         return List;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
         boolean flag = false;

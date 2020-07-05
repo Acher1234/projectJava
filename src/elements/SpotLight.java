@@ -48,11 +48,22 @@ public class SpotLight extends PointLight
         super(_intensity, _Position, _kC, _kL, _kQ,softShadow);
         this._direction = _direction.normalized();
     }
+
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public Vector getL(Point3D p) {
         return _direction.normalized();
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public List<Vector> getmultipleL(Point3D p) {
         List<Vector> ToReturn = new ArrayList<Vector>();
@@ -61,6 +72,11 @@ public class SpotLight extends PointLight
 
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public Color getIntensity(Point3D p) {
         double distance = p.Distance(_Position);
@@ -73,6 +89,11 @@ public class SpotLight extends PointLight
         return new Color(0,0,0);
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();

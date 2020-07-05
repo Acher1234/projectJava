@@ -22,7 +22,7 @@ public final class Main3 {
      */
     public static void main(String[] args)
     {
-        boolean SoftShadow=false,precision=false;
+        boolean SoftShadow=true,precision=true;
         Scene scene = new Scene("Scene final");
         scene.setCamera(new Camera(new Point3D(500, 1200, 100), new Vector(0, -1, 0), new Vector(0, 0, 1),precision));
         scene.setDistance(900);
@@ -45,7 +45,7 @@ public final class Main3 {
                 new Sphere(new Color(100,100,100),new Material(0,0,30,0,0),20,new Point3D(120,200,10)),
                 new Sphere(new Color(100,100,100),new Material(0,0,30,0,0),20,new Point3D(100,100,110)),
                 new Cylinder(new Color(100,100,100),new Material(0,0,30,0,0),20,new Ray(new Point3D(100,100,60),new Vector(0,0,1)),30),
-                new Cylinder(new Color(100,100,100),new Material(0,0,30,0,0),5,new Ray(new Point3D(140,100,70),new Vector(0.1,0.7,-0.4)),30),
+                new Cylinder(new Color(100,100,100),new Material(0,0,30,0,0),5,new Ray(new Point3D(120,100,70),new Vector(-0.4,0.1,0.4)),30),
                 new Cylinder(new Color(100,100,100),new Material(0,0,30,0,0),5,new Ray(new Point3D(60,100,70),new Vector(-0.2,0,-0.4)),30),
                 new Cylinder(new Color(100,100,100),new Material(0,0,30,0,0),5,new Ray(new Point3D(110,100,20),new Vector(0,0,1)),30),
                 new Cylinder(new Color(100,100,100),new Material(0,0,30,0,0),5,new Ray(new Point3D(90,100,20),new Vector(0,0.5,1)),30),

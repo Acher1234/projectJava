@@ -132,6 +132,11 @@ public class Triangle extends Polygon implements FlatGeometry
             return null;
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public boolean isInInside(Point3D temp) {
         if(!_plane.isInInside(temp))
@@ -178,6 +183,12 @@ public class Triangle extends Polygon implements FlatGeometry
         return false;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray,double max) {
         boolean flag = false;
@@ -205,31 +216,55 @@ public class Triangle extends Polygon implements FlatGeometry
         return flag ? tempReturn : null;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return super.getMaxX();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return super.getMaxY();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return super.getMaxZ();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return super.getMinX();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return super.getMinY();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return super.getMinZ();

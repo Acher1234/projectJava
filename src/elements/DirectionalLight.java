@@ -42,6 +42,11 @@ public class DirectionalLight extends Light implements LightSource  {
         _direction = direction;
     }
 
+    /**
+     *
+     * @param p the p
+     * @return
+     */
     @Override
     public List<Vector> getmultipleL(Point3D p) {
         List<Vector> ToReturn = new ArrayList<Vector>();

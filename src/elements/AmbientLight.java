@@ -25,7 +25,10 @@ public class AmbientLight extends Light {
         k = kIntensity;
     }
 
-
+    /**
+     *
+     * @return
+     */
     @Override
     public Color get_intensity() {
         return _intensity;

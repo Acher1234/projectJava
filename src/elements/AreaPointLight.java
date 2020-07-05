@@ -52,13 +52,21 @@ public class AreaPointLight extends PointLight
         sphere = new Sphere(new Color(_intensity),new Material(0,0,0,0,0),rayon,_Position);
     }
 
-
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public Vector getL(Point3D p) {
         return super.getL(p);
     }
 
-
+    /**
+     *
+     * @param p
+     * @return
+     */
     public List<Vector> getmultipleL(Point3D p)
     {
         List<Vector> ReturnList = new ArrayList<Vector>();
@@ -72,11 +80,21 @@ public class AreaPointLight extends PointLight
         return ReturnList;
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public Color getIntensity(Point3D p) {
         return super.getIntensity(p);
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return super.getDistance(p);

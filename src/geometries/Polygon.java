@@ -127,50 +127,96 @@ public class Polygon extends Geometry {
 
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public boolean isInInside(Point3D temp) {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return Xmax;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return Ymax;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return Zmax;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return Xmin;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return Ymin;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return Zmin;
     }
 
+    /**
+     *
+     * @param point
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D point) {
         return _plane.getNormal();
     }
+
+    /**
+     *
+     * @param ray the ray
+     * @return
+     */
     @Override
     public List<Intersectable.GeoPoint> findIntersection(Ray ray) {
         return null;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
         boolean flag = false;

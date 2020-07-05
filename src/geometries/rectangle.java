@@ -44,6 +44,11 @@ public class rectangle extends Polygon implements FlatGeometry
         return super.getNormal(temp).normalized();
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public boolean isInInside(Point3D temp)
     {
@@ -90,6 +95,12 @@ public class rectangle extends Polygon implements FlatGeometry
         return null;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max)
     {
@@ -113,31 +124,55 @@ public class rectangle extends Polygon implements FlatGeometry
         return listReturn;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return super.getMaxX();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return super.getMaxY();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return super.getMaxZ();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return super.getMinX();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return super.getMinY();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return super.getMinZ();

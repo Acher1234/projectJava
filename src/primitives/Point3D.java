@@ -147,6 +147,11 @@ public class Point3D
        }
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         Point3D other = (Point3D)obj;

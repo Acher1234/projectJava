@@ -68,31 +68,55 @@ public class Sphere extends RadialGeometry
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return this._center.Add(new Vector(1,0,0).scale(this._radius)).getCoordX().get();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return this._center.Add(new Vector(0,1,0).scale(this._radius)).getCoordY().get();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return this._center.Add(new Vector(0,0,1).scale(this._radius)).getCoordZ().get();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return this._center.Add(new Vector(-1,0,0).scale(this._radius)).getCoordX().get();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return this._center.Add(new Vector(0,-1,0).scale(this._radius)).getCoordY().get();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return this._center.Add(new Vector(0,0,-1).scale(this._radius)).getCoordZ().get();
@@ -111,6 +135,12 @@ public class Sphere extends RadialGeometry
     }
 
     //************************METHODE****************
+
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
@@ -163,6 +193,12 @@ public class Sphere extends RadialGeometry
        }
    }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
         boolean flag = false;

@@ -75,12 +75,22 @@ public class Ray
      * @param origin set the origin point
      */
 //*******************CONSTRUCTOR*******************************
+
+    /**
+     *
+     * @param direct
+     * @param origin
+     */
     public Ray(Vector direct,Point3D origin )
     {
         _direction = new Vector(direct).normalized();
         this._POO = new Point3D(origin);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Point Origins:" + _POO.toString() + " Vector direction: " + _direction.toString();

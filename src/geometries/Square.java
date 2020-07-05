@@ -32,51 +32,96 @@ public class Square extends rectangle
         }
     }
 
+    /**
+     *
+     * @param temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp) {
         return super.getNormal(temp);
     }
 
+    /**
+     *
+     * @param ray
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray) {
         return super.findIntersection(ray);
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
        return super.findIntersection(ray,max);
     }
 
+    /**
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public boolean isInInside(Point3D temp) {
         return super.isInInside(temp);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxX() {
         return super.getMaxX();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxY() {
         return super.getMaxY();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMaxZ() {
         return super.getMaxZ();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return super.getMinX();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return super.getMinY();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return super.getMinZ();

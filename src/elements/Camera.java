@@ -40,7 +40,7 @@ public class Camera {
     /**
      * The Number points super sampling.
      */
-    static int numberPointsSuperSampling = 50;
+    static int numberPointsSuperSampling = 8;
     //--------------Methode--------
 
     /**

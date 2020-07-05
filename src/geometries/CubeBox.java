@@ -183,21 +183,38 @@ minZ;
         return maxZ;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinX() {
         return minX;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinY() {
         return minY;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double getMinZ() {
         return minZ;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray)
     {
@@ -215,6 +232,12 @@ minZ;
         return ReturnResult;
     }
 
+    /**
+     *
+     * @param ray the ray
+     * @param max the max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max)
     {
