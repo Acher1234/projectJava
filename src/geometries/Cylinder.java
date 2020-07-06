@@ -176,11 +176,8 @@ public class Cylinder extends Tube
         setCandidate = P1.findIntersection(ray);
         if(setCandidate != null)
         {
-            try
-            {
-                testNull =   setCandidate.get(0).point.subtract(P2Point);
-            }
-            catch (Exception e)
+            testNull =   setCandidate.get(0).point.subtract(P2Point);
+            if(testNull.getHead() == null)
             {
                 List.add(new Intersectable.GeoPoint(this,_axisRay.getPOO()));
                 testNull = null;
@@ -193,16 +190,12 @@ public class Cylinder extends Tube
         setCandidate = P2.findIntersection(ray);
         if(setCandidate != null)
         {
-            try
-            {
-              testNull =   setCandidate.get(0).point.subtract(P2Point);
-            }
-            catch (Exception e)
+            testNull =   setCandidate.get(0).point.subtract(P2Point);
+            if(testNull.getHead() == null)
             {
                 List.add(new GeoPoint(this,P2Point));
                 testNull =null;
             }
-
             if(testNull != null && testNull.length() < _radius)
             {
                 List.add(setCandidate.get(0));

@@ -308,14 +308,6 @@ public class Render
         }
     }
 
-    /**
-     *
-     * @param lightVectorArray
-     * @param normal
-     * @param gp
-     * @param light
-     * @return
-     */
     private double transparency(List<Vector> lightVectorArray, Vector normal, Intersectable.GeoPoint gp,LightSource light)
     {
         int numberofPoint = lightVectorArray.size();
@@ -379,9 +371,8 @@ public class Render
     public  Ray constructReflectedRay(Vector Normal,Point3D point,Ray inRay)
     {
         Vector temp;
-        try {
-                temp = Normal.scale((2 * Normal.dotProduct(inRay.getDirection())));
-        }catch (IllegalArgumentException e)
+        temp = Normal.scale((2 * Normal.dotProduct(inRay.getDirection())));
+        if(temp.getHead() == null)
         {
              temp = inRay.getDirection().scale(-1);
         }
@@ -396,4 +387,6 @@ public class Render
     {
         _imagewriter.writeToImage();
     }
+
+
 }

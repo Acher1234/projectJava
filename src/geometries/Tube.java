@@ -114,18 +114,13 @@ public class Tube extends RadialGeometry {
             return null;
         }
         vVAVA =_axisRay.getDirection().scale(VVA);
-        try {
-            minus = ray.getDirection().subtract(vVAVA);
-        }
-        catch (Exception e)
+        minus = ray.getDirection().subtract(vVAVA);
+        if(minus.getHead() == null)
         {
             return null;
         }
-        try
-        {
-            deltaP = ray.getPOO().subtract(_axisRay.getPOO());
-        }
-        catch (Exception e)
+        deltaP = ray.getPOO().subtract(_axisRay.getPOO());
+        if(deltaP.getHead() == null)
         {
             if(VVA == 0)
             {
@@ -138,21 +133,19 @@ public class Tube extends RadialGeometry {
         double a = minus.lengthSquared();
         double PVAaxys = deltaP.dotProduct(_axisRay.getDirection());
         Vector dpminus = null,dpVAVA = null;
-        try
-        {
-            dpVAVA = _axisRay.getDirection().scale(PVAaxys);
-
-        }catch (IllegalArgumentException e)
+        dpVAVA = _axisRay.getDirection().scale(PVAaxys);
+        if(dpVAVA.getHead() == null)
         {
             dpminus = deltaP;
         }
-        try
+        else
         {
             dpminus = deltaP.subtract(dpVAVA);
-        }
-        catch (Exception e)
-        {
+            if(dpminus.getHead() == null)
+            {
                 resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(Math.sqrt(_radius*_radius/a))));
+                return resultPoint;
+            }
         }
         double b = 2 * minus.dotProduct( dpminus );
         double c = dpminus.lengthSquared()- _radius*_radius;
@@ -162,7 +155,7 @@ public class Tube extends RadialGeometry {
             return null;
         }
         resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(0))));
-        if(result.size() >1)
+        if(result.size() > 1)
             resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(1))));
         return resultPoint;
     }

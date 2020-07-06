@@ -138,13 +138,12 @@ public class Point3D
      */
     public double Distance(Point3D temp)
     {
-       try
-       {
-           return temp.subtract(this).length();
-       }catch (IllegalArgumentException e)
-       {
-           return 0;
-       }
+        Vector tempVector =  temp.subtract(this);
+        if(tempVector.getHead() == null)
+        {
+            return 0;
+        }
+        return tempVector.length();
     }
 
     /**

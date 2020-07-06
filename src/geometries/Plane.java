@@ -313,11 +313,14 @@ public class Plane extends Geometry implements FlatGeometry
         for (Intersectable.GeoPoint tempPoint:tempList)
         {
             double t;
-            try {
-                t = tempPoint.point.subtract(ray.getPOO()).length();
-            }catch (Exception E)
+            Vector temp = tempPoint.point.subtract(ray.getPOO());
+            if(temp.getHead() == null)
             {
                 t = 0;
+            }
+            else
+            {
+                t = temp.length();
             }
             if(alignZero(t-max)<=0 && (t!=0))
             {

@@ -92,15 +92,12 @@ public class Vector
         double tempX = (this.head.coordY.get() * temp.head.coordZ.get()) - (this.head.coordZ.get()*temp.head.coordY.get());
         double tempY = (this.head.coordZ.get() * temp.head.coordX.get()) - (this.head.coordX.get()*temp.head.coordZ.get());
         double tempZ = (this.head.coordX.get() * temp.head.coordY.get()) - (this.head.coordY.get()*temp.head.coordX.get());
-        Vector Return = null;
-        try
-        {
-            return new Vector(tempX,tempY,tempZ);
-        }
-        catch (Exception e)
+        Vector Return = new Vector(tempX,tempY,tempZ);
+        if(Return.getHead() == null)
         {
             return null;
         }
+        return Return;
     }
 
     /**
@@ -198,7 +195,7 @@ public class Vector
     protected void ZeroTest()
     {
         if ((head.coordX.get() == head.coordY.get()) && (head.coordY.get() == head.coordZ.get()) && (isZero(head.coordZ.get())))
-            throw new IllegalArgumentException("Illegal Vector 0" + head.toString());
+            head = null;
 
     }
 

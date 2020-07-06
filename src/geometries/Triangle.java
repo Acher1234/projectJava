@@ -201,9 +201,12 @@ public class Triangle extends Polygon implements FlatGeometry
         for (Intersectable.GeoPoint tempPoint:tempList)
         {
             double t;
-            try {
-                t = tempPoint.point.subtract(ray.getPOO()).length();
-            }catch (Exception E)
+            Vector temp =tempPoint.point.subtract(ray.getPOO());
+            if(temp.getHead() == null)
+            {
+                t = 0;
+            }
+            else
             {
                 t = 0;
             }

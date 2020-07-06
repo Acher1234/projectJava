@@ -159,9 +159,9 @@ public class Sphere extends RadialGeometry
     public List<Intersectable.GeoPoint> findIntersection(Ray ray) {
        List<Intersectable.GeoPoint> List = new ArrayList<Intersectable.GeoPoint>();
        Vector U = null;
-       try {
-           U = _center.subtract(ray.getPOO());
-       } catch (Exception e) {
+       U = _center.subtract(ray.getPOO());
+       if(U.getHead() == null)
+       {
            List.add(new Intersectable.GeoPoint(this,ray.getPoint(_radius)));
            return List;
        }

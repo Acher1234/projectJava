@@ -48,7 +48,7 @@ public class Scene {
     /**
      * The D box.
      */
-    static double DBox = 20;
+    static double DBox = 2;
 
     /**
      * Instantiates a new addLights.

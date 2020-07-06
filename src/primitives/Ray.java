@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.alignZero;
+
 /**
  * The type Ray.
  */
@@ -39,14 +41,11 @@ public class Ray
      */
     public  Point3D getPoint(double t)
     {
-        try
-        {
-        return  _POO.Add(_direction.scale(t));
-        }
-        catch (IllegalArgumentException e)
+        if(alignZero(t) == 0)
         {
             return _POO;
         }
+        return  _POO.Add(_direction.scale(t));
     }
 
     /**
