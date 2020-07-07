@@ -49,6 +49,10 @@ public class Scene {
      * The D box.
      */
     static double DBox = 2;
+    /**
+     *
+     */
+    static int SizeByBox = 5;
 
     /**
      * Instantiates a new addLights.
@@ -102,6 +106,53 @@ public class Scene {
     }
 
     /**
+     * Add geometries withhis contenair version 2 each object has it own contenair.
+     *
+     * @param geometries the geometries
+     */
+
+    public void addGeometriesWithhisContenairVersion2(Geometry... geometries)
+    {
+        Contenair tempContenair;
+        boolean madeInContenair = false;
+        for (Geometry temp :geometries)
+        {
+            madeInContenair = false;
+            tempContenair = new CubeContenair(temp.getMaxX() + DBox,temp.getMaxY()+ DBox,temp.getMaxZ()+ DBox,temp.getMinX() -DBox,temp.getMinY()-DBox,temp.getMinZ()-DBox);
+            tempContenair.setGeometry(temp);
+            for (int i = 0; i < _geometries.size(); i++)
+            {
+                if(_geometries.get(i).canMergeBox((Geometry) tempContenair) && ((CubeContenair)_geometries.get(i)).getSizeGeometry() < SizeByBox)
+                {
+                    Geometry Toremove = _geometries.remove(i);
+                    Contenair newContenair = createMergingBox((Geometry) tempContenair,Toremove);
+                    if(((Contenair)Toremove).getSizeGeometry() > 1)
+                    {
+                        for (Geometry tempRemoveContenair:((CubeContenair)Toremove).geometries)
+                        {
+                            newContenair.setGeometry(tempRemoveContenair);
+                        }
+                        newContenair.setGeometry((Geometry) tempContenair);
+                    }
+                    else
+                    {
+                        newContenair.setGeometry((Geometry) tempContenair,Toremove);
+                    }
+                    _geometries.add((Geometry) newContenair);
+                    madeInContenair = true;
+                    break;
+                }
+            }
+            if(!madeInContenair)
+            {
+                _geometries.add((Geometry) tempContenair);
+            }
+        }
+    }
+
+
+
+    /**
      * Add geometries withhis contenair.
      *
      * @param geometries the geometries
@@ -115,7 +166,7 @@ public class Scene {
             boolean madeInContenair = false;
             for (int i = 0; i < _geometries.size(); i++)
             {
-               if(_geometries.get(i).canMergeBox(temp) && ((CubeContenair)_geometries.get(i)).geometries.size()<3)
+               if(_geometries.get(i).canMergeBox(temp) && ((CubeContenair)_geometries.get(i)).geometries.size()<SizeByBox)
                {
                    Geometry Toremove= _geometries.remove(i);
                    Contenair newContenair = createMergingBox(Toremove,temp);

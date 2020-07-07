@@ -30,7 +30,7 @@ public class Render
      * The Imagewriter.
      */
     ImageWriter _imagewriter;
-    private static final int MAX_CALC_COLOR_LEVEL = 5;
+    private static final int MAX_CALC_COLOR_LEVEL = 7;
     private static final double MIN_CALC_COLOR_K = 0.0000001;
 
 
@@ -148,7 +148,7 @@ public class Render
     }
 
     /**
-     *
+     *get the specular and diffuse light
      * @param p
      * @param k
      * @param totalLight
@@ -164,7 +164,7 @@ public class Render
         primitives.Color tempColor;
         Vector normalToPoint;
         double dotProductNormalAndL;
-        Vector symetrieOfL;
+        Vector symetrieOfL = null;
         Vector PointToCamera;
         double dotProductVAndR;
         for (LightSource temp:tempLights)
@@ -189,16 +189,30 @@ public class Render
                         Diffuse = new primitives.Color(0,0,0);
                     }
                     //specular light
-                    try {
-                        symetrieOfL = (temp.getL(p.point)).subtract(normalToPoint.scale(2 * normalToPoint.dotProduct(temp.getL(p.point))));//calcul specular light
+                    Vector temp2 =normalToPoint.scale(2 * normalToPoint.dotProduct(temp.getL(p.point)));
+                    if(temp2.getHead() != null)
+                    {
+                        symetrieOfL = (temp.getL(p.point)).subtract(temp2);
+                        if (symetrieOfL.getHead() == null) 
+                        {
+                            Specular = new primitives.Color(0, 0, 0);
+                        }
+                    }
+                    else
+                    {
+                        Specular = new primitives.Color(0, 0, 0);
+                    }
+                    if(temp2.getHead() != null && symetrieOfL.getHead() != null)
+                    {
                         PointToCamera = p.point.subtract(_scene.get_camera().getOrigins()).normalized();
                         dotProductVAndR = abs(symetrieOfL.dotProduct(PointToCamera));
                         Specular = Specular.add(tempColor.scale(KS).scale(pow(dotProductVAndR, nShininess)));
-                        totalLight = totalLight.add(Diffuse).add(Specular);
-                    }catch (IllegalArgumentException e)
-                    {
-                        Specular = new primitives.Color(0,0,0);
                     }
+                    else
+                    {
+                        Specular = new primitives.Color(0, 0, 0);
+                    }
+                    totalLight = totalLight.add(Diffuse).add(Specular);
                 }
             }
         }

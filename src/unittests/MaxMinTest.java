@@ -65,11 +65,11 @@ public class MaxMinTest
     public void testcylinder()
     {
         Scene scene = new Scene("Scene final");
-        scene.setCamera(new Camera(new Point3D(500, 1200, 100), new Vector(0, -1, 0), new Vector(0, 0, 1),false));
+        scene.setCamera(new Camera(new Point3D(500, 0, 1200), new Vector(0, 0, -1), new Vector(0, 1, 0),false));
         scene.setDistance(900);
         scene.setBackground(new Color(222,184,135));
         scene.setAmbientLight(new AmbientLight(Color.BLACK, 0));
-        Cylinder Sphere1 = new Cylinder(new Color(255,0,0),new Material(0,0,0,0,0),20,new Ray(new Point3D(500,0,0),new Vector(0,0,1)),200);
+        Cylinder Sphere1 = new Cylinder(new Color(255,0,0),new Material(0,0,0,0,0),20,new Ray(new Point3D(500,0,0),new Vector(0.3,0.5,0.3)),200);
         scene.addGeometries(Sphere1,new CubeBox(new Color(255,255,255),new Material(0,0,0,0,0),Sphere1.getMaxX()+10,Sphere1.getMaxY()+10,Sphere1.getMaxZ()+10,Sphere1.getMinX()-10,Sphere1.getMinY()-10,Sphere1.getMinZ()-10));
 
 

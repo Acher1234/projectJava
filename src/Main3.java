@@ -22,7 +22,7 @@ public final class Main3 {
      */
     public static void main(String[] args)
     {
-        boolean SoftShadow=false,precision=false;
+        boolean SoftShadow=true,precision=true;
         Scene scene = new Scene("Scene final");
         scene.setCamera(new Camera(new Point3D(500, 1200, 100), new Vector(0, -1, 0), new Vector(0, 0, 1),precision));
         scene.setDistance(900);
@@ -30,7 +30,7 @@ public final class Main3 {
         scene.setAmbientLight(new AmbientLight(Color.BLACK, 0));
 
 
-        scene.addGeometriesWithhisContenair(new rectangle(new Color(40,10,0), new Material(1, 0.5, 50),
+        scene.addGeometriesWithhisContenairVersion2(new rectangle(new Color(40,10,0), new Material(1, 0.5, 50),
                 new Point3D(-100, 0, 10), new Point3D(1100, 0, 10), new Point3D(1100, 300, -22),new Point3D(-100, 300, -22)),
                 new rectangle(new Color(255,0,0), new Material(0, 0, 30,0,0),
                         new Point3D(1300, 3, 600), new Point3D(1300, 3, 480), new Point3D(-500, 3, 480),new Point3D(-500, 3, 600)),

@@ -33,4 +33,10 @@ public interface Contenair extends Intersectable
      * @param geometries the geometries
      */
     public void setGeometry(Geometry... geometries);
+
+    /**
+     *
+     * @return
+     */
+    public int getSizeGeometry();
 }

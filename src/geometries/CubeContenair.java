@@ -15,9 +15,9 @@ public class CubeContenair extends Geometry implements Contenair
      */
     public List<Geometry> geometries;
     /**
-     * The Contenair.
+     * The Contenair coordinate.
      */
-    public CubeBox contenair;
+    double maxX,maxY,maxZ,minX,minY,minZ;
 
 
     /**
@@ -32,8 +32,24 @@ public class CubeContenair extends Geometry implements Contenair
 
     public CubeContenair(Point3D... BasedCube)
     {
-        contenair = new CubeBox(new Color(0,0,0),new Material(0,0,0,0,0),BasedCube);
         this.geometries = new ArrayList<Geometry>();
+        List<Point3D> points;
+        points = List.of(BasedCube);
+        maxX = points.get(0).getCoordX().get();
+        maxY = points.get(0).getCoordY().get();
+        maxZ = points.get(0).getCoordZ().get();
+        minX = points.get(0).getCoordX().get();
+        minY = points.get(0).getCoordY().get();
+        minZ = points.get(0).getCoordZ().get();
+        for (int i = 1; i < points.size(); i++)
+        {
+            maxX = points.get(i).getCoordX().get() > maxX ? points.get(i).getCoordX().get() : maxX;
+            maxY = points.get(i).getCoordY().get() > maxY ? points.get(i).getCoordY().get() : maxY;
+            maxZ = points.get(i).getCoordZ().get() > maxZ ? points.get(i).getCoordZ().get() : maxZ;
+            minX = points.get(i).getCoordX().get() < minX ? points.get(i).getCoordX().get() : minX;
+            minY = points.get(i).getCoordY().get() < minY ? points.get(i).getCoordY().get() : minY;
+            minZ = points.get(i).getCoordZ().get() < minZ ? points.get(i).getCoordZ().get() : minZ;
+        }
     }
 
     /**
@@ -44,7 +60,12 @@ public class CubeContenair extends Geometry implements Contenair
 
     public CubeContenair(double... BasedCube)
     {
-        contenair = new CubeBox(new Color(0,0,0),new Material(0,0,0,0,0),BasedCube);
+        maxX = BasedCube[0];
+        maxY = BasedCube[1];
+        maxZ = BasedCube[2];
+        minX = BasedCube[3];
+        minY = BasedCube[4];
+        minZ = BasedCube[5];
         this.geometries = new ArrayList<Geometry>();
     }
 
@@ -59,6 +80,14 @@ public class CubeContenair extends Geometry implements Contenair
         {
             this.geometries.add(g);
         }
+    }
+
+    /**
+     *
+     */
+    @Override
+    public int getSizeGeometry() {
+        return geometries.size();
     }
 
     /**
@@ -88,7 +117,7 @@ public class CubeContenair extends Geometry implements Contenair
      */
     @Override
     public double getMaxX() {
-        return this.contenair.maxX;
+        return this.maxX;
     }
 
     /**
@@ -97,7 +126,7 @@ public class CubeContenair extends Geometry implements Contenair
      */
     @Override
     public double getMaxY() {
-        return this.contenair.maxY;
+        return this.maxY;
     }
 
     /**
@@ -106,7 +135,7 @@ public class CubeContenair extends Geometry implements Contenair
      */
     @Override
     public double getMaxZ() {
-        return this.contenair.maxZ;
+        return this.maxZ;
     }
 
     /**
@@ -115,7 +144,7 @@ public class CubeContenair extends Geometry implements Contenair
      */
     @Override
     public double getMinX() {
-        return this.contenair.minX;
+        return this.minX;
     }
 
     /**
@@ -124,7 +153,7 @@ public class CubeContenair extends Geometry implements Contenair
      */
     @Override
     public double getMinY() {
-        return this.contenair.minY;
+        return this.minY;
     }
 
     /**
@@ -133,7 +162,7 @@ public class CubeContenair extends Geometry implements Contenair
      */
     @Override
     public double getMinZ() {
-        return this.contenair.minZ;
+        return this.minZ;
     }
 
     /**
@@ -144,11 +173,11 @@ public class CubeContenair extends Geometry implements Contenair
     @Override
     public List<GeoPoint> findIntersection(Ray ray)
     {
-        List<GeoPoint> ReturnList = new ArrayList<GeoPoint>();
         if(!Checkifistouched(ray))
         {
             return null;
         }
+        List<GeoPoint> ReturnList = new ArrayList<GeoPoint>();
         for (Geometry temp :geometries)
         {
             if(temp.findIntersection(ray) != null)
@@ -170,6 +199,10 @@ public class CubeContenair extends Geometry implements Contenair
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max)
     {
+        if(!Checkifistouched(ray))
+        {
+            return null;
+        }
         List<GeoPoint> listpossible = this.findIntersection(ray);
         List<GeoPoint> listReturn = new ArrayList<GeoPoint>();
         if(listpossible == null)
@@ -191,7 +224,7 @@ public class CubeContenair extends Geometry implements Contenair
     }
 
     /**
-     *
+     *check if a ray touch the cube
      * @param ray the ray
      * @return
      */
@@ -200,27 +233,15 @@ public class CubeContenair extends Geometry implements Contenair
     {
         Point3D temp= ray.getPOO();
         Vector VectorOfRay = ray.getDirection();
-        if(temp.getCoordX().get() > this.contenair.maxX && VectorOfRay.getHead().getCoordX().get() >= 0)
+        if((temp.getCoordX().get() > this.maxX && VectorOfRay.getHead().getCoordX().get() >= 0) || (temp.getCoordX().get() < this.minX && VectorOfRay.getHead().getCoordX().get() <= 0))
         {
             return false;
         }
-        if(temp.getCoordX().get() < this.contenair.minX && VectorOfRay.getHead().getCoordX().get() <= 0)
+        if((temp.getCoordY().get() > this.maxY && VectorOfRay.getHead().getCoordY().get() >= 0) || (temp.getCoordY().get() < this.minY && VectorOfRay.getHead().getCoordY().get() <= 0))
         {
             return false;
         }
-        if(temp.getCoordY().get() > this.contenair.maxY && VectorOfRay.getHead().getCoordY().get() >= 0)
-        {
-            return false;
-        }
-        if(temp.getCoordY().get() < this.contenair.minY && VectorOfRay.getHead().getCoordY().get() <= 0)
-        {
-            return false;
-        }
-        if(temp.getCoordZ().get() > this.contenair.maxZ && VectorOfRay.getHead().getCoordZ().get() >= 0)
-        {
-            return false;
-        }
-        if(temp.getCoordZ().get() < this.contenair.minZ && VectorOfRay.getHead().getCoordZ().get() <= 0)
+        if((temp.getCoordZ().get() > this.maxZ && VectorOfRay.getHead().getCoordZ().get() >= 0)||(temp.getCoordZ().get() < this.minZ && VectorOfRay.getHead().getCoordZ().get() <= 0))
         {
             return false;
         }

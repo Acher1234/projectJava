@@ -21,7 +21,7 @@ public class Light {
     /**
      * The Nombre point.
      */
-    static int nombrePoint = 8;
+    static int nombrePoint = 15;
 
     /**
      * Instantiates a new Light.

@@ -41,11 +41,12 @@ public class Ray
      */
     public  Point3D getPoint(double t)
     {
-        if(alignZero(t) == 0)
+        Vector temp = _direction.scale(t);
+        if(temp.getHead() == null)
         {
             return _POO;
         }
-        return  _POO.Add(_direction.scale(t));
+        return  _POO.Add(temp);
     }
 
     /**
