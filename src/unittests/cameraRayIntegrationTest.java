@@ -26,7 +26,7 @@ public class cameraRayIntegrationTest {
                 rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3));
             }
         }
-        //Sphere Test
+        //Sphere Test1
         Sphere sphereTest = new Sphere(1,new Point3D(0,0,3));
         for (Ray temp:rayTest)
         {
@@ -59,6 +59,7 @@ public class cameraRayIntegrationTest {
         }
         assertEquals(9,pointTest.size(),0);
         pointTest.clear();
+
         //sphere test5
         sphereTest = new Sphere(0.5,new Point3D(0,0,-1));
         for (Ray temp:rayTest)
@@ -75,6 +76,7 @@ public class cameraRayIntegrationTest {
         }
         assertEquals(0,pointTest.size(),0);
         pointTest.clear();
+
         //Sphere test2
         camera = new Camera(new Point3D(0,0,-0.5), new Vector(0, 0, 1), new Vector(0, -1, 0));
         rayTest.clear();
@@ -100,6 +102,7 @@ public class cameraRayIntegrationTest {
         }
         assertEquals(18,pointTest.size(),0);
         pointTest.clear();
+
         //sphere Test 3
         sphereTest = new Sphere(2,new Point3D(0,0,2));
         for (Ray temp:rayTest)
@@ -117,6 +120,10 @@ public class cameraRayIntegrationTest {
         assertEquals(10,pointTest.size(),0);
         pointTest.clear();
     }
+
+    /**
+     * tests for plane
+     */
     @Test
     public void TestplaneFunction()
     {
@@ -143,6 +150,7 @@ public class cameraRayIntegrationTest {
         }
         assertEquals(9,pointTest.size(),0);
         pointTest.clear();
+
         //test plane 2
         planetest = new Plane(new Point3D(0,0,7),new Vector(0,-1,-2));
         for (Ray temp: rayTest)
@@ -156,6 +164,7 @@ public class cameraRayIntegrationTest {
         }
         assertEquals(9,pointTest.size(),0);
         pointTest.clear();
+
         //test plane 3
         planetest = new Plane(new Point3D(0,0,7),new Vector(1,0,1));
         for (Ray temp: rayTest)
@@ -171,6 +180,10 @@ public class cameraRayIntegrationTest {
         pointTest.clear();
 
     }
+
+    /**
+     * tests for teh triangle
+     */
     @Test
     public void TriangleTest()
     {
@@ -185,6 +198,7 @@ public class cameraRayIntegrationTest {
                 rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3));
             }
         }
+
         //triangle test 1
         Triangle triangleTest = new Triangle(new Point3D(0,-1,2),new Point3D(1,1,2),new Point3D(-1,1,2));
         for (Ray temp: rayTest)
@@ -198,6 +212,7 @@ public class cameraRayIntegrationTest {
         }
         assertEquals(1,pointTest.size(),0);
         pointTest.clear();
+
         //triangle test 2
         triangleTest = new Triangle(new Point3D(0,-20,2),new Point3D(1,1,2),new Point3D(-1,1,2));
         for (Ray temp: rayTest)

@@ -62,6 +62,11 @@ public class Plane implements Geometry
     }
 
 
+    /**
+     * gets normal from a point
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
@@ -87,6 +92,11 @@ public class Plane implements Geometry
         return _p;
     }
 
+    /**
+     * finds intersections
+     * @param ray the ray
+     * @return
+     */
     @Override
     public List<Point3D> findIntersection(Ray ray)
     {

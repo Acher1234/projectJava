@@ -25,11 +25,22 @@ public class Triangle extends Polygon
         super(point1,point2,point3);
     }
 
+    /**
+     * gets normal
+     * @param temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
         return super.getNormal(temp).normalized();
     }
+
+    /**
+     * finds intersections
+     * @param ray the ray
+     * @return
+     */
     @Override
     public List<Point3D> findIntersection(Ray ray)
     {

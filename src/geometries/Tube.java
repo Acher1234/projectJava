@@ -42,7 +42,12 @@ public class Tube extends RadialGeometry {
         _axisRay = axisRay;
     }
 
-    //*************METHODE***************
+
+    /**
+     * gets normal
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
@@ -60,6 +65,11 @@ public class Tube extends RadialGeometry {
         return _axisRay;
     }
 
+    /**
+     * finds intersections
+     * @param ray the ray
+     * @return
+     */
     @Override
     public List<Point3D> findIntersection(Ray ray) {
         List<Point3D> resultPoint = new ArrayList<Point3D>();

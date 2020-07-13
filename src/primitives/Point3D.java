@@ -139,6 +139,11 @@ public class Point3D
         return Math.sqrt(temp.DistanceSquare());
     }
 
+    /**
+     * true if 2 point 3D are equals
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         Point3D other = (Point3D)obj;

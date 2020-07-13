@@ -168,8 +168,6 @@ public class Vector
         if(getHead().coordZ.get() != test.getHead().coordZ.get())
             return false;
         return true;
-
-
     }
 
 

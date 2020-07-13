@@ -2,11 +2,19 @@ package elements;
 
 import primitives.Color;
 
+/**
+ * class Ambiant light
+ */
 public class AmbientLight {
+    /**
+     * parameters
+     * the color intensity
+     * and the double k 
+     */
     Color _intensity;
     double k;
 
-    //----------------Mathode
+    //----------------Constructor
     public AmbientLight(Color baseColor,double kIntensity)
     {
         k = kIntensity;

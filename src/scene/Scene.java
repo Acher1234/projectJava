@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Scene {
+    /**
+     * parameters
+     */
     String _name;
     Color _backgroung;
     AmbientLight _ambientLight;
@@ -18,11 +21,19 @@ public class Scene {
     Camera _camera;
     double _distance;
 
+    /**
+     * constructor
+     * @param _name
+     */
     public Scene(String _name) {
         this._name = _name;
         this._geometries =new ArrayList<Geometry>();
-
     }
+
+    /**
+     * adds eometries to the scene
+     * @param geometries
+     */
     public void addGeometries(Intersectable... geometries)
     {
         for (Intersectable temp :geometries)

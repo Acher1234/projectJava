@@ -25,7 +25,21 @@ public class Polygon implements Geometry {
      * path. The polygon must be convex.
      *
      * @param vertices list of vertices according to their order by edge path
-     * @throws IllegalArgumentException in any case of illegal combination of                                  vertices:                                  <ul>                                  <li>Less than 3 vertices</li>                                  <li>Consequent vertices are in the same                                  point                                  <li>The vertices are not in the same                                  plane</li>                                  <li>The order of vertices is not according                                  to edge path</li>                                  <li>Three consequent vertices lay in the                                  same line (180&#176; angle between two                                  consequent edges)                                  <li>The polygon is concave (not convex></li>                                  </ul>
+     * @throws IllegalArgumentException in any case of illegal combination of
+     * vertices:
+     * <ul>
+     *     <li>Less than 3 vertices</li>
+     *     <li>Consequent vertices are in the same
+     *     point
+     *     <li>The vertices are not in the same
+     *     plane</li>
+     *     <li>The order of vertices is not according
+     *     to edge path</li>
+     *     <li>Three consequent vertices lay in the
+     *     same line (180&#176; angle between two
+     *     consequent edges)
+     *     <li>The polygon is concave (not convex></li>
+     * </ul>
      */
     public Polygon(Point3D... vertices){
         if (vertices.length < 3)
@@ -66,10 +80,21 @@ public class Polygon implements Geometry {
         }
     }
 
+    /**
+     * gets normal
+     * @param point
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D point) {
         return _plane.getNormal();
     }
+
+    /**
+     * finds intersections
+     * @param ray the ray
+     * @return
+     */
     @Override
     public List<Point3D> findIntersection(Ray ray) {
         return null;
