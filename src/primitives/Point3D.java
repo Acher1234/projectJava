@@ -57,8 +57,11 @@ public class Point3D
     }
     //************METHODES****************
 
-
-
+    /**
+     * function to commpare a point3D to an another
+     * @param other
+     * @return
+     */
     public int compareTo(Point3D other) {
         if(!coordX.equals(other.coordX))
             return 0;
@@ -103,6 +106,10 @@ public class Point3D
         return (NewX+NewY+NewZ);
     }
 
+    /**
+     * to string
+     * @return
+     */
     public String toString() // this function writes what are the coordinates of the point.
     {
         return String.format("(%.2f, %.2f, %.2f)", coordX.get(), coordY.get(), coordZ.get()); // format de cdavid.
@@ -119,12 +126,13 @@ public class Point3D
         return Math.sqrt(DistanceSquare(temp));
     }
 
+
+//-------------------------------GET/SET----------------
     /**
      * Gets coord x.
      *
      * @return the coord x
      */
-//-------------------------------GET/SET----------------
     public Coordinate getCoordX() {
         return coordX;
     }

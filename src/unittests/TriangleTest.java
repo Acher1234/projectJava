@@ -8,6 +8,10 @@ import primitives.*;
 
 public class TriangleTest {
 
+    /**
+     * Test for Get Normal.
+     *
+     */
     @Test
     public void getNormal() {
         new PolygonTests().testGetNormal();

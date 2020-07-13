@@ -8,6 +8,10 @@ import primitives.*;
 
 public class TubeTest {
 
+    /**
+     * Test for Get Normal.
+     *
+     */
     @Test
     public void getNormal()
     {

@@ -50,7 +50,11 @@ public class Plane implements Geometry
         this._normal = new Vector(other._normal);
     }
 
-
+    /**
+     * some functions override
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {

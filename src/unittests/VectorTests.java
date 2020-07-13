@@ -29,7 +29,7 @@ public class VectorTests {
     }
 
     /**
-     * Scale.
+     * Scale test.
      */
     @org.junit.Test
     public void scale(){
@@ -42,6 +42,8 @@ public class VectorTests {
         assertEquals(2.0,test2.getHead().getCoordZ().get(),0);
 
     }
+
+
     @org.junit.Test
     public void test(){
         Vector test2 = new Vector(1.0, 1.0, 1.0);
@@ -51,7 +53,7 @@ public class VectorTests {
     }
 
     /**
-     * Dot product.
+     * Dot product test.
      */
     @org.junit.Test
     public void dotProduct()  {
@@ -87,6 +89,7 @@ public class VectorTests {
         Vector V1 = new Vector(1.0,1.0,1.0);
         double test = V1.normalized().length();
         assertEquals(1,test,0);
+
         V1 = new Vector(-2.0,4.0,-3.0);
         test = V1.normalized().length();
         assertEquals(1.0,test,0);

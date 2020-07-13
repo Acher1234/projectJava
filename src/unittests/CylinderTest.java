@@ -8,6 +8,10 @@ import static org.junit.Assert.*;
 
 public class CylinderTest {
 
+    /**
+     * Test for Get Normal.
+     *
+     */
     @Test
     public void getNormal()
     {
