@@ -8,6 +8,8 @@ import renderer.ImageWriter;
 import renderer.Render;
 import scene.Scene;
 
+import static java.lang.System.nanoTime;
+
 
 /**
  * The type Main.
@@ -22,6 +24,7 @@ public final class Main3 {
      */
     public static void main(String[] args)
     {
+        long First =  System.nanoTime();
         boolean SoftShadow=false,precision=false;
         Scene scene = new Scene("Scene final");
         scene.setCamera(new Camera(new Point3D(500, 1200, 100), new Vector(0, -1, 0), new Vector(0, 0, 1),precision));
@@ -93,6 +96,8 @@ public final class Main3 {
 
         render.renderImage();
         render.writeToImage();
+        long Second =  System.nanoTime();
+        System.out.println(First-Second);
     }
 
 }
