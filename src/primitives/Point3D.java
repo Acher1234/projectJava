@@ -123,6 +123,10 @@ public class Point3D
         return (NewX+NewY+NewZ);
     }
 
+    /**
+     * to string
+     * @return
+     */
     public String toString() // this function writes what are the coordinates of the point.
     {
         return String.format("(%.2f, %.2f, %.2f)", coordX.get(), coordY.get(), coordZ.get()); // format de cdavid.
@@ -139,6 +143,11 @@ public class Point3D
         return Math.sqrt(temp.DistanceSquare());
     }
 
+    /**
+     * equals override
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         Point3D other = (Point3D)obj;

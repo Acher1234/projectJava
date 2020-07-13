@@ -63,6 +63,17 @@ public class Ray
         Point3D testPoint = ((Ray)obj)._POO;
         return (Test.equals(this._direction) && testPoint.equals(this._POO));
     }
+
+    /**
+     * to string
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "Point Origins:" + _POO.toString() + " Vector direction: " + _direction.toString();
+    }
+
+
     /**
      * Instantiates a new Ray.
      *
@@ -76,10 +87,7 @@ public class Ray
         this._POO = new Point3D(origin);
     }
 
-    @Override
-    public String toString() {
-        return "Point Origins:" + _POO.toString() + " Vector direction: " + _direction.toString();
-    }
+
 
     public Ray(Point3D origin, Vector direct)
     {

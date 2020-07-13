@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class CylinderTest {
 
     /**
-     * Gets normal.
+     * test Gets normal.
      */
     @Test
     public void getNormal()
@@ -29,7 +29,7 @@ public class CylinderTest {
     }
 
     /**
-     * Find intersection.
+     * test Find intersection.
      */
     @Test
     public void findIntersection() {

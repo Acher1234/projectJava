@@ -12,6 +12,11 @@ import java.util.List;
 
 public class cameraRayIntegrationTest {
 
+    /**
+     * test for the camera with some spheres
+     * to see if the finds intersections works good with the camera
+     * and their rays constructed through pixel
+     */
     @Test
     public void TestFunction()
     {
@@ -26,6 +31,7 @@ public class cameraRayIntegrationTest {
                 rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3));
             }
         }
+
         //Sphere Test
         Sphere sphereTest = new Sphere(1,new Point3D(0,0,3));
         for (Ray temp:rayTest)
@@ -42,6 +48,7 @@ public class cameraRayIntegrationTest {
         }
         assertEquals(2,pointTest.size(),0);
         pointTest.clear();
+
         //Sphere test2
         camera = new Camera(new Point3D(0,0,-0.5), new Vector(0, 0, 1), new Vector(0, -1, 0));
         rayTest.clear();
@@ -67,6 +74,7 @@ public class cameraRayIntegrationTest {
         }
         assertEquals(18,pointTest.size(),0);
         pointTest.clear();
+
         //sphere Test 3
         sphereTest = new Sphere(2,new Point3D(0,0,2));
         for (Ray temp:rayTest)

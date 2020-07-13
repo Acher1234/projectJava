@@ -43,7 +43,7 @@ public class Cylinder extends Tube
         this._height = _height;
     }
 
-    //************************METHODE****************
+    //************************OVERRIDE METHODES****************
     @Override
     public Vector getNormal(Point3D temp)
     {

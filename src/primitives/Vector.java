@@ -144,6 +144,10 @@ public class Vector
         return new Vector(this).normalize();
     }
 
+    /**
+     * to string
+     * @return
+     */
     @Override
     public String toString() {
         return  head.toString() ;
