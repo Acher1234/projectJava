@@ -18,8 +18,8 @@ import primitives.*;
 public class PolygonTests {
 
     /**
-     * Test method for
-     * .
+     * Test constructors for polygons
+     *
      */
     @Test
     public void testConstructor() {

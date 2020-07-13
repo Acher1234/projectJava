@@ -44,6 +44,13 @@ public class Sphere extends RadialGeometry
     }
 
     //************************METHODE****************
+
+    /**
+     * gets normal override from the points
+     *
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {

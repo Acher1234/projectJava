@@ -62,6 +62,11 @@ public class Plane implements Geometry
     }
 
 
+    /**
+     * gets normal override from a point
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {

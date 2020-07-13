@@ -52,6 +52,10 @@ public final class Coordinate {
         return isZero(_coord - ((Coordinate)obj)._coord);
     }
 
+    /**
+     * to string override
+     * @return
+     */
     @Override
     public String toString() {
         return "" + _coord;
