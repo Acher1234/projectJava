@@ -30,7 +30,6 @@ public class Ray
         double TY = point.coordY.get() / _direction.head.coordY.get();
         double TZ = point.coordZ.get() / _direction.head.coordZ.get();
         return (TX  == TY  && TY == TZ);
-
     }
 
     /**

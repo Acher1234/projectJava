@@ -269,12 +269,10 @@ public class Plane extends Geometry implements FlatGeometry
             return null;
         }
         Vector U;
-        try {
-            U = _normal.crossProduct(ray.getDirection());
-        }
-        catch (Exception e)
+        U = _normal.crossProduct(ray.getDirection());
+        if(U == null)
         {
-            //perpendicular
+            return null;
         }
         if(_p.equals(ray.getPOO()))
         {
@@ -294,6 +292,7 @@ public class Plane extends Geometry implements FlatGeometry
         List.add(new Intersectable.GeoPoint(this,ray.getPoint(t)));
         return List;
     }
+
 
     /**
      *

@@ -155,6 +155,7 @@ public class Sphere extends RadialGeometry
     public Point3D get_center() {
         return _center;
     }
+
    @Override
     public List<Intersectable.GeoPoint> findIntersection(Ray ray) {
        List<Intersectable.GeoPoint> List = new ArrayList<Intersectable.GeoPoint>();

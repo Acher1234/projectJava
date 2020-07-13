@@ -184,8 +184,6 @@ public class Vector
         if(getHead().coordZ.get() != test.getHead().coordZ.get())
             return false;
         return true;
-
-
     }
 
 
@@ -196,7 +194,6 @@ public class Vector
     {
         if ((head.coordX.get() == head.coordY.get()) && (head.coordY.get() == head.coordZ.get()) && (isZero(head.coordZ.get())))
             head = null;
-
     }
 
     /**
