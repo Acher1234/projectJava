@@ -23,7 +23,7 @@ public final class Main3 {
     public static void main(String[] args)
     {
         boolean SoftShadow=false,precision=false;
-        Scene scene = new Scene("Scene final");
+        Scene scene = new Scene("Scene final3");
         scene.setCamera(new Camera(new Point3D(500, 1200, 100), new Vector(0, -1, 0), new Vector(0, 0, 1),precision));
         scene.setDistance(900);
         scene.setBackground(new Color(222,184,135));
@@ -88,7 +88,7 @@ public final class Main3 {
                         new Point3D(340,100,1100), new Vector(-0.3,0,-1), 1, 0.00001,0.000000001,100,10,SoftShadow)
         );
 
-        ImageWriter imageWriter = new ImageWriter("SceneFinal", 1000, 700, 2000, 1400);
+        ImageWriter imageWriter = new ImageWriter("SceneFinal3", 1000, 700, 2000, 1400);
         Render render = new Render(imageWriter, scene);
 
         render.renderImage();
