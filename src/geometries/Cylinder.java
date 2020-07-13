@@ -12,10 +12,11 @@ import java.util.*;
  */
 public class Cylinder extends Tube
 {
+
+//************************Variable*************
     /**
      * The Height.
      */
-//************************Variable*************
     double _height;
 
     /**
@@ -43,11 +44,23 @@ public class Cylinder extends Tube
     }
 
     //************************METHODE****************
+
+    /**
+     * gets normal override
+     * @param temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
         return super.getNormal(temp);
     }
+
+    /**
+     * finds intersections override
+     * @param ray
+     * @return
+     */
     @Override
     public List<Point3D> findIntersection(Ray ray)
     {

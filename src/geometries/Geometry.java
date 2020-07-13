@@ -10,7 +10,7 @@ import primitives.*;
 public interface Geometry extends Intersectable
 {
     /**
-     * Gets normal.
+     * Gets normal abstracts.
      *
      * @param temp the temp
      * @return the normal

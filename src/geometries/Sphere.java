@@ -44,6 +44,12 @@ public class Sphere extends RadialGeometry
     }
 
     //************************METHODE****************
+
+    /**
+     * gets normal override
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {
@@ -58,6 +64,12 @@ public class Sphere extends RadialGeometry
     public Point3D get_center() {
         return _center;
     }
+
+    /**
+     * find intersections override
+     * @param ray
+     * @return
+     */
     @Override
     public
     List<Point3D> findIntersection(Ray ray)

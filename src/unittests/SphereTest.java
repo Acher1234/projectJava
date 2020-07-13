@@ -8,6 +8,9 @@ import primitives.*;
 
 public class SphereTest {
 
+    /**
+     * test gets normal
+     */
     @Test
     public void getNormal() {
         // ============ Equivalence Partitions Tests ==============

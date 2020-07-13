@@ -11,6 +11,9 @@ import java.util.List;
 
 public class TubeTest {
 
+    /**
+     * test gets normal
+     */
     @Test
     public void getNormal()
     {
@@ -23,6 +26,9 @@ public class TubeTest {
         assertEquals(Result1.getHead().getCoordZ(),test1.getHead().getCoordZ());
     }
 
+    /**
+     * test finds intersections
+     */
     @Test
     public void findIntersection()
     {

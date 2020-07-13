@@ -43,6 +43,12 @@ public class Tube extends RadialGeometry {
     }
 
     //*************METHODE***************
+
+    /**
+     * gets normal override
+     * @param temp the temp
+     * @return
+     */
     @Override
     public Vector getNormal(Point3D temp)
     {

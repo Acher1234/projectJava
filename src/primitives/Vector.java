@@ -14,6 +14,9 @@ public class Vector
      */
     protected Point3D head;
 
+    /**
+     * new vector
+     */
     public Vector() {
         head = new Point3D(1,1,1);
     }

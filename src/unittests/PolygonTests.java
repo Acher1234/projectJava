@@ -18,7 +18,7 @@ import primitives.*;
 public class PolygonTests {
 
     /**
-     * Test method for
+     * Test constructors in some modifications
      * .
      */
     @Test
