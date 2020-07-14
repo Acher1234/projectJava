@@ -2,39 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55529f4e-79a6-4c71-80c2-9530a79fa97d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/intellij-javadocs-4.0.1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/CameraTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/CylinderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/GeometriesTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/ImageWriterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/PolygonTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/RayTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/RenderTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/SphereTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/TriangleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/TubeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/VectorTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/XMLTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unittests/cameraRayIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Cylinder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Geometries.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Geometry.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Intersectable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Plane.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Polygon.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/RadialGeometry.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Sphere.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Triangle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/geometries/Tube.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/primitives/Coordinate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/primitives/Point3D.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/primitives/Ray.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/primitives/Util.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/primitives/Vector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/Render.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Render.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/PolygonTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/SphereTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/unittests/TriangleTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
