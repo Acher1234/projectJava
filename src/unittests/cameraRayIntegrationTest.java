@@ -12,6 +12,9 @@ import java.util.List;
 
 public class cameraRayIntegrationTest {
 
+    /**
+     * spheres tests
+     */
     @Test
     public void TestsphereFunction()
     {
@@ -26,6 +29,7 @@ public class cameraRayIntegrationTest {
                 rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3));
             }
         }
+
         //Sphere Test1
         Sphere sphereTest = new Sphere(1,new Point3D(0,0,3));
         for (Ray temp:rayTest)

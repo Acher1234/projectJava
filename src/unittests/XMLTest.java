@@ -5,6 +5,9 @@ import renderer.Render;
 
 public class XMLTest
 {
+    /**
+     * test for render
+     */
     @Test
     public void TestRender()
     {

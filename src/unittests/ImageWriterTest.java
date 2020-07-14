@@ -7,6 +7,9 @@ import java.awt.*;
 
 public class ImageWriterTest {
 
+    /**
+     * test for image writter
+     */
     @Test
     public void testImageWritter()
     {
