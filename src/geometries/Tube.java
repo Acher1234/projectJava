@@ -4,7 +4,7 @@ import primitives.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import geometries.*;
 import static java.lang.StrictMath.abs;
 import static java.lang.StrictMath.sqrt;
 import static primitives.Util.alignZero;

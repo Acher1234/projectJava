@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * The type Math help.
  */
-public  class MathHelp  {
+public class MathHelp  {
     /**
      * Second degree list.
      *
