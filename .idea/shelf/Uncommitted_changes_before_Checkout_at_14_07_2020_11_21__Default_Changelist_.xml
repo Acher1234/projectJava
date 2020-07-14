@@ -1,0 +1,59 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]" date="1594714902616" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 14/07/2020 11:21 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/geometries/Sphere.class" />
+    <option name="AFTER_PATH" value="out/production/Project/geometries/Sphere.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Sphere.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/geometries/Triangle.class" />
+    <option name="AFTER_PATH" value="out/production/Project/geometries/Triangle.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Triangle.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/geometries/Tube.class" />
+    <option name="AFTER_PATH" value="out/production/Project/geometries/Tube.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Tube.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/geometries/Cylinder.class" />
+    <option name="AFTER_PATH" value="out/production/Project/geometries/Cylinder.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Cylinder.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/primitives/Vector.class" />
+    <option name="AFTER_PATH" value="out/production/Project/primitives/Vector.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Vector.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/renderer/Render.class" />
+    <option name="AFTER_PATH" value="out/production/Project/renderer/Render.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Render.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/primitives/Material.class" />
+    <option name="AFTER_PATH" value="out/production/Project/primitives/Material.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Material.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/elements/PointLight.class" />
+    <option name="AFTER_PATH" value="out/production/Project/elements/PointLight.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/PointLight.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/primitives/Point3D.class" />
+    <option name="AFTER_PATH" value="out/production/Project/primitives/Point3D.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Point3D.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/primitives/Coordinate.class" />
+    <option name="AFTER_PATH" value="out/production/Project/primitives/Coordinate.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/Coordinate.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Project/elements/SpotLight.class" />
+    <option name="AFTER_PATH" value="out/production/Project/elements/SpotLight.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_14_07_2020_11_21_[Default_Changelist]/SpotLight.class" />
+  </binary>
+</changelist>
