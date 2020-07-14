@@ -6,6 +6,9 @@ import primitives.Vector;
 
 public class SpotLight extends PointLight
 {
+    /**
+     * parameter
+     */
     private Vector _direction;
 
     /**
@@ -49,6 +52,11 @@ public class SpotLight extends PointLight
         return new Color(0,0,0);
     }
 
+    /**
+     * gets distance
+     * @param p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();

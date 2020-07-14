@@ -122,6 +122,12 @@ public class Sphere extends RadialGeometry
        }
    }
 
+    /**
+     * finds intersections in the distance defined (no more than max)
+     * @param ray
+     * @param max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
         boolean flag = false;

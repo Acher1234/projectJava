@@ -6,6 +6,9 @@ import primitives.Vector;
 
 public class PointLight extends Light implements LightSource
 {
+    /**
+     * parameters
+     */
     protected Point3D _Position;
     protected double _kC,_kL,_kQ;
 
@@ -47,6 +50,11 @@ public class PointLight extends Light implements LightSource
         return _Position.subtract(p).normalized();
     }
 
+    /**
+     * gets distance
+     * @param p
+     * @return
+     */
     @Override
     public double getDistance(Point3D p) {
         return p.subtract(_Position).length();
