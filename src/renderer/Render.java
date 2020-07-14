@@ -1,15 +1,23 @@
 package renderer;
 
+import elements.AmbientLight;
+import elements.Camera;
 import elements.LightSource;
 import geometries.*;
 import geometries.Intersectable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 import scene.Scene;
 
 import javax.swing.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +35,7 @@ public class Render
 
     //---------Methodes-------
 
-    /* public static Render getRenderFromXML(String PathFile)
+    public static Render getRenderFromXML(String PathFile)
      {
          Render newRender = null;
          try {
@@ -132,7 +140,7 @@ public class Render
             returnTab[i] = Integer.parseInt(splited[i]);
         }
         return returnTab;
-    }*/
+    }
 
     public Render(ImageWriter Image, Scene scene)
     {
