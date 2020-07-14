@@ -137,6 +137,13 @@ public class Tube extends RadialGeometry {
         resultPoint.add(new Intersectable.GeoPoint(this,ray.getPoint(result.get(1))));
         return resultPoint;
     }
+
+    /**
+     * finds intersections in the distance defined (no more than max)
+     * @param ray
+     * @param max
+     * @return
+     */
     @Override
     public List<GeoPoint> findIntersection(Ray ray, double max) {
         boolean flag = false;

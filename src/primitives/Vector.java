@@ -167,6 +167,12 @@ public class Vector
     {
         return sqrt(this.lengthSquared());
     }
+
+    /**
+     * compare 2 Vectors
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         Vector test = (Vector)obj;

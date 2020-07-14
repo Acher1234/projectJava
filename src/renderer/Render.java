@@ -26,6 +26,9 @@ import static java.lang.Math.pow;
 
 public class Render
 {
+    /**
+     * parameters
+     */
     private static final double DELTA = 0.1;
     Scene _scene;
     ImageWriter _imagewriter;
@@ -142,13 +145,22 @@ public class Render
         return returnTab;
     }
 
+    /**
+     * constructor
+     * @param Image
+     * @param scene
+     */
     public Render(ImageWriter Image, Scene scene)
     {
         _imagewriter = Image;
         _scene = scene;
-
     }
 
+    /**
+     * gets scene ray intersections
+     * @param ray
+     * @return
+     */
     private List<Intersectable.GeoPoint> getSceneRayIntersections(Ray ray)
     {
         List<Intersectable.GeoPoint> returnList = new ArrayList<Intersectable.GeoPoint>();
@@ -167,9 +179,15 @@ public class Render
         }
         return returnList.isEmpty() ? null : returnList;
     }
+
+    /**
+     * returned the sign
+     * @param e
+     * @return
+     */
     protected boolean sign(double e)
     {
-        return e >=0 ? true : false;
+        return e >= 0;
     }
 
     public primitives.Color calcColor(Intersectable.GeoPoint p,Ray inRay,int level,double k)

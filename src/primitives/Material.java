@@ -1,6 +1,9 @@
 package primitives;
 
 public class Material {
+    /**
+     * parameters
+     */
     protected double _kD;
     protected double _kS;
     protected double _kT;
