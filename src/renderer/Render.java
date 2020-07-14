@@ -50,6 +50,11 @@ public class Render
 
     //---------Methodes-------
 
+    /**
+     * XML File TO pictures
+     * @param PathFile to XML
+     * @return
+     */
     public static Render getRenderFromXML(String PathFile)
     {
         Render newRender = null;
