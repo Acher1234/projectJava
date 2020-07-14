@@ -23,7 +23,7 @@ public class cameraRayIntegrationTest {
         {
             for (int j=0;j<3;j++)
             {
-                rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3).get(0));
+                rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3));
             }
         }
         //Sphere Test
@@ -82,7 +82,7 @@ public class cameraRayIntegrationTest {
         {
             for (int j=0;j<3;j++)
             {
-                rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3).get(0));
+                rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3));
             }
         }
         sphereTest = new Sphere(2.5,new Point3D(0,0,2.5));
@@ -128,7 +128,7 @@ public class cameraRayIntegrationTest {
         {
             for (int j=0;j<3;j++)
             {
-                rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3).get(0));
+                rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3));
             }
         }
         Plane planetest = new Plane(new Point3D(0,0,7), camera.getVto());
@@ -182,7 +182,7 @@ public class cameraRayIntegrationTest {
         {
             for (int j=0;j<3;j++)
             {
-                rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3).get(0));
+                rayTest.add(camera.constructRayThroughPixel(3,3,j,i,1,3,3));
             }
         }
         //triangle test 1
