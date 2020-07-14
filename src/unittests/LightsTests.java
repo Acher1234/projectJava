@@ -10,7 +10,7 @@ import scene.Scene;
 
 /**
  * Test rendering abasic image
- *
+ * 
  * @author Dan
  */
 public class LightsTests {
@@ -75,8 +75,8 @@ public class LightsTests {
         scene.addGeometries(
                 new Sphere(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 100), 50, new Point3D(0, 0, 50)));
 
-        scene.addLights(new RayonLight(new Color(200, 1, 0), new Point3D(0, 0, -200),
-                new Vector(0,0 , 1), 1, 0.0000001, 0.00000000001,100));
+        scene.addLights(new SpotLight(new Color(200, 1, 0), new Point3D(0, 0, -200),
+                new Vector(0,0 , 1), 1, 0.00001, 0.00000001));
 
         ImageWriter imageWriter = new ImageWriter("sphereSpotTest", 150, 150, 500, 500);
         Render render = new Render(imageWriter, scene);
@@ -128,9 +128,9 @@ public class LightsTests {
                 new Triangle(Color.BLACK, new Material(0.5, 0.5, 300),
                         new Point3D(-150, 150, 150), new Point3D(-70, -70, 50), new Point3D(75, -75, 150)));
 
-        scene.addLights(new AreaPointLight(new Color(500, 250, 250),
+        scene.addLights(new PointLight(new Color(500, 250, 250),
                 new Point3D(10, 10, 130),
-                1, 0.0005, 0.0005,10));
+                1, 0.0005, 0.0005));
 
         ImageWriter imageWriter = new ImageWriter("trianglesPoint", 200, 200, 500, 500);
         Render render = new Render(imageWriter, scene);
