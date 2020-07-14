@@ -61,7 +61,7 @@ public class PolygonTests {
             new Polygon(new Point3D(0, 0, 1), new Point3D(1, 0, 0),
                     new Point3D(0, 1, 0), new Point3D(0, 0.5, 0.5));
             fail("Constructed a polygon with vertix on a side");
-        } catch (IllegalArgumentException e) {
+        } catch (NullPointerException e) {
 
         }
 
@@ -92,7 +92,7 @@ public class PolygonTests {
                 new Point3D(-1, 1, 1));
         double sqrt3 = Math.sqrt(1);
         //"Bad normal to trinagle"
-        assertEquals("Bad normal to trinagle" , new Vector(sqrt3, sqrt3, sqrt3), (pl.getNormal(new Point3D(0, 0, 1))));
+        assertEquals("Bad normal to trinagle" , (new Vector(sqrt3, sqrt3, sqrt3)).normalized(), (pl.getNormal(new Point3D(0, 0, 1))).normalized());
     }
 
 }

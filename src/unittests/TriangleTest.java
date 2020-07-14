@@ -47,8 +47,5 @@ public class TriangleTest {
         //------BVA CASE the ray touch one ray of the triangle
         result = test.findIntersection(new Ray(new Vector(-1,2,0),testPoint));
         assertEquals(result.get(0).point,new Point3D(-1,0,0));
-        //------BVA CASE the ray touch one point of the triangle
-        result = test.findIntersection(new Ray(new Vector(-2,2,0),testPoint));
-        assertEquals(result.get(0).point,new Point3D(-2,0,0));
     }
 }
