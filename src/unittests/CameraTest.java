@@ -1,55 +1,57 @@
 package unittests;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 import elements.Camera;
-import geometries.Plane;
-import org.junit.jupiter.api.Test;
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Vector;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import primitives.*;
 
 /**
- * The type Camera test.
+ * Testing Camera Class
+ *
+ * @author Dan
  */
-class CameraTest {
+public class CameraTest {
 
     /**
-     * Construct ray through pixel.
+     * Test method for
+     * {@link elements.Camera#constructRayThroughPixel(int, int, int, int, double, double, double)}.
      */
     @Test
-    void constructRayThroughPixel()
-    {
+    public void testConstructRayThroughPixel() {
         Camera camera = new Camera(Point3D.ZERO, new Vector(0, 0, 1), new Vector(0, -1, 0));
-        ArrayList<Ray> rayTest= new ArrayList<Ray>();
-        ArrayList<Point3D> pointTest= new ArrayList<Point3D>();
-        List<Point3D> pointTemp ;
-        List<Ray> recuptest= new ArrayList<Ray>();
-        for (int i = 0;i < 3;i++)
-        {
-            for (int j=0;j<3;j++)
-            {
-                recuptest = camera.constructRayThroughPixel(3,3,j,i,1,9,9);
-                for (Ray test:recuptest)
-                {
-                 rayTest.add(test);
-                }
-            }
-        }
-        assertEquals(45,rayTest.size());
+        
+        // ============ Equivalence Partitions Tests ==============
+        // TC01: 3X3 Corner (0,0)
+        assertEquals("Bad ray", new Ray(Point3D.ZERO, new Vector(-2, -2, 10)),
+                camera.constructRayThroughPixel(3, 3, 0, 0, 10, 6, 6));
+        
+        // TC02: 4X4 Corner (0,0)
+        assertEquals("Bad ray", new Ray(Point3D.ZERO, new Vector(-3, -3, 10)),
+                camera.constructRayThroughPixel(4, 4, 0, 0, 10, 8, 8));
+
+        // TC03: 4X4 Side (0,1)
+        assertEquals("Bad ray", new Ray(Point3D.ZERO, new Vector(-1, -3, 10)),
+                camera.constructRayThroughPixel(4, 4, 1, 0, 10, 8, 8));
+
+        // TC04: 4X4 Inside (1,1)
+        assertEquals("Bad ray", new Ray(Point3D.ZERO, new Vector(-1, -1, 10)),
+                camera.constructRayThroughPixel(4, 4, 1, 1, 10, 8, 8));
+        
+        // =============== Boundary Values Tests ==================
+        // TC11: 3X3 Center (1,1)
+        assertEquals("Bad ray", new Ray(Point3D.ZERO, new Vector(0, 0, 10)),
+                camera.constructRayThroughPixel(3, 3, 1, 1, 10, 6, 6));
+
+        // TC12: 3X3 Center of Upper Side (0,1)
+        assertEquals("Bad ray", new Ray(Point3D.ZERO, new Vector(0, -2, 10)),
+                camera.constructRayThroughPixel(3, 3, 1, 0, 10, 6, 6));
+
+        // TC13: 3X3 Center of Left Side (1,0)
+        assertEquals("Bad ray", new Ray(Point3D.ZERO, new Vector(-2, 0, 10)),
+                camera.constructRayThroughPixel(3, 3, 0, 1, 10, 6, 6));
+        
     }
 
-    /**
-     * Plane test.
-     */
-    @Test
-    void PlaneTest()
-    {
-        Plane a = new Plane(new Point3D(1,1,1),new Vector(25,42,12));
-        double result = a.findPerpendicularVector(3,5.6).dotProduct(new Vector(25,42,12));
-        assertEquals(0.000,result,0.000001);
-    }
 }
